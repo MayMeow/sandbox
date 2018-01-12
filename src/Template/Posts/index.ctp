@@ -4,15 +4,17 @@
  * @var \App\Model\Entity\Post[]|\Cake\Collection\CollectionInterface $posts
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+
+<div class="row">
+<div class="two wide column">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Post'), ['action' => 'add', 'prefix' => 'admin']) ?></li>
     </ul>
-</nav>
-<div class="posts index large-9 medium-8 columns content">
-    <h3><?= __('Posts') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+</div>
+<div class="fourteen wide column">
+    <h1 class="ui dividing headerui dividing header"><?= __('Posts') ?></h1>
+    <table class="ui celled table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -48,4 +50,5 @@
         </ul>
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
+</div>
 </div>
