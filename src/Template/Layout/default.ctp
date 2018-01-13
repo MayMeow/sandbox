@@ -66,14 +66,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </nav>
 
     <main role="main" class="container">
+        <div id="vue-app">
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
+        </div>
     </main>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <?= $this->Html->script('jquery-3.2.1.min') ?>
     <?= $this->Html->script('bootstrap.min') ?>
+    <?= $this->Html->script('bundle') ?>
   </body>
 </html>

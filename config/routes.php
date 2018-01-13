@@ -81,6 +81,13 @@ Router::prefix('admin', function ($routes) {
     $routes->fallbacks(DashedRoute::class);
 });
 
+Router::prefix('api', function ($routes) {
+    // All routes here will be prefixed with `/admin`
+    // And have the prefix => admin route element added.
+    $routes->setExtensions(['json']);
+    $routes->fallbacks(DashedRoute::class);
+});
+
 /**
  * Load all plugin routes. See the Plugin documentation on
  * how to customize the loading of plugin routes.
