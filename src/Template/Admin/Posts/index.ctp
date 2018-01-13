@@ -11,8 +11,8 @@
     </ul>
 </nav>
 <div class="posts index large-9 medium-8 columns content">
-    <h3><?= __('Posts') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <h3 style="font-weight: 300"><?= __('Posts') ?></h3>
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
