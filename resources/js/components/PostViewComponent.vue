@@ -14,7 +14,9 @@
         },
         data () {
             return {
-                post: [],
+                post: {
+                    post: []
+                },
                 errors: []
             }
         },
