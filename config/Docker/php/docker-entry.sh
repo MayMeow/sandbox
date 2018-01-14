@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo -ne "Update folder and files rights..."
+chmod +x bin/cake
 
 if [ ! -f /var/www/html/vendor/autoload.php ]; then
     echo "Autoload file not found! Installing dependencies..."
