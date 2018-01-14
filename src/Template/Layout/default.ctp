@@ -67,6 +67,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <main role="main" class="container">
         <div id="vue-app">
+        <div class="loading" v-if="loading">
+          Loading...
+        </div>
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
         </div>
