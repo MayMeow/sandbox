@@ -41,8 +41,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
   <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">SandBox <span class="badge badge-pill badge-light">Docker version</span></a>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+      <a class="navbar-brand" href="#">SandBox <span class="badge badge-pill badge-dark">Docker version</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
