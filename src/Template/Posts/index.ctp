@@ -11,8 +11,7 @@
     </ul>
 </nav>
 <div class="posts index large-9 medium-8 columns content">
-    <h3><?= __('Posts') ?></h3>
-    <example-component name="Martin"></example-component>
+    <h3 style="font-weight: 300"><?= __('Posts') ?></h3>
     <table class="table">
         <thead>
             <tr>
