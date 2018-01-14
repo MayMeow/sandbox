@@ -8,8 +8,8 @@ if [ ! -f /var/www/html/vendor/autoload.php ]; then
     composer install --no-ansi --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader
 fi
 
-echo "Wait until database $DB_HOST:5432 is ready..."
-until nc -z $DB_HOST 5432
+echo "Wait until database $DB_HOST:$DB_PORT is ready..."
+until nc -z $DB_HOST $DB_PORT
 do
     sleep 1
 done
