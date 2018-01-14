@@ -17,14 +17,14 @@
     </ul>
 </nav>
 <div class="posts form large-9 medium-8 columns content">
+    <h3 style="font-weight: 300"><?= __('Edit Post') ?></h3>
     <?= $this->Form->create($post) ?>
-    <fieldset>
-        <legend><?= __('Edit Post') ?></legend>
+
         <?php
             echo $this->Form->control('title');
             echo $this->Form->control('body');
         ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+
+    <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-outline-success']) ?>
     <?= $this->Form->end() ?>
 </div>

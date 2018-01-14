@@ -12,12 +12,8 @@ use App\Controller\PostsController as BaseController;
  */
 class PostsController extends BaseController
 {
-    public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('RequestHandler');
-    }
-
+    // removed RequestHandler - look at AppController
+    
     /**
      * Index method
      *

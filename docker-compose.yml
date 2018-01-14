@@ -1,0 +1,57 @@
+version: '2.1'
+
+services:
+    cakephp:
+        build: .
+        volumes:
+            - /var/www/html
+            - ./volumes/cakephp/logs:/var/www/html/logs:rw
+
+    php:
+        build: ./config/Docker/php
+        depends_on:
+            - cakephp
+        restart: always
+        volumes_from:
+            - cakephp
+        environment:
+            DB_HOST: db
+            DB_PORT: 5432
+            DB_USER: postgres
+            DB_PASSWORD: 4st25DBUKyLr8qqNuPPZrb
+            DB_NAME: cakephp
+            DEBUG: "false"
+            REDIS_SERVER: redis
+            REDIS_SERVER_PORT: 6379
+            EMAIL_TRANSPORT: Smtp
+            EMAIL_SMTP_HOST: ""
+            EMAIL_SMTP_PORT: 25
+            EMAIL_SMTP_USER: ""
+            EMAIL_SMTP_PASSWORD: ""
+
+    redis:
+        build: ./config/Docker/redis
+        restart: always
+
+    db:
+        image: postgres
+        depends_on:
+            - cakephp
+        volumes:
+            - ./volumes/db/data:/var/lib/postgresql/data
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: 4st25DBUKyLr8qqNuPPZrb
+            POSTGRES_DB: cakephp
+
+    nginx:
+        build : ./config/Docker/nginx
+        depends_on:
+            - cakephp
+            - php
+            - db
+        restart: always
+        volumes_from:
+            - cakephp
+        ports:
+            - "8099:80"

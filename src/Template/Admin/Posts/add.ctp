@@ -11,11 +11,12 @@
     </ul>
 </nav>
 <div class="posts form large-9 medium-8 columns content">
+    <h3 style="font-weight: 300"><?= __('New Post') ?></h3>
     <?= $this->Form->create($post) ?>
         <?php
             echo $this->Form->control('title');
             echo $this->Form->control('body');
         ?>
-    <?= $this->Form->button(__('Save', ['type' => 'submit', 'class' => 'test'])) ?>
+    <?= $this->Form->button(__('Save'), ['class' => 'btn btn-outline-primary']) ?>
     <?= $this->Form->end() ?>
 </div>
