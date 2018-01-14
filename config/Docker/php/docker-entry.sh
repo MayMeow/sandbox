@@ -5,7 +5,8 @@ echo -ne "Update folder and files rights..."
 if [ ! -f /var/www/html/vendor/autoload.php ]; then
     echo "Autoload file not found! Installing dependencies..."
     composer selfupdate
-    composer install --no-ansi --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader
+    # add --no-scripts if you have application preconfigured
+    composer install --no-ansi --no-dev --no-interaction --no-progress  --optimize-autoloader
 fi
 
 echo "Wait until database $DB_HOST:$DB_PORT is ready..."
