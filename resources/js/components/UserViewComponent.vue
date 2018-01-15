@@ -1,6 +1,7 @@
 <template>
     <div>
-         <h1>{{ user.user.email }}</h1>
+         <h1 style="font-weight: 300">{{ user.user.email }}</h1>
+         Member from {{ user.user.created }}
     </div>
 </template>
 
@@ -20,9 +21,11 @@
             }
         },
         created () {
+            this.$parent.$emit('pageLoader', true)
             axios.get('/api/users/view/' + this.userId + '.json')
             .then(response => {
                 this.user = response.data
+                this.$parent.$emit('pageLoader', false)
             })
             .catch(e => {
                 this.errors.push(e)

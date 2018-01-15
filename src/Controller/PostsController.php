@@ -20,9 +20,7 @@ class PostsController extends AppController
      */
     public function index()
     {
-        $posts = $this->paginate($this->Posts);
-
-        $this->set(compact('posts'));
+        //
     }
 
     /**

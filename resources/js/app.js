@@ -10,12 +10,18 @@ window.Vue = require('vue');
 
 Vue.component('user-view-component', require('./components/UserViewComponent'));
 Vue.component('post-view-component', require('./components/PostViewComponent'));
+Vue.component('posts-table-component', require('./components/PostsTableComponent'));
 
 const app = new Vue({
     el: '#vue-app',
     data () {
         return {
-            loading: true
+            loading: false
         }
+    },
+    created () {
+        this.$on('pageLoader', function(value) {
+            this.loading = value
+        })
     }
 })

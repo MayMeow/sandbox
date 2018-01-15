@@ -42,20 +42,23 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <body>
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-      <a class="navbar-brand" href="#">SandBox <span class="badge badge-pill badge-dark">Docker version</span></a>
+      <a class="navbar-brand" href="#">sandbox</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= $this->Url->build(['prefix' => false, 'controller' => 'pages', 'action' => 'display', 'about'])?>">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
+            <a class="nav-link" href="/users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/posts">Posts</a>
           </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
@@ -66,9 +69,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </nav>
 
     <main role="main" class="container">
-        <div id="vue-app">
-        <div class="loading" v-if="loading">
-          Loading...
+        <div id="vue-app" v-cloak>
+        <div class="row align-items-center loading" v-if="loading">
+          <div class="col">
+            <h3 style="font-weight: 300">Thinking ...</h3>
+          </div>
         </div>
         <?= $this->Flash->render() ?>
         <?= $this->fetch('content') ?>
