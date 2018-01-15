@@ -78,8 +78,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <?= $this->Html->script('jquery-3.2.1.min') ?>
-    <?= $this->Html->script('bootstrap.min') ?>
-    <?= $this->Html->script('bundle') ?>
+    <?= $this->Html->script('app') ?>
   </body>
 </html>
