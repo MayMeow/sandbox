@@ -1,6 +1,7 @@
 FROM ubuntu:16.04
 
-RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx software-properties-common
+RUN sudo add-apt-repository ppa:certbot/certbot && apt-get update && apt-get install -y certbot
 
 RUN rm /etc/nginx/sites-enabled/default
 
