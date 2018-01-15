@@ -6,6 +6,7 @@ services:
         volumes:
             - /var/www/html
             - ./volumes/cakephp/logs:/var/www/html/logs:rw
+            - ./volumes/letsencrypt:/etc/letsencrypt
 
     php:
         build: ./config/Docker/php

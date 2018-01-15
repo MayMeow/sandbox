@@ -1,6 +1,7 @@
 # CakePHP specific files #
 ##########################
 /config/app.php
+/config/Docker/nginx/nginx.conf
 /config/.env
 /logs/*
 /tmp/*
