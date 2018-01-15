@@ -54,4 +54,4 @@ services:
         volumes_from:
             - cakephp
         ports:
-            - "8099:80"
+            - "80:80"
