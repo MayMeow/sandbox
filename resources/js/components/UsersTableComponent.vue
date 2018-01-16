@@ -1,7 +1,7 @@
 <template>
     <div v-if="done">
-        <h1 style="font-weight: 300">Posts</h1>
-        <a href="/admin/posts/add" class="btn btn-success">Create post</a>
+        <h1 style="font-weight: 300">Users</h1>
+        <a href="/admin/users/add" class="btn btn-success">Create user</a>
         <table class="table">
             <thead>
                 <tr>
@@ -12,13 +12,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="post in posts.posts">
-                    <td>{{ post.id }}</td>
-                    <td>{{ post.title }}</td>
-                    <td>{{ post.created }}</td>
+                <tr v-for="user in users.users">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.created }}</td>
                     <td>
-                        <a :href="'/posts/view/' + post.id">View</a>
-                        <a :href="'/admin/posts/edit/' + post.id">Edit</a>
+                        <a :href="'/users/view/' + user.id">View</a>
+                        <a :href="'/admin/users/edit/' + user.id">Edit</a>
                     </td>
                 </tr>
             </tbody>
@@ -35,17 +35,17 @@
         data () {
             return {
                 done: false,
-                posts: {
-                    posts: []
+                users: {
+                    users: []
                 },
                 errors: []
             }
         },
         created () {
             this.$parent.$emit('pageLoader', true)
-            axios.get('/api/posts.json')
+            axios.get('/api/users.json')
             .then(response => {
-                this.posts = response.data
+                this.users = response.data
                 this.$parent.$emit('pageLoader', false)
                 this.done = true
             })

@@ -60,6 +60,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
           <li class="nav-item">
             <a class="nav-link" href="/posts">Posts</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/posts">Admin</a>
+          </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
@@ -68,16 +71,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       </div>
     </nav>
 
-    <main role="main" class="container">
-        <div id="vue-app" v-cloak>
-        <div class="row align-items-center loading" v-if="loading">
-          <div class="col">
-            <h3 style="font-weight: 300">Thinking ...</h3>
-          </div>
-        </div>
-        <?= $this->Flash->render() ?>
-        <?= $this->fetch('content') ?>
-        </div>
+    <main role="main" class="container" id="vue-app" v-cloak>
+      
+      <?= $this->Flash->render() ?>
+      <?= $this->fetch('content') ?>
+
     </main>
 
     <!-- Bootstrap core JavaScript
