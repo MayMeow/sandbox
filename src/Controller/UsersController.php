@@ -49,19 +49,29 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         $profile = $this->Users->Profiles->newEntity();
+
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            if ($this->Users->save($user)) {
+            $result = $this->Users->getConnection()->transactional(function() use ($user, $profile) {
+                if ($this->Users->save($user)) {
+    
+                    $profile->user_id = $user->id;
+                    $profile->name = $user->email;
+                    $this->Users->Profiles->save($profile);
+                    return true;
+                }
+                return false;
+            });
+
+            if ($result) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                $profile->user_id = $user->id;
-                $profile->name = $user->email;
-                $this->Users->Profiles->save($profile);
-
                 return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            
         }
         $this->set(compact('user'));
     }
