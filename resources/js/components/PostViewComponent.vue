@@ -5,9 +5,7 @@
                  <h1 style="font-weight: 300">{{ post.post.title }}</h1>
              </div>
          </div>
-         <div>
-             {{ post.post.body }}
-         </div>
+         <div v-html="post.post.markdown"></div>
     </div>
 </template>
 
@@ -32,7 +30,7 @@
             axios.get('/api/posts/view/' + this.postID + '.json')
             .then(response => {
                 this.post = response.data
-                this.post.post.body = emojione.shortnameToUnicode(this.post.post.body)
+                this.post.post.markdown = emojione.shortnameToUnicode(this.post.post.markdown)
                 this.$parent.$emit('pageLoader', false)
             })
             .catch(e => {

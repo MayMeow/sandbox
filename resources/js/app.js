@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./emojioneConvert');
 
 window.Vue = require('vue');
 

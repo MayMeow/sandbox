@@ -48,10 +48,16 @@ class UsersController extends AppController
     public function add()
     {
         $user = $this->Users->newEntity();
+        $profile = $this->Users->Profiles->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
+
+                $profile->user_id = $user->id;
+                $profile->name = $user->email;
+                $this->Users->Profiles->save($profile);
 
                 return $this->redirect(['action' => 'index']);
             }

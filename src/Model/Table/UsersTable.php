@@ -8,6 +8,8 @@ use Cake\Validation\Validator;
 
 /**
  * Users Model
+ * 
+ * @property |\Cake\ORM\Association\HasOne $Profiles
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -37,6 +39,8 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasOne('profiles');
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace App\Controller\Api;
 
 use App\Controller\PostsController as BaseController;
+use Parsedown;
 
 /**
  * Posts Controller
@@ -41,6 +42,9 @@ class PostsController extends BaseController
         $post = $this->Posts->get($id, [
             'contain' => []
         ]);
+
+        $parsedown = new Parsedown();
+        $post->markdown = $parsedown->text($post->body);
 
         $this->set([
             'post' => $post,
