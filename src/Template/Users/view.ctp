@@ -1,0 +1,1 @@
+<user-view-component user-id="<?= $userID ?>"></user-view-component>

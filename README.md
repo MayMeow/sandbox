@@ -1,51 +1,68 @@
-# MayMeow Sandbox
+# Sandbox
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![License](https://img.shields.io/packagist/l/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
+Appication is prepacked for using with docker. Pack include
 
-A skeleton for creating applications with [CakePHP](https://cakephp.org) 3.x.
+* NGINX
+* PHP 7.1 FPM
+* PostgreSQL
+* Redis
+* This application
 
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+## Requirements
+
+* docker
+* docker-compose
+
+For standalone installation you will need
+
+* PHP 7.1 and up
+* Database of your choise (MySQL, PostgreSQL, MSSQL, Sqlite)
+* Webserver NGINX or Apache
 
 ## Installation
 
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
-
-If Composer is installed globally, run
+Download source code from https://github.com/MayMeow/sandbox
 
 ```bash
-composer create-project --prefer-dist cakephp/app
+git pull https://github.com/MayMeow/sandbox.git
 ```
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
+Copy default nginx configuration
 
 ```bash
-composer create-project --prefer-dist cakephp/app myapp
+cp config/Docker/nginx/nginx.conf.default config/Docker/nginx/nginx.conf
 ```
 
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
+Build images
 
 ```bash
-bin/cake server -p 8765
+docker-compose build
 ```
 
-Then visit `http://localhost:8765` to see the welcome page.
+Run your server
 
-## Update
+```bash
+docker-compose up -d
+```
 
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
+If you want track actions in console run server with
 
-## Configuration
+```bash
+docker-compose up
+```
 
-Read and edit `config/app.php` and setup the `'Datasources'` and any other
-configuration relevant for your application.
+## Contributing
 
-## Layout
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'` Changes have to be as small as possible per commit.
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
 
-The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) (v5) CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
+## Credits
+
+* MayMeow
+
+## License
+
+MIT

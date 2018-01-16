@@ -1,12 +1,19 @@
 <template>
     <div>
-         <h1>{{ post.post.title }}</h1>
-         {{ post.post.body }}
+         <div class="row text-center">
+             <div class="col">
+                 <h1 style="font-weight: 300">{{ post.post.title }}</h1>
+             </div>
+         </div>
+         <div>
+             {{ post.post.body }}
+         </div>
     </div>
 </template>
 
 <script>
     import axios from 'axios'
+    import emojione from 'emojione'
     export default {
         props: ['postID'],
         mounted () {
@@ -21,9 +28,12 @@
             }
         },
         created () {
+            this.$parent.$emit('pageLoader', true)
             axios.get('/api/posts/view/' + this.postID + '.json')
             .then(response => {
                 this.post = response.data
+                this.post.post.body = emojione.shortnameToUnicode(this.post.post.body)
+                this.$parent.$emit('pageLoader', false)
             })
             .catch(e => {
                 this.errors.push(e)
