@@ -1,7 +1,5 @@
 <template>
     <div v-if="done">
-        <h1 style="font-weight: 300">Posts</h1>
-        <a href="/admin/posts/add" class="btn btn-success">Create post</a>
         <table class="table">
             <thead>
                 <tr>

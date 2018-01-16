@@ -1,7 +1,5 @@
 <template>
     <div v-if="done">
-        <h1 style="font-weight: 300">Users</h1>
-        <a href="/admin/users/add" class="btn btn-success">Create user</a>
         <table class="table">
             <thead>
                 <tr>
@@ -18,7 +16,7 @@
                     <td>{{ user.created }}</td>
                     <td>
                         <a :href="'/users/view/' + user.id">View</a>
-                        <a :href="'/admin/users/edit/' + user.id">Edit</a>
+                        <a :href="'/admin/users/edit/' + user.id" class="btn btn-outline-danger btn-sm">Edit</a>
                     </td>
                 </tr>
             </tbody>

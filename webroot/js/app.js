@@ -47890,8 +47890,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47931,17 +47929,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.done
     ? _c("div", [
-        _c("h1", { staticStyle: { "font-weight": "300" } }, [_vm._v("Posts")]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-success",
-            attrs: { href: "/admin/posts/add" }
-          },
-          [_vm._v("Create post")]
-        ),
-        _vm._v(" "),
         _c("table", { staticClass: "table" }, [
           _vm._m(0),
           _vm._v(" "),
@@ -48081,8 +48068,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48122,17 +48107,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _vm.done
     ? _c("div", [
-        _c("h1", { staticStyle: { "font-weight": "300" } }, [_vm._v("Users")]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-success",
-            attrs: { href: "/admin/users/add" }
-          },
-          [_vm._v("Create user")]
-        ),
-        _vm._v(" "),
         _c("table", { staticClass: "table" }, [
           _vm._m(0),
           _vm._v(" "),
@@ -48151,9 +48125,14 @@ var render = function() {
                     _vm._v("View")
                   ]),
                   _vm._v(" "),
-                  _c("a", { attrs: { href: "/admin/users/edit/" + user.id } }, [
-                    _vm._v("Edit")
-                  ])
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-outline-danger btn-sm",
+                      attrs: { href: "/admin/users/edit/" + user.id }
+                    },
+                    [_vm._v("Edit")]
+                  )
                 ])
               ])
             })
