@@ -20,7 +20,8 @@ class UsersController extends BaseController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
+        $query = $this->Users->find()->contain('Profiles');
+        $users = $this->paginate($query);
 
         $this->set([
             'users' => $users,

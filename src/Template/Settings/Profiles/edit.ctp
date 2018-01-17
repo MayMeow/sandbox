@@ -19,7 +19,7 @@
     </ul>
 </nav>
 <div class="profiles form large-9 medium-8 columns content">
-    <?= $this->Form->create($profile) ?>
+    <?= $this->Form->create($profile, ['enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Edit Profile') ?></legend>
         <?php
@@ -28,7 +28,7 @@
             echo $this->Form->control('location');
             echo $this->Form->control('facebook');
             echo $this->Form->control('twitter');
-            echo $this->Form->control('image');
+            echo $this->Form->control('image_file', ['type' => 'file']);
             echo $this->Form->control('url');
         ?>
     </fieldset>

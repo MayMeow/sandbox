@@ -7,6 +7,9 @@
 
 <div class="row">
     <div class="col-md-12 text-center">
+    <div style="margin-bottom: 10px">
+        <?= $this->Html->image('/' . $profile->image, ['class' => 'rounded-circle img-thumbnail', 'width' => '100px', 'height' => '100px']) ?>
+    </div>
         <h2 style="font-weight: 300" class="has-emoji"><?= $profile->name ?></h2>
         <?= $profile->twitter ?> 
         <?= $profile->facebook ?> 

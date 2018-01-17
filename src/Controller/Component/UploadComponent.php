@@ -3,6 +3,10 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
+use Cake\Filesystem\Folder;
+use Cake\Network\Exception\InternalErrorException;
+use Cake\Utility\Text;
+use Cake\Filesystem\File;
 
 /**
  * Upload component
@@ -19,12 +23,12 @@ class UploadComponent extends Component
         'data-dir' => 'user-data',
         'upload-domain' => 'users',
         'upload-dir' => 'images',
-        'allowed' => ['png', 'jpg', 'jpeg']
+        'allowed' => ['image/png', 'image/jpeg']
     ];
 
     protected function _getUploadDir($config)
     {
-        return WWW_ROOT . $config['data_dir'] . DS .$config['upload_domain'] . DS . $config['upload_dir'];
+        return WWW_ROOT . $config['data-dir'] . DS .$config['upload-domain'] . DS . $config['upload-dir'];
     }
 
     /**
@@ -34,9 +38,9 @@ class UploadComponent extends Component
         $config = $this->config();
 
         $uploadDir = $this->_getUploadDir($config);
-        $fileExtension = substr(strchr($file['name'], '.'), 1);
+        $fileExtension = $this->_getFileExtensionFromName($file['name']);
         
-        if (in_array($fileExtension, $config['allowed'])) {
+        if (in_array($file['type'], $config['allowed'])) {
             if (is_uploaded_file($file['tmp_name'])) {
                 $newFilename = Text::uuid() . '.' . $fileExtension;
                 $subPath = $this->_getPathFromFileName($newFilename);
@@ -46,10 +50,10 @@ class UploadComponent extends Component
             }
         } else {
             $newFilename = 'not allowed';
-            throw new InternalErrorException('Not allowed type of file, allowed are '.Text::toList($config['allowed']), 1);
+            throw new InternalErrorException('Not allowed type of file,'. $file['type'] .' allowed are '.Text::toList($config['allowed']), 1);
         }
         //returning full upload link....
-        return $config['data_dir'] . DS . $config['upload_domain'] . DS . $config['upload_dir'] . DS . $subPath['path'] . DS . $subPath['name'];
+        return $config['data-dir'] . DS . $config['upload-domain'] . DS . $config['upload-dir'] . DS . $subPath['path'] . DS . $subPath['name'];
     }
 
     /**
@@ -61,6 +65,11 @@ class UploadComponent extends Component
         if (!$folder->cd($folderPath)) {
             $folder->create($folderPath);
         }
+    }
+
+    protected function _getFileExtensionFromName($fileName)
+    {
+        return substr(strchr($fileName, '.'), 1);
     }
 
     protected function _getPathFromFileName($filename)

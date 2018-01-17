@@ -3,16 +3,14 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Title</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Created</th>
                     <th scope="col" class="actions">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="user in users.users">
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
+                    <td><img :src="'/' + user.profiles.image" width="40px" height="40px" class="rounded-circle"> {{ user.profiles.name }}</td>
                     <td>{{ user.created }}</td>
                     <td>
                         <a :href="'/users/view/' + user.id">View</a>
@@ -26,6 +24,7 @@
 
 <script>
     import axios from 'axios'
+    import emojione from 'emojione'
     export default {
         mounted () {
             console.log('Component PostsTableComponent mounted.')
