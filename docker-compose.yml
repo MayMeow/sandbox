@@ -5,6 +5,7 @@ services:
         build: .
         volumes:
             - /var/www/html
+            - ./volumes/data:/var/www/html/user-data
             - ./volumes/cakephp/logs:/var/www/html/logs:rw
             - ./volumes/letsencrypt:/etc/letsencrypt
 

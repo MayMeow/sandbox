@@ -2,6 +2,7 @@
 
 echo -ne "Update folder and files rights..."
 chmod +x bin/cake
+chmod 777 -R /var/www/html/user-data
 
 if [ ! -f /var/www/html/vendor/autoload.php ]; then
     echo "Autoload file not found! Installing dependencies..."
