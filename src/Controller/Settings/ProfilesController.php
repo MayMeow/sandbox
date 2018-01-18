@@ -37,7 +37,7 @@ class ProfilesController extends BaseController
             if ($this->Profiles->save($profile)) {
                 $this->Flash->success(__('The profile has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['prefix' => false, 'action' => 'index']);
             }
             $this->Flash->error(__('The profile could not be saved. Please, try again.'));
         }

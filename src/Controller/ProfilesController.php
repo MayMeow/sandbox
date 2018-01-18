@@ -20,9 +20,7 @@ class ProfilesController extends AppController
      */
     public function index()
     {
-        $profiles = $this->paginate($this->Profiles);
-
-        $this->set(compact('profiles'));
+        //
     }
 
     /**

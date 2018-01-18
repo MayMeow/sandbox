@@ -22,7 +22,10 @@ class ProfilesController extends BaseController
     {
         $profiles = $this->paginate($this->Profiles);
 
-        $this->set(compact('profiles'));
+        $this->set([
+            'profiles' => $profiles,
+            '_serialize' => ['profiles']
+        ]);
     }
 
     /**
@@ -38,6 +41,9 @@ class ProfilesController extends BaseController
             'contain' => []
         ]);
 
-        $this->set('profile', $profile);
+        $this->set([
+            'profile' => $profile,
+            '_serialize' => ['profile']
+        ]);
     }
 }

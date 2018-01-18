@@ -13,6 +13,7 @@ Vue.component('user-view-component', require('./components/UserViewComponent'));
 Vue.component('post-view-component', require('./components/PostViewComponent'));
 Vue.component('posts-table-component', require('./components/PostsTableComponent'));
 Vue.component('users-table-component', require('./components/UsersTableComponent'));
+Vue.component('profiles-table-component', require('./components/ProfilesTableComponent'));
 
 const app = new Vue({
     el: '#vue-app',

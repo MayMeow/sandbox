@@ -9,12 +9,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="user in users.users">
-                    <td><img :src="'/' + user.profiles.image" width="40px" height="40px" class="rounded-circle"> {{ user.profiles.name }}</td>
-                    <td>{{ user.created }}</td>
+                <tr v-for="profile in profiles.profiles">
+                    <td>{{ profile.name }}</td>
+                    <td>{{ profile.created }}</td>
                     <td>
-                        <a :href="'/profiles/view/' + user.profiles.id">View</a>
-                        <a :href="'/admin/users/edit/' + user.id" class="btn btn-outline-danger btn-sm">Edit</a>
+                        <a :href="'/profiles/view/' + profile.id">View</a>
+                        <a :href="'/settings/profiles/edit/' + profile.id" class="btn btn-outline-danger btn-sm">Edit</a>
                     </td>
                 </tr>
             </tbody>
@@ -27,22 +27,22 @@
     import emojione from 'emojione'
     export default {
         mounted () {
-            console.log('Component PostsTableComponent mounted.')
+            console.log('Component ProfilesTable mounted.')
         },
         data () {
             return {
                 done: false,
-                users: {
-                    users: []
+                profiles: {
+                    profiles: []
                 },
                 errors: []
             }
         },
         created () {
             this.$parent.$emit('pageLoader', true)
-            axios.get('/api/users.json')
+            axios.get('/api/profiles.json')
             .then(response => {
-                this.users = response.data
+                this.profiles = response.data
                 this.$parent.$emit('pageLoader', false)
                 this.done = true
             })
