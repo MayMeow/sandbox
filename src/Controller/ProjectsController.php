@@ -34,7 +34,10 @@ class ProjectsController extends AppController
     public function view($id = null)
     {
         $project = $this->Projects->get($id, [
-            'contain' => ['Users', 'Spaces']
+            'contain' => [
+                'Users' => ['Profiles'],
+                'Spaces'
+            ]
         ]);
 
         $this->set('project', $project);
@@ -50,7 +53,7 @@ class ProjectsController extends AppController
     public function spaces($id = null)
     {
         $project = $this->Projects->get($id, [
-            'contain' => ['Users', 'Spaces']
+            'contain' => ['Users' => ['Profiles'], 'Spaces']
         ]);
 
         $this->set('project', $project);

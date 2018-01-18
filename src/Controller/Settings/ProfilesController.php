@@ -33,7 +33,9 @@ class ProfilesController extends BaseController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $profile = $this->Profiles->patchEntity($profile, $this->request->getData());
-            $profile->image = $this->Upload->upload($this->request->getData('image_file'));
+            if ($this->request->getData('image_file') != null) {
+                $profile->image = $this->Upload->upload($this->request->getData('image_file'));
+            }
             if ($this->Profiles->save($profile)) {
                 $this->Flash->success(__('The profile has been saved.'));
 

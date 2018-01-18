@@ -10,10 +10,10 @@
             </thead>
             <tbody>
                 <tr v-for="user in users.users">
-                    <td><img :src="'/' + user.profiles.image" width="40px" height="40px" class="rounded-circle"> {{ user.profiles.name }}</td>
+                    <td><img :src="'/' + user.profile.image" width="40px" height="40px" class="rounded-circle"> {{ user.profile.name }}</td>
                     <td>{{ user.created }}</td>
                     <td>
-                        <a :href="'/profiles/view/' + user.profiles.id">View</a>
+                        <a :href="'/profiles/view/' + user.profile.id">View</a>
                         <a :href="'/admin/users/edit/' + user.id" class="btn btn-outline-danger btn-sm">Edit</a>
                     </td>
                 </tr>

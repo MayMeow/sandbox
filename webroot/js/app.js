@@ -48132,12 +48132,12 @@ var render = function() {
                   _c("img", {
                     staticClass: "rounded-circle",
                     attrs: {
-                      src: "/" + user.profiles.image,
+                      src: "/" + user.profile.image,
                       width: "40px",
                       height: "40px"
                     }
                   }),
-                  _vm._v(" " + _vm._s(user.profiles.name))
+                  _vm._v(" " + _vm._s(user.profile.name))
                 ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(user.created))]),
@@ -48145,7 +48145,7 @@ var render = function() {
                 _c("td", [
                   _c(
                     "a",
-                    { attrs: { href: "/profiles/view/" + user.profiles.id } },
+                    { attrs: { href: "/profiles/view/" + user.profile.id } },
                     [_vm._v("View")]
                   ),
                   _vm._v(" "),
