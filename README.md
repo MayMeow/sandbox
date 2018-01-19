@@ -1,5 +1,8 @@
 # Sandbox
 
+[![pipeline status](https://codeocean.works/MayMeow/sandbox/badges/master/pipeline.svg)](https://codeocean.works/MayMeow/sandbox/commits/master)
+[![coverage report](https://codeocean.works/MayMeow/sandbox/badges/master/coverage.svg)](https://codeocean.works/MayMeow/sandbox/commits/master)
+
 Appication is prepacked for using with docker. Pack include
 
 * NGINX
