@@ -116,6 +116,19 @@ php:mariadb-phpunit:
         - phpunit --coverage-text --colors=never
     <<: *run-on-do-docker
 
+php:postgres-phpunit:
+    <<: *pull-cache
+    <<: *postgres-variables
+    stage: test
+    services:
+        - redis
+        - postgres
+    stage: test
+    before_script: *install-dependencies
+    script:
+        - phpunit --coverage-text --colors=never
+    <<: *run-on-do-docker
+
 db:postgres-migrations:
     <<: *pull-cache
     <<: *postgres-variables
