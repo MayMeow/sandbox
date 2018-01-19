@@ -27,7 +27,9 @@ class PostsControllerTest extends IntegrationTestCase
     public function testIndex()
     {
         $this->get('/posts');
-
+        
+        $this->assertResponseContains('Posts');
+        $this->assertResponseContains('<posts-table-component></posts-table-component>');
         $this->assertResponseOk();
     }
 
@@ -40,27 +42,8 @@ class PostsControllerTest extends IntegrationTestCase
     {
         $this->get('/posts/view/1');
 
+        $this->assertResponseContains('<post-view-component post-i-d="1"></post-view-component>');
         $this->assertResponseOk();
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**

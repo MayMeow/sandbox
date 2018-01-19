@@ -26,7 +26,11 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users');
+        
+        $this->assertResponseContains('Users');
+        $this->assertResponseContains('<users-table-component></users-table-component>');
+        $this->assertResponseOk();
     }
 
     /**
