@@ -26,6 +26,7 @@ image: maymeow/php:fpm
         DB_USER: cakephp
         # Setup for mysql
         MYSQL_USER: cakephp
+        MYSQL_DATABASE: cakephp
         MYSQL_PASSWORD: 2GXmdmHXg9NmxKsCSbun
         MYSQL_ROOT_PASSWORD: 2GXmdmHXg9NmxKsCSbun
 
