@@ -26,7 +26,11 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        
+        $this->get('/api/posts.json');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('"posts":');
     }
 
     /**
@@ -36,6 +40,11 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
+        $this->get('/api/posts/view/1.json');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('"id": 1');
+        $this->assertResponseContains('"title": "Lorem ipsum dolor sit amet"');
         $this->markTestIncomplete('Not implemented yet.');
     }
 
