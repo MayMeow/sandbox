@@ -220,7 +220,7 @@ return [
     'Datasources' => [
         'default' => [
             'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Postgres',
+            'driver' => env('APP_DB_DRIVER', 'Cake\Database\Driver\Postgres'),
             'persistent' => false,
             'host' => env('DB_HOST', 'localhost'),
             /**
@@ -265,7 +265,7 @@ return [
          */
         'test' => [
             'className' => 'Cake\Database\Connection',
-            'driver' => 'Cake\Database\Driver\Mysql',
+            'driver' => env('APP_DB_DRIVER', 'Cake\Database\Driver\Postgres'),
             'persistent' => false,
             'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', 5432),

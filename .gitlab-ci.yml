@@ -10,6 +10,7 @@ image: maymeow/php:fpm
 .postgres-variables: &postgres-variables
     variables:
         <<: *default-variables
+        APP_DB_DRIVER: "Cake\Database\Driver\Postgres"
         DB_HOST: postgres
         DB_PORT: 5432
         DB_USER: postgres
@@ -21,6 +22,7 @@ image: maymeow/php:fpm
 .mariadb-variables: &mariadb-variables
     variables:
         <<: *default-variables
+        APP_DB_DRIVER: "Cake\Database\Driver\Mysql"
         DB_HOST: mariadb
         DB_PORT: 3306
         DB_USER: cakephp
