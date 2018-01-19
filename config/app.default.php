@@ -271,7 +271,7 @@ return [
             'port' => env('DB_PORT', 5432),
             'username' => env('DB_USER', 'my_app'),
             'password' => env('DB_PASSWORD', 'secret'),
-            'database' => env('DB_NAME', 'my_app'),
+            'database' => env('DB_TEST_NAME', 'my_app'),
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
