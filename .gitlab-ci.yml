@@ -27,6 +27,7 @@ image: maymeow/php:fpm
         # Setup for mysql
         MYSQL_USER: cakephp
         MYSQL_PASSWORD: 2GXmdmHXg9NmxKsCSbun
+        MYSQL_ROOT_PASSWORD: 2GXmdmHXg9NmxKsCSbun
 
 
 # Cache vendor directory

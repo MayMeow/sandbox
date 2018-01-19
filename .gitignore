@@ -8,7 +8,7 @@
 /vendor/*
 /node_modules/*
 /webroot/user-data/*
-my_app.sqlite
+*.sqlite
 
 # OS generated files #
 ######################
