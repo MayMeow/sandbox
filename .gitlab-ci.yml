@@ -1,0 +1,129 @@
+image: maymeow/php:fpm
+
+# Environment variables setting
+.default-variables: &default-variables
+    MYSQL_ROOT_PASSWORD: cak3appd4tabase
+    MYSQL_PASSWORD: cak3appd4tabase
+    MYSQL_DATABASE: cakeapp
+    REDIS_SERVER: redis
+    REDIS_SERVER_PORT: 6379
+
+# For Postgres DB
+.postgres-variables: &postgres-variables
+    variables:
+        <<: *default-variables
+        MYSQL_DB_NAME: cakeapp
+        MYSQL_USER: postgres
+        MYSQL_HOST: postgres
+        MYSQL_PORT: 5432
+        POSTGRES_PASSWORD: cak3appd4tabase
+        POSTGRES_DB: cakeapp
+
+# For MariaDB
+.mariadb-variables: &mariadb-variables
+    variables:
+        <<: *default-variables
+        MYSQL_DB_TEST_NAME: cakeapp
+        MYSQL_USER: cakeapp
+        MYSQL_HOST: mariadb
+        MYSQL_PORT: 3306
+
+# Cache vendor directory
+.default-cache: &default-cache
+    key: "cake-app-with-php-7"
+    paths:
+        - vendor/
+
+# push cache
+.push-cache: &push-cache
+    cache:
+        <<: *default-cache
+        policy: push
+
+# pull cache
+.pull-cache: &pull-cache
+    cache:
+        <<: *default-cache
+        policy: pull
+
+stages:
+    - prepare
+    - build
+    - test
+    - post-test
+    - deploy
+
+# Install all dependencies
+.install-dependencies: &install-dependencies
+    - composer -V
+    - composer install
+    - chmod a+x bin/cake
+
+# PHP Lint script using CakePHP coding standards
+.php-lint: &php-lint
+    - composer require cakephp/cakephp-codesniffer:dev-master
+    - chmod +x vendor/bin/phpcs
+    - vendor/bin/phpcs -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./config ./plugins
+
+# CodeCanyon Application Setup
+# Remove all unnecessary folders
+.clean-folders: &clean-folders
+    - rm -rf .git
+    - rm -rf ./tmp
+    - rm -rf ./logs
+
+.run-on-do-docker: &run-on-do-docker
+    tags:
+        - digitalocean
+        - docker
+
+# Prepare Section
+# -----------------------------------
+setup-cakeapp:
+    <<: *push-cache
+    stage: prepare
+    script: *install-dependencies
+    <<: *run-on-do-docker
+
+# Post-Test section
+# -----------------------------------
+
+# Lint
+php lint:
+    <<: *pull-cache
+    stage: post-test
+    before_script: *install-dependencies
+    script: *php-lint
+    allow_failure: true
+    <<: *run-on-do-docker
+
+# Test section
+# -----------------------------------
+
+# PHP Unit test
+php:mariadb-phpunit:
+    <<: *pull-cache
+    <<: *mariadb-variables
+    stage: test
+    services:
+        - redis
+        - mariadb
+    stage: test
+    before_script: *install-dependencies
+    script:
+        - phpunit --coverage-text --colors=never
+    <<: *run-on-do-docker
+
+db:postgres-migrations:
+    <<: *pull-cache
+    <<: *postgres-variables
+    stage: test
+    services:
+        - postgres
+        - redis
+    before_script: *install-dependencies
+    script:
+        - bin/cake migrations migrate
+        - bin/cake migrations rollback
+    <<: *run-on-do-docker
+
