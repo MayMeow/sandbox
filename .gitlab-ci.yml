@@ -124,6 +124,7 @@ php:postgres-phpunit:
     script:
         - phpunit --coverage-text --colors=never
     artifacts:
+        when: on_failure
         paths:
         - logs
         expire_in: 1 week
@@ -141,6 +142,7 @@ db:postgres-migrations:
         - bin/cake migrations migrate
         - bin/cake migrations rollback
     artifacts:
+        when: on_failure
         paths:
         - logs
         expire_in: 1 week
