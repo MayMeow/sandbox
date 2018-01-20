@@ -79,6 +79,7 @@ class ProjectsControllerTest extends IntegrationTestCase
     public function testAddPostData()
     {
         $data = [
+            'id' => 2,
             'user_id' => 1,
             'name' => 'My Project',
             'description' => 'Project description'
