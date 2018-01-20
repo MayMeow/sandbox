@@ -50,6 +50,19 @@ class ProjectsControllerTest extends IntegrationTestCase
     }
 
     /**
+     * Test view method
+     *
+     * @return void
+     */
+    public function testViewSpaces()
+    {
+        $this->get('/projects/1/spaces');
+        $this->assertResponseOk();
+        $this->assertResponseContains('<a href="/spaces/add" class="btn btn-success">Create space</a>');
+        $this->assertResponseContains('<spaces-table-component space-id="1"></spaces-table-component>');
+    }
+
+    /**
      * Test add method
      *
      * @return void

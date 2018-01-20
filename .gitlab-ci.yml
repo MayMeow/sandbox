@@ -128,6 +128,7 @@ php:postgres-phpunit:
     before_script: *install-dependencies
     script:
         - phpunit --coverage-text --colors=never
+    allow_failure: true
     artifacts:
         when: on_failure
         paths:

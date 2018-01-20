@@ -29,7 +29,8 @@ class SpacesControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/spaces');
+        $this->assertResponseOk();
     }
 
     /**
@@ -39,7 +40,8 @@ class SpacesControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/spaces/view/1');
+        $this->assertResponseOk();
     }
 
     /**
@@ -49,7 +51,17 @@ class SpacesControllerTest extends IntegrationTestCase
      */
     public function testAdd()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+        $this->get('/spaces/add');
+        $this->assertResponseOk();
     }
 
     /**
@@ -59,7 +71,17 @@ class SpacesControllerTest extends IntegrationTestCase
      */
     public function testEdit()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+        $this->get('/spaces/edit/1');
+        $this->assertResponseOk();
     }
 
     /**

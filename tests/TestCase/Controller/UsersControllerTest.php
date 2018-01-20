@@ -40,7 +40,10 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/users/view/1');
+        $this->assertResponseOk();
+
+        $this->assertResponseContains('<user-view-component user-id="1"></user-view-component>');
     }
 
     /**
