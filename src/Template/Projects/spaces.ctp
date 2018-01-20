@@ -10,6 +10,12 @@
 <?php $this->end() ?>
 
 <?php $this->start('project_body')?>
+<div class="row text-right" style="margin-bottom: 10px">
+    <div class="col">
+        <a href="/spaces/add" class="btn btn-success">Create space</a>
+    </div>
+</div>
+
 <div class="row text-center loading" v-if="loading">
     <div class="col">
         <h3 style="font-weight: 300">Thinking ...</h3>

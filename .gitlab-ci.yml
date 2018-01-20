@@ -70,13 +70,6 @@ stages:
     - chmod +x vendor/bin/phpcs
     - vendor/bin/phpcs --ignore=*/Migrations/* -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./config ./plugins
 
-# CodeCanyon Application Setup
-# Remove all unnecessary folders
-.clean-folders: &clean-folders
-    - rm -rf .git
-    - rm -rf ./tmp
-    - rm -rf ./logs
-
 .run-on-do-docker: &run-on-do-docker
     tags:
         - digitalocean
@@ -117,6 +110,11 @@ php:mariadb-phpunit:
     before_script: *install-dependencies
     script:
         - phpunit --coverage-text --colors=never
+    artifacts:
+        when: on_failure
+        paths:
+        - logs
+        expire_in: 1 week
     <<: *run-on-do-docker
 
 php:postgres-phpunit:
@@ -130,6 +128,12 @@ php:postgres-phpunit:
     before_script: *install-dependencies
     script:
         - phpunit --coverage-text --colors=never
+    allow_failure: true
+    artifacts:
+        when: on_failure
+        paths:
+        - logs
+        expire_in: 1 week
     <<: *run-on-do-docker
 
 db:postgres-migrations:

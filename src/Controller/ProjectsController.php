@@ -14,6 +14,12 @@ use phpDocumentor\Reflection\Types\Null_;
 class ProjectsController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow(['spaces']);
+    }
+
     /**
      * Index method
      *
