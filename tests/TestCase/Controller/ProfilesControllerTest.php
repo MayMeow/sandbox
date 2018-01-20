@@ -26,7 +26,10 @@ class ProfilesControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/profiles');
+        $this->assertResponseOk();
+        $this->assertResponseContains('Profiles');
+        $this->assertResponseContains('<profiles-table-component></profiles-table-component>');
     }
 
     /**
@@ -36,7 +39,30 @@ class ProfilesControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/profiles/view/1');
+        $this->assertResponseOk();
+        $this->assertResponseNotContains('<a href="/settings/profiles/edit/1" class="btn btn-outline-secondary">Edit</a>');
+    }
+
+    /**
+     * Test view method
+     *
+     * @return void
+     */
+    public function testViewOwnedBy()
+    {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+        $this->get('/profiles/view/1');
+        $this->assertResponseOk();
+        $this->assertResponseContains('<a href="/settings/profiles/edit/1" class="btn btn-outline-secondary">Edit</a>');
     }
 
     /**

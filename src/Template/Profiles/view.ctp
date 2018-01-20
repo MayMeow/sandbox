@@ -7,6 +7,11 @@
 
 <div class="row">
     <div class="col-md-12 text-center">
+    <div class="text-right">
+    <?php if ($this->request->session()->read('Auth.User.id') == $profile->user_id) : ?>
+        <a href="/settings/profiles/edit/<?= $profile->user_id?>" class="btn btn-outline-secondary">Edit</a>
+    <?php endif; ?>
+    </div>
     <div style="margin-bottom: 10px">
         <?= $this->Html->image('/' . $profile->image, ['class' => 'rounded-circle img-thumbnail', 'width' => '100px', 'height' => '100px']) ?>
     </div>
