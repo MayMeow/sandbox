@@ -110,6 +110,11 @@ php:mariadb-phpunit:
     before_script: *install-dependencies
     script:
         - phpunit --coverage-text --colors=never
+    artifacts:
+        when: on_failure
+        paths:
+        - logs
+        expire_in: 1 week
     <<: *run-on-do-docker
 
 php:postgres-phpunit:
@@ -141,10 +146,5 @@ db:postgres-migrations:
     script:
         - bin/cake migrations migrate
         - bin/cake migrations rollback
-    artifacts:
-        when: on_failure
-        paths:
-        - logs
-        expire_in: 1 week
     <<: *run-on-do-docker
 
