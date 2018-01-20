@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\ProjectsController;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
@@ -29,7 +30,10 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/projects');
+        $this->assertResponseOk();
+        $this->assertResponseContains('Projects');
+        $this->assertResponseContains('<projects-table-component></projects-table-component>');
     }
 
     /**
@@ -39,7 +43,10 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/projects/1');
+        $this->assertResponseOk();
+        $this->assertResponseContains('Lorem ipsum dolor sit amet');
+        $this->assertResponseContains('<a class="nav-link" href="/projects/1/spaces">Spaces</a>');
     }
 
     /**
@@ -49,7 +56,48 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testAdd()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+
+        $this->get('/projects/add');
+        $this->assertResponseOk();
+        $this->assertResponseContains('<legend>Add Project</legend>');
+    }
+
+    /**
+     * Test add method
+     *
+     * @return void
+     */
+    public function testAddPostData()
+    {
+        $data = [
+            'user_id' => 1,
+            'name' => 'My Project',
+            'description' => 'Project description'
+        ];
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+        $this->post('/projects/add', $data);
+        $this->assertResponseSuccess();
+
+        $projects = TableRegistry::get('Projects');
+        $query = $projects->find()->where(['name' => $data['name']]);
+        $this->assertEquals(1, $query->count());
     }
 
     /**
@@ -59,7 +107,19 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testEdit()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+
+        $this->get('/projects/edit/1');
+        $this->assertResponseOk();
+        $this->assertResponseContains('id="name" value="Lorem ipsum dolor sit amet"');
     }
 
     /**
@@ -69,6 +129,23 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testDelete()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+
+        $data = ['id' => '1'];
+
+        $this->delete('/projects/delete/' . $data['id']);
+        $this->assertResponseSuccess();
+
+        $projects = TableRegistry::get('Projects');
+        $query = $projects->find()->where(['id' => $data['id']]);
+        $this->assertEquals(0, $query->count());
     }
 }

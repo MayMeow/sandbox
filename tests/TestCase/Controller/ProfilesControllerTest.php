@@ -49,7 +49,7 @@ class ProfilesControllerTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testViewOwnedBy()
+    public function testViewByOwner()
     {
         $this->session([
             'Auth' => [
