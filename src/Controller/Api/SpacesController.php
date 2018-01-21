@@ -26,7 +26,7 @@ class SpacesController extends BaseController
             ];
             $spaces = $this->paginate($this->Spaces);
         } else {
-            $query = $this->Spaces->find()->contain(['Projects'])->where(['spaces.id' => $id]);
+            $query = $this->Spaces->find()->contain(['Projects'])->where(['spaces.project_id' => $id]);
             $spaces = $this->paginate($query);
         }
 

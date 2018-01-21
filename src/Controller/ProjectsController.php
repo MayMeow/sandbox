@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Factories\ProjectsFactory;
 use phpDocumentor\Reflection\Types\Null_;
 
 /**
@@ -75,6 +76,7 @@ class ProjectsController extends AppController
         $project = $this->Projects->newEntity();
         if ($this->request->is('post')) {
             $project = $this->Projects->patchEntity($project, $this->request->getData());
+            $project->image = ProjectsFactory::defaultPicture();
             if ($this->Projects->save($project)) {
                 $this->Flash->success(__('The project has been saved.'));
 
