@@ -42,7 +42,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <body>
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-      <a class="navbar-brand" href="#">sandbox</a>
+      <a class="navbar-brand" href="#">TheMayMeow</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -56,6 +56,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/projects">Projects</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/posts">Posts</a>

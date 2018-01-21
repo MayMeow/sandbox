@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Factories\ProfilesFactory;
 
 /**
  * Users Controller
@@ -58,6 +59,7 @@ class UsersController extends AppController
     
                     $profile->user_id = $user->id;
                     $profile->name = $user->email;
+                    $profile->image = ProfilesFactory::defaultPicture();
                     $this->Users->Profiles->save($profile);
                     return true;
                 }
