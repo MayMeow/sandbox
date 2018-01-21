@@ -49,5 +49,16 @@ class ProfilesFixture extends TestFixture
             'image' => 'Lorem ipsum dolor sit amet',
             'url' => 'Lorem ipsum dolor sit amet'
         ],
+
+        [
+            'id' => 2,
+            'user_id' => 2,
+            'name' => 'Lorem ipsum dolor sit amet',
+            'bio' => 'Lorem ipsum dolor sit amet',
+            'location' => 'Lorem ipsum dolor sit amet',
+            'facebook' => 'Lorem ipsum dolor sit amet',
+            'twitter' => 'Lorem ipsum dolor sit amet',
+            'url' => 'Lorem ipsum dolor sit amet'
+        ],
     ];
 }

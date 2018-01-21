@@ -42,6 +42,12 @@ class ProfilesControllerTest extends IntegrationTestCase
         $this->get('/profiles/view/1');
         $this->assertResponseOk();
         $this->assertResponseNotContains('<a href="/settings/profiles/edit/1" class="btn btn-outline-secondary">Edit</a>');
+        $this->assertResponseContains('<img src="/Lorem%20ipsum%20dolor%20sit%20amet" class="rounded-circle img-thumbnail" width="100px" height="100px" alt=""/>');
+        
+        $this->get('/profiles/view/2');
+        $this->assertResponseOk();
+        $this->assertResponseNotContains('<a href="/settings/profiles/edit/1" class="btn btn-outline-secondary">Edit</a>');
+        $this->assertResponseContains('<img src="/" class="rounded-circle img-thumbnail" width="100px" height="100px" alt=""/>');
     }
 
     /**
