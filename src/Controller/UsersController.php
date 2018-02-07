@@ -99,4 +99,9 @@ class UsersController extends AppController
         return $this->redirect($this->Auth->logout());
     }
 
+    public function assignRole()
+    {
+        // Todo
+    }
+
 }
