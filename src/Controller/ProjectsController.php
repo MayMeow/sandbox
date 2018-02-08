@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Factories\ProjectsFactory;
-use phpDocumentor\Reflection\Types\Null_;
+use App\Factories\PermissionsFactory;
 
 /**
  * Projects Controller
@@ -73,6 +73,8 @@ class ProjectsController extends AppController
      */
     public function add()
     {
+        PermissionsFactory::can('projects-add');
+        
         $project = $this->Projects->newEntity();
         if ($this->request->is('post')) {
             $project = $this->Projects->patchEntity($project, $this->request->getData());

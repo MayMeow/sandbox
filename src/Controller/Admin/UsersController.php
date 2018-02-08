@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\UsersController as BaseController;
+use Cake\Database\Exception\NestedTransactionRollbackException;
 
 /**
  * Users Controller

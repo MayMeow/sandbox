@@ -109,14 +109,11 @@ class UsersTable extends Table
         // Find all roles assigned to user
         $user = $this->find()->contain(['Roles'])->where(['Users.id' => $id])->first();
 
+        // Create collections
         $userRoles = new Collection($user->roles);
         $tagsRoles = new Collection($role);
 
-        /*dd([
-            $userRoles->extract('id')->toArray(),
-            $tagsRoles->extract('id')->toArray()
-        ]);*/
-        
-        return !! count(array_intersect($userRoles->extract('id')->toArray(), $tagsRoles->extract('id')->toArray()));
+        // compare both arrays
+        return !! count(array_intersect($userRoles->extract('title')->toArray(), $tagsRoles->extract('title')->toArray()));
     }
 }
