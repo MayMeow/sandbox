@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Controller\PostsController as BaseController;
+use App\Factories\PermissionsFactory;
 
 /**
  * Posts Controller
@@ -20,6 +21,8 @@ class PostsController extends BaseController
      */
     public function add()
     {
+        PermissionsFactory::can('posts-add');
+
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
             $post = $this->Posts->patchEntity($post, $this->request->getData());

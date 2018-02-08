@@ -5,11 +5,14 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use App\Model\Entity\Role;
+use Cake\Collection\Collection;
 
 /**
  * Users Model
  * 
  * @property |\Cake\ORM\Association\HasOne $Profiles
+ * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsToMany $Roles
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -41,6 +44,12 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->hasOne('Profiles');
+
+        $this->belongsToMany('Roles', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'role_id',
+            'joinTable' => 'roles_users'
+        ]);
     }
 
     /**
@@ -79,5 +88,35 @@ class UsersTable extends Table
         $rules->add($rules->isUnique(['email']));
 
         return $rules;
+    }
+
+    public function assignRole($user, $role)
+    {
+        $this->Roles->link($user, $role);
+    }
+
+    public function revokeRole($user, $role)
+    {
+        $this->Roles->unlink($user, $role);
+    }
+
+    public function hasRole($id, $role)
+    {
+        if (is_string($role)) {
+            dd ('string');
+        }
+
+        // Find all roles assigned to user
+        $user = $this->find()->contain(['Roles'])->where(['Users.id' => $id])->first();
+
+        $userRoles = new Collection($user->roles);
+        $tagsRoles = new Collection($role);
+
+        /*dd([
+            $userRoles->extract('id')->toArray(),
+            $tagsRoles->extract('id')->toArray()
+        ]);*/
+        
+        return !! count(array_intersect($userRoles->extract('id')->toArray(), $tagsRoles->extract('id')->toArray()));
     }
 }

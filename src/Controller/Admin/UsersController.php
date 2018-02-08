@@ -14,6 +14,23 @@ class UsersController extends BaseController
 {
 
     /**
+     * View method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $user = $this->Users->get($id, [
+            'contain' => ['Roles']
+        ]);
+
+        $roles = $this->Users->roles->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'roles'));
+    }
+
+    /**
      * Edit method
      *
      * @param string|null $id User id.
@@ -55,5 +72,42 @@ class UsersController extends BaseController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function assignRole($id = null)
+    {
+        $user = $this->Users->get($id, [
+            'contain' => []
+        ]);
+        $role = $this->Users->Roles->get($this->request->getData('roles'));
+
+        try {
+            $this->Users->getConnection()->transactional(function() use ($role, $user) {
+                $this->Users->assignRole($user, [$role]);
+            });
+        } catch (NestedTransactionRollbackException $e) {
+            $this->Flash->error($e->getMessage() . ' - Association already exists');
+        }
+
+        return $this->redirect($this->referer());
+    }
+
+
+    public function revokeRole($id = null, $role = null)
+    {
+        $user = $this->Users->get($id, [
+            'contain' => []
+        ]);
+        $role = $this->Users->Roles->get($role);
+
+        try {
+            $this->Users->getConnection()->transactional(function() use ($role, $user) {
+                $this->Users->revokeRole($user, [$role]);
+            });
+        } catch (NestedTransactionRollbackException $e) {
+            $this->Flash->error($e->getMessage() . ' - Association already exists');
+        }
+
+        return $this->redirect($this->referer());
     }
 }

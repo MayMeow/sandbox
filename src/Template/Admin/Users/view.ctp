@@ -38,3 +38,32 @@
         </tr>
     </table>
 </div>
+
+
+<table class="table">
+<tr>
+<th>Title</th>
+<th>Label</th>
+<th>Actions</th>
+</tr>
+<?php foreach($user->roles as $role) : ?>
+    <tr>
+        <td><?= $role->title ?></td>
+        <td><?= $role->label ?></td>
+        <td><a href="/admin/users/revoke-role/<?= $user->id ?>/<?= $role->id ?>">Revoke</a></td>
+    </tr>
+<?php endforeach; ?>
+</table>
+
+<div class="row">
+<div class="col-md-12">
+
+<?= $this->Form->create($user, ['url' => '/admin/users/assign-role/' . $user->id]) ?>
+    <?php
+        echo $this->Form->control('roles');
+    ?>
+<?= $this->Form->button(__('Assign role'), ['class' => 'btn btn-outline-primary']) ?>
+<?= $this->Form->end() ?>
+
+</div>
+</div>
