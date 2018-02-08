@@ -16,16 +16,12 @@ class PermissionsFactory {
         $userTable = TableRegistry::get('users');
 
         // Find all roles assigned to permissions
-        $permissions = $permissionsTable->find()->contain(['Roles'])->where(['Permissions.title' => $action]);
+        $permission = $permissionsTable->find()->contain(['Roles'])->where(['Permissions.title' => $action])->first();
 
-        //dd($permissions);
-
-        foreach ($permissions as $permission) {
-            //dd($permission->roles);
-            // check if user has assigned same role as permissions
-            if(!$userTable->hasRole($authUser['id'], $permission->roles)) {
-                throw new UnauthorizedException();
-            };
-        }
+        //dd($permission->roles);
+        // check if user has assigned same role as permissions
+        if(!$userTable->hasRole($authUser['id'], $permission->roles)) {
+            throw new UnauthorizedException('You are not authorized to this action.');
+        };
     }
 }
