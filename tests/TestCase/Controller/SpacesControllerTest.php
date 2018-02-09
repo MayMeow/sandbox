@@ -40,7 +40,7 @@ class SpacesControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/spaces/view/1');
+        $this->get('/spaces/1');
         $this->assertResponseOk();
     }
 

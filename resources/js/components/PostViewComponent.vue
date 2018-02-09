@@ -27,7 +27,7 @@
         },
         created () {
             this.$parent.$emit('pageLoader', true)
-            axios.get('/api/posts/view/' + this.postID + '.json')
+            axios.get('/api/posts/' + this.postID + '.json')
             .then(response => {
                 this.post = response.data
                 this.post.post.markdown = emojione.shortnameToUnicode(this.post.post.markdown)

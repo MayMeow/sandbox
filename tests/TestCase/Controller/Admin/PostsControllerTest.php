@@ -38,7 +38,7 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/admin/posts/view/1');
+        $this->get('/admin/posts/1');
 
         $this->assertResponseOk();
     }

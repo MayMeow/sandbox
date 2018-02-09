@@ -40,7 +40,7 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/api/posts/view/1.json');
+        $this->get('/api/posts/1.json');
 
         $this->assertResponseOk();
         $this->assertResponseContains('"id": 1');

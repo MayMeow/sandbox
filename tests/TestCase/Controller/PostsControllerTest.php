@@ -40,19 +40,10 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/posts/view/1');
+        $this->get('/posts/1');
 
         $this->assertResponseContains('<post-view-component post-i-d="1"></post-view-component>');
         $this->assertResponseOk();
     }
 
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
 }

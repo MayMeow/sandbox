@@ -17,12 +17,16 @@ class CreatePermissionsRoles extends AbstractMigration
             'default' => null,
             'limit' => 11,
             'null' => false,
-        ]);
+        ])
+        ->addForeignKey('role_id', 'roles', 'id', ['delete'=> 'CASCADE']);
+
         $table->addColumn('permission_id', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => false,
-        ]);
+        ])
+        ->addForeignKey('permission_id', 'permissions', 'id', ['delete'=> 'CASCADE']);
+
         $table->create();
     }
 }

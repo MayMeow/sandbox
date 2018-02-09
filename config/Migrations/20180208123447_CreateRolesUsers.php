@@ -17,12 +17,16 @@ class CreateRolesUsers extends AbstractMigration
             'default' => null,
             'limit' => 11,
             'null' => false,
-        ]);
+        ])
+        ->addForeignKey('role_id', 'roles', 'id', ['delete'=> 'CASCADE']);
+
         $table->addColumn('user_id', 'integer', [
             'default' => null,
             'limit' => 11,
             'null' => false,
-        ]);
+        ])
+        ->addForeignKey('user_id', 'users', 'id', ['delete'=> 'CASCADE']);
+
         $table->create();
     }
 }

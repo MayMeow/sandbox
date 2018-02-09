@@ -13,7 +13,7 @@
                     <td>{{ profile.name }}</td>
                     <td>{{ profile.created }}</td>
                     <td>
-                        <a :href="'/profiles/view/' + profile.id">View</a>
+                        <a :href="'/profiles/' + profile.id">View</a>
                         <a :href="'/settings/profiles/edit/' + profile.id" class="btn btn-outline-danger btn-sm">Edit</a>
                     </td>
                 </tr>

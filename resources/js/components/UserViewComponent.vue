@@ -22,7 +22,7 @@
         },
         created () {
             this.$parent.$emit('pageLoader', true)
-            axios.get('/api/users/view/' + this.userId + '.json')
+            axios.get('/api/users/' + this.userId + '.json')
             .then(response => {
                 this.user = response.data
                 this.$parent.$emit('pageLoader', false)

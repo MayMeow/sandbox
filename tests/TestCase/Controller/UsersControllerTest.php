@@ -42,7 +42,7 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/users/view/1');
+        $this->get('/users/1');
         $this->assertResponseOk();
 
         $this->assertResponseContains('<user-view-component user-id="1"></user-view-component>');
@@ -83,23 +83,17 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertEquals(1, $queryProfile->count());
     }
 
-    /**
-     * Test edit method
+        /**
+     * Test view method
      *
      * @return void
      */
-    public function testEdit()
+    public function testLogin()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/login');
+        $this->assertResponseOk();
+
+        $this->assertResponseContains('Login');
     }
 
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
 }

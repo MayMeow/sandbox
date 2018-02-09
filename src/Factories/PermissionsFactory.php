@@ -18,6 +18,9 @@ class PermissionsFactory {
         // Find all roles assigned to permissions
         $permission = $permissionsTable->find()->contain(['Roles'])->where(['Permissions.title' => $action])->first();
 
+        // if cannot find permission return true
+        if ($permission == null) return true;
+
         //dd($permission->roles);
         // check if user has assigned same role as permissions
         if(!$userTable->hasRole($authUser['id'], $permission->roles)) {

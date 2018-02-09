@@ -76,39 +76,75 @@ Router::scope('/', function (RouteBuilder $routes) {
      /**
       * Profiles
       */
+    $routes->connect('/profiles/', ['controller' => 'Profiles', 'action' => 'index']);
     $routes->connect('/profiles/:id', ['controller' => 'Profiles', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
      /**
       * Projects Controller
       */
+    $routes->connect('/projects/', ['controller' => 'Projects', 'action' => 'index']);
+    $routes->connect('/projects/add', ['controller' => 'Projects', 'action' => 'add']);
     $routes->connect('/projects/:id', ['controller' => 'Projects', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/projects/edit/:id', ['controller' => 'Projects', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/projects/delete/:id', ['controller' => 'Projects', 'action' => 'delete'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->connect('/projects/:id/spaces', ['controller' => 'Projects', 'action' => 'spaces'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+
+    /**
+     * Spaces
+     */
+    $routes->connect('/spaces/', ['controller' => 'Spaces', 'action' => 'index']);
+    $routes->connect('/spaces/add', ['controller' => 'Spaces', 'action' => 'add']);
+    $routes->connect('/spaces/:id', ['controller' => 'Spaces', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/spaces/index/:id', ['controller' => 'Spaces', 'action' => 'index'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/spaces/edit/:id', ['controller' => 'Spaces', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/spaces/delete/:id', ['controller' => 'Spaces', 'action' => 'delete'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
     /**
      * Users
      */
+    $routes->connect('/users/', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/login/', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/register', ['controller' => 'Users', 'action' => 'add']);
+    $routes->connect('/users/add', ['controller' => 'Users', 'action' => 'add']);
     $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
-    $routes->fallbacks(DashedRoute::class);
+    /**
+     * Posts
+     */
+
+    $routes->connect('/posts/', ['controller' => 'Posts', 'action' => 'index']);
+    $routes->connect('/posts/:id', ['controller' => 'Posts', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+
+    //$routes->fallbacks(DashedRoute::class);
 });
 
 Router::prefix('admin', function ($routes) {
     // All routes here will be prefixed with `/admin`
     // And have the prefix => admin route element added.
     $routes->fallbacks(DashedRoute::class);
+    $routes->connect('/posts/add', ['controller' => 'Posts', 'action' => 'add']);
+    $routes->connect('/posts/:id', ['controller' => 'Posts', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 });
 
 Router::prefix('api', function ($routes) {
     // All routes here will be prefixed with `/admin`
     // And have the prefix => admin route element added.
     $routes->setExtensions(['json']);
-    $routes->fallbacks(DashedRoute::class);
+    $routes->connect('/users/', ['controller' => 'Users', 'action' => 'index']);
+
+    $routes->connect('/posts/', ['controller' => 'Posts', 'action' => 'index']);
+    $routes->connect('/posts/:id', ['controller' => 'Posts', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+
+    $routes->connect('/spaces', ['controller' => 'Spaces', 'action' => 'index']);
+    $routes->connect('/spaces/index/:id', ['controller' => 'Spaces', 'action' => 'index'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    //$routes->fallbacks(DashedRoute::class);
 });
 
 Router::prefix('settings', function ($routes) {
     // All routes here will be prefixed with `/admin`
     // And have the prefix => admin route element added.
-    $routes->fallbacks(DashedRoute::class);
+    //$routes->fallbacks(DashedRoute::class);
+    $routes->connect('/profiles/edit/:id', ['controller' => 'Profiles', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 });
 
 /**

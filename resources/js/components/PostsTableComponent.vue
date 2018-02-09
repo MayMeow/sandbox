@@ -15,7 +15,7 @@
                     <td>{{ post.title }}</td>
                     <td>{{ post.created }}</td>
                     <td>
-                        <a :href="'/posts/view/' + post.id">View</a>
+                        <a :href="'/posts/' + post.id">View</a>
                         <a :href="'/admin/posts/edit/' + post.id">Edit</a>
                     </td>
                 </tr>
