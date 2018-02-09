@@ -109,6 +109,7 @@ php:mariadb-phpunit:
     stage: test
     before_script: *install-dependencies
     script:
+        - bin/cake migrations migrate
         - phpunit --coverage-text --colors=never
     artifacts:
         when: on_failure
@@ -127,6 +128,7 @@ php:postgres-phpunit:
     stage: test
     before_script: *install-dependencies
     script:
+        - bin/cake migrations migrate
         - phpunit --coverage-text --colors=never
     allow_failure: true
     artifacts:
