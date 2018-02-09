@@ -16,7 +16,7 @@ class PermissionsFactory {
         $userTable = TableRegistry::get('users');
 
         // Find all roles assigned to permissions
-        $permission = $permissionsTable->find()->contain(['Roles'])->where(['Permissions.title' => $action])->first();
+        $permission = $permissionsTable->find()->contain(['Roles'])->where(['permissions.title' => $action])->first();
 
         // if cannot find permission return true
         if ($permission == null) return true;
