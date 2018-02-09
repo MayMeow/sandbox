@@ -121,9 +121,27 @@ Router::scope('/', function (RouteBuilder $routes) {
 Router::prefix('admin', function ($routes) {
     // All routes here will be prefixed with `/admin`
     // And have the prefix => admin route element added.
-    $routes->fallbacks(DashedRoute::class);
+    //$routes->fallbacks(DashedRoute::class);
+
+    $routes->connect('/license', ['controller' => 'License', 'action' => 'index', 'prefix' => 'ee']);
+
+    $routes->connect('/permissions', ['controller' => 'Permissions', 'action' => 'index']);
+    $routes->connect('/permissions/add', ['controller' => 'Permissions', 'action' => 'add']);
+
+    $routes->connect('/roles', ['controller' => 'Roles', 'action' => 'index']);
+    $routes->connect('/roles/add', ['controller' => 'Roles', 'action' => 'add']);
+    $routes->connect('/roles/:id', ['controller' => 'Roles', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->put('/roles/assign-permission/:id', ['controller' => 'Roles', 'action' => 'assignPermission'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->get('/roles/revoke-permission/:id/:permission', ['controller' => 'Roles', 'action' => 'revokePermission'])->setPatterns(['id' => '\d+', 'permission' => '\d+'])->setPass(['id', 'permission']);
+
+    $routes->connect('/posts/', ['controller' => 'Posts', 'action' => 'index']);
     $routes->connect('/posts/add', ['controller' => 'Posts', 'action' => 'add']);
     $routes->connect('/posts/:id', ['controller' => 'Posts', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+
+    $routes->connect('/users', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->put('/users/assign-role/:id', ['controller' => 'Users', 'action' => 'assignRole'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->get('/users/revoke-role/:id/:role', ['controller' => 'Users', 'action' => 'revokeRole'])->setPatterns(['id' => '\d+', 'role' => '\d+'])->setPass(['id', 'role']);
 });
 
 Router::prefix('api', function ($routes) {
@@ -134,6 +152,8 @@ Router::prefix('api', function ($routes) {
 
     $routes->connect('/posts/', ['controller' => 'Posts', 'action' => 'index']);
     $routes->connect('/posts/:id', ['controller' => 'Posts', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+
+    $routes->connect('/projects/', ['controller' => 'Projects', 'action' => 'index']);
 
     $routes->connect('/spaces', ['controller' => 'Spaces', 'action' => 'index']);
     $routes->connect('/spaces/index/:id', ['controller' => 'Spaces', 'action' => 'index'])->setPatterns(['id' => '\d+'])->setPass(['id']);

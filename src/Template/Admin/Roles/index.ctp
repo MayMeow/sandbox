@@ -30,7 +30,7 @@ $this->start('sidebar_content');
 </tr>
 <?php foreach($roles as $role) : ?>
     <tr>
-        <td><a href="/admin/roles/view/<?= $role->id ?>"><?= $role->title ?></a></td>
+        <td><a href="/admin/roles/<?= $role->id ?>"><?= $role->title ?></a></td>
         <td><?= $role->label ?></td>
     </tr>
 <?php endforeach; ?>

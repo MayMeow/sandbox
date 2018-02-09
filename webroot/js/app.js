@@ -47660,7 +47660,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         this.$parent.$emit('pageLoader', true);
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/users/view/' + this.userId + '.json').then(function (response) {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/users/' + this.userId + '.json').then(function (response) {
             _this.user = response.data;
             _this.$parent.$emit('pageLoader', false);
         }).catch(function (e) {
@@ -47782,7 +47782,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         this.$parent.$emit('pageLoader', true);
-        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/posts/view/' + this.postID + '.json').then(function (response) {
+        __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/posts/' + this.postID + '.json').then(function (response) {
             _this.post = response.data;
             _this.post.post.markdown = __WEBPACK_IMPORTED_MODULE_1_emojione___default.a.shortnameToUnicode(_this.post.post.markdown);
             _this.$parent.$emit('pageLoader', false);
@@ -47956,7 +47956,7 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(post.created))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("a", { attrs: { href: "/posts/view/" + post.id } }, [
+                  _c("a", { attrs: { href: "/posts/" + post.id } }, [
                     _vm._v("View")
                   ]),
                   _vm._v(" "),
@@ -48325,7 +48325,7 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(profile.created))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("a", { attrs: { href: "/profiles/view/" + profile.id } }, [
+                  _c("a", { attrs: { href: "/profiles/" + profile.id } }, [
                     _vm._v("View")
                   ]),
                   _vm._v(" "),
@@ -48509,7 +48509,7 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(project.user.email))]),
                 _vm._v(" "),
                 _c("td", [
-                  _c("a", { attrs: { href: "/projects/view/" + project.id } }, [
+                  _c("a", { attrs: { href: "/projects/" + project.id } }, [
                     _vm._v("View")
                   ]),
                   _vm._v(" "),
