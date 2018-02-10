@@ -14,4 +14,5 @@ let mix = require('laravel-mix');
 mix.setPublicPath('./');
 
 mix.js('./resources/js/app.js', 'webroot/js')
-   .sass('./resources/css/app.scss', 'webroot/css');
+   .sass('./resources/css/app.scss', 'webroot/css')
+   .sass('./resources/css/dashboard.scss', 'webroot/css');

@@ -137,9 +137,11 @@ Router::prefix('admin', function ($routes) {
     $routes->connect('/posts/', ['controller' => 'Posts', 'action' => 'index']);
     $routes->connect('/posts/add', ['controller' => 'Posts', 'action' => 'add']);
     $routes->connect('/posts/:id', ['controller' => 'Posts', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/posts/edit/:id', ['controller' => 'Posts', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
     $routes->connect('/users', ['controller' => 'Users', 'action' => 'index']);
     $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/users/edit/:id', ['controller' => 'Users', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->put('/users/assign-role/:id', ['controller' => 'Users', 'action' => 'assignRole'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->get('/users/revoke-role/:id/:role', ['controller' => 'Users', 'action' => 'revokeRole'])->setPatterns(['id' => '\d+', 'role' => '\d+'])->setPass(['id', 'role']);
 });

@@ -4,12 +4,11 @@
  * @var \App\Model\Entity\Roles[]|\Cake\Collection\CollectionInterface $roles
  */
 
-$this->extend('/_common/col-3-9');
-
-$this->start('sidebar_content');
+$this->layout('dashboard');
+$this->start('admin_sidebar_content');
+echo $this->element('admin-sidebar');
+$this->end();
 ?>
-<?= $this->element("admin-sidebar") ?>
-<?php $this->end(); ?>
 
 <h2 style="font-weight: 300"><?= $role->title ?></a></h2>
 

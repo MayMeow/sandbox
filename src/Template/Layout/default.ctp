@@ -29,8 +29,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
 
     <!-- Bootstrap core CSS -->
-    <?= $this->Html->css('bootstrap.min') ?>
-
     <!-- Custom styles for this template -->
     <?= $this->Html->css('app') ?>
 
