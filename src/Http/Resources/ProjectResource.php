@@ -11,8 +11,8 @@ class ProjectResource extends Resource
             'id' => $this->entity->id,
             'name' => $this->entity->name,
             'description' => $this->entity->description,
-            'profile' => function ($q) {
-                return (new ProfileResource($q->profile))->get();
+            'user' => function ($q) {
+                return (new UserResource($q->user))->get();
             },
             'modified_at' => $this->entity->modified,
             'created_at' => $this->entity->created,

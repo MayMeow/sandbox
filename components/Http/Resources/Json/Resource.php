@@ -10,11 +10,17 @@ abstract class Resource implements ResourceInterface {
     
     protected $entity;
 
+    /**
+     * 
+     */
     public function __construct(Entity $entity)
     {
         $this->entity = $entity;
     }
 
+    /**
+     * 
+     */
     public function get()
     {
         $items = $this->toArray();
@@ -27,10 +33,12 @@ abstract class Resource implements ResourceInterface {
         return $items;
     }
 
+    /**
+     * 
+     */
     public static function collection(Query $entity)
     {
         $array = [];
-
         $AnonymousResource = get_called_class();
 
         foreach ($entity as $item)

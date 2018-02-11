@@ -79,6 +79,7 @@ class ProjectsController extends AppController
         if ($this->request->is('post')) {
             $project = $this->Projects->patchEntity($project, $this->request->getData());
             $project->image = ProjectsFactory::defaultPicture();
+            $project->user_id = $this->Auth->user('id');
             if ($this->Projects->save($project)) {
                 $this->Flash->success(__('The project has been saved.'));
 
@@ -86,7 +87,6 @@ class ProjectsController extends AppController
             }
             $this->Flash->error(__('The project could not be saved. Please, try again.'));
         }
-        $users = $this->Projects->Users->find('list', ['limit' => 200]);
         $this->set(compact('project', 'users'));
     }
 

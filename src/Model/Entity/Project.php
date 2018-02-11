@@ -41,8 +41,8 @@ class Project extends Entity
         'spaces' => true
     ];
 
-    protected function _getProfile()
+    protected function _getUser()
     {
-        return (TableRegistry::get('profiles'))->find()->where(['user_id' => $this->_properties['id']])->first();
+        return (TableRegistry::get('users'))->find()->where(['id' => $this->_properties['user_id']])->first();
     }
 }

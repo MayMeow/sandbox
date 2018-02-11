@@ -74,4 +74,11 @@ class AppController extends Controller
         // continues to work. Also enable the read only actions.
         $this->Auth->allow(['display', 'view', 'index']);
     }
+
+    public function beforeFilter(Event $event)
+    {
+        if (isset($this->request->prefix) && $this->request->prefix == 'admin') {
+            if (!$this->Auth->user()) $this->Auth->deny();
+        }
+    }
 }

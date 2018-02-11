@@ -21,9 +21,7 @@ class ProjectsController extends BaseController
      */
     public function index()
     {
-        $query = $this->Projects->find()->contain([
-            'Users' => 'Profiles'
-        ]);
+        $query = $this->Projects->find();
 
         $projects = ProjectResource::collection($query);
 

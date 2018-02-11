@@ -104,6 +104,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/users/', ['controller' => 'Users', 'action' => 'index']);
     $routes->connect('/login/', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/logout/', ['controller' => 'Users', 'action' => 'logout']);
     $routes->connect('/register', ['controller' => 'Users', 'action' => 'add']);
     $routes->connect('/users/add', ['controller' => 'Users', 'action' => 'add']);
     $routes->connect('/users/:id', ['controller' => 'Users', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);

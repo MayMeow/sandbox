@@ -49,6 +49,10 @@ class UsersTable extends Table
             'foreignKey' => 'user_id'
         ]);
 
+        $this->hasMany('Posts', [
+            'foreignKey' => 'user_id'
+        ]);
+
         $this->belongsToMany('Roles', [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'role_id',

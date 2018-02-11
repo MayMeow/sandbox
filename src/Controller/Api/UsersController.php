@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 use App\Controller\UsersController as BaseController;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\UserProjectsResource;
 
 /**
  * Users Controller
@@ -63,13 +64,13 @@ class UsersController extends BaseController
      */
     public function projects($id = null)
     {
-        $user = $this->Users->get($id);
+        $query = $this->Users->get($id);
 
-        $projects = ProjectResource::collection($user->projects);
+        $user = (new UserProjectsResource($query))->get();
 
         $this->set([
-            'projects' => $projects,
-            '_serialize' => ['projects']
+            'user' => $user,
+            '_serialize' => ['user']
         ]);
     }
 }

@@ -13,6 +13,9 @@ class PostResource extends Resource
             'title' => $this->entity->title,
             'body' => $this->entity->body,
             'markdown' => (new Parsedown)->text($this->entity->body),
+            'user' => function ($q) {
+                return (new UserResource($q->user))->get();
+            },
             'created_at' => $this->entity->created,
         ];
     }

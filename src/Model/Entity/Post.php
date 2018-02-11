@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * Post Entity
@@ -30,4 +31,9 @@ class Post extends Entity
         'created' => true,
         'modified' => true
     ];
+
+    protected function _getUser()
+    {
+        return (TableRegistry::get('users'))->find()->where(['id' => $this->_properties['user_id']])->first();
+    }
 }
