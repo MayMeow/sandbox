@@ -125,6 +125,8 @@ Router::prefix('admin', function ($routes) {
     //$routes->fallbacks(DashedRoute::class);
 
     $routes->connect('/license', ['controller' => 'License', 'action' => 'index', 'prefix' => 'ee']);
+    $routes->connect('/license/upload', ['controller' => 'License', 'action' => 'upload', 'prefix' => 'ee']);
+    $routes->delete('/license/delete', ['controller' => 'License', 'action' => 'delete', 'prefix' => 'ee']);
 
     $routes->connect('/permissions', ['controller' => 'Permissions', 'action' => 'index']);
     $routes->connect('/permissions/add', ['controller' => 'Permissions', 'action' => 'add']);

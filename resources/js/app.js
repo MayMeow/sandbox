@@ -20,6 +20,8 @@ Vue.component('profiles-table-component', require('./components/ProfilesTableCom
 Vue.component('projects-table-component', require('./components/ProjectsTableComponent'));
 Vue.component('spaces-table-component', require('./components/SpacesTableComponent'));
 
+Vue.component('delete-button', require('./components/License/LicenseDeleteComponent'));
+
 const app = new Vue({
     el: '#vue-app',
     data () {
