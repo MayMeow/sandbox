@@ -91,6 +91,8 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testAddPostData()
     {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $data = [
             'id' => 2,
             'user_id' => 1,
@@ -143,6 +145,8 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testDelete()
     {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->session([
             'Auth' => [
                 'User' => [

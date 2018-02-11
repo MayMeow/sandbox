@@ -66,6 +66,9 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testAddPostData()
     {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
         $data = [
             'email' => 'test@test.sk',
             'password' => 'secret'

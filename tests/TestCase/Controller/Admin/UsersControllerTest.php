@@ -16,7 +16,9 @@ class UsersControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.users'
+        'app.users',
+        'app.profiles',
+        'app.rolesUsers'
     ];
 
     /**
@@ -55,7 +57,7 @@ class UsersControllerTest extends IntegrationTestCase
                 ]
             ]
         ]);
-        $this->get('/admin/users/add');
+        $this->get('/admin/users/1');
         $this->assertResponseOk();
     }
 
