@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * User Entity
@@ -49,5 +50,15 @@ class User extends Entity
 
             return $hasher->hash($value);
         }
+    }
+
+    protected function _getProfile()
+    {
+        return (TableRegistry::get('profiles'))->find()->where(['user_id' => $this->_properties['id']])->first();
+    }
+
+    protected function _getProjects()
+    {
+        return (TableRegistry::get('projects'))->find('all')->where(['user_id' => $this->_properties['id']]);
     }
 }

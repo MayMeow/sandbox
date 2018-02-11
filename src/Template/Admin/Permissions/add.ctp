@@ -3,10 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Post $post
  */
-$this->layout('dashboard');
-$this->start('admin_sidebar_content');
-echo $this->element('admin-sidebar');
-$this->end();
+$this->extend('/_common/dashboard-narrow');
 ?>
 
 <div class="posts form large-9 medium-8 columns content">

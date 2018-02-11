@@ -3,10 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
-$this->layout('dashboard');
-$this->start('admin_sidebar_content');
-echo $this->element('admin-sidebar');
-$this->end();
+$this->extend('/_common/dashboard-boxed');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">

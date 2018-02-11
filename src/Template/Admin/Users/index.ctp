@@ -3,10 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
-$this->layout('dashboard');
-$this->start('admin_sidebar_content');
-echo $this->element('admin-sidebar');
-$this->end();
+$this->extend('/_common/dashboard-boxed');
 ?>
 
 <h2 style="font-weight: 300">Users</a></h2>

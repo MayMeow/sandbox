@@ -4,10 +4,7 @@
  * @var \App\Model\Entity\Roles[]|\Cake\Collection\CollectionInterface $roles
  */
 
-$this->layout('dashboard');
-$this->start('admin_sidebar_content');
-echo $this->element('admin-sidebar');
-$this->end();
+$this->extend('/_common/dashboard-boxed');
 ?>
 
 <h2 style="font-weight: 300"><?= $role->title ?></a></h2>

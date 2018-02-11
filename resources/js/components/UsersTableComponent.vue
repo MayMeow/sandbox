@@ -11,7 +11,7 @@
             <tbody>
                 <tr v-for="user in users.users">
                     <td><img :src="'/' + user.profile.image" width="40px" height="40px" class="rounded-circle"> {{ user.profile.name }}</td>
-                    <td>{{ user.created }}</td>
+                    <td>{{ user.created_at }}</td>
                     <td>
                         <a :href="'/profiles/' + user.profile.id">View</a>
                         <a :href="'/admin/users/edit/' + user.id" class="btn btn-outline-danger btn-sm">Edit</a>

@@ -13,7 +13,7 @@
                 <tr v-for="project in projects.projects">
                     <td>{{ project.name }}</td>
                     <td>{{ project.created }}</td>
-                    <td>{{ project.user.email }}</td>
+                    <td>{{ project.profile.name }}</td>
                     <td>
                         <a :href="'/projects/' + project.id">View</a>
                         <a :href="'/projects/edit/' + project.id" class="btn btn-outline-danger btn-sm">Edit</a>

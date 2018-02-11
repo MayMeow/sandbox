@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 /**
  * Project Entity
@@ -39,4 +40,9 @@ class Project extends Entity
         'user' => true,
         'spaces' => true
     ];
+
+    protected function _getProfile()
+    {
+        return (TableRegistry::get('profiles'))->find()->where(['user_id' => $this->_properties['id']])->first();
+    }
 }

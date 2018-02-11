@@ -2,6 +2,8 @@
 namespace App\Controller\Api;
 
 use App\Controller\UsersController as BaseController;
+use App\Http\Resources\UserResource;
+use App\Http\Resources\ProjectResource;
 
 /**
  * Users Controller
@@ -20,8 +22,11 @@ class UsersController extends BaseController
      */
     public function index()
     {
-        $query = $this->Users->find()->contain('Profiles');
-        $users = $this->paginate($query);
+        $query = $this->Users->find();
+
+        $users = UserResource::collection($query);
+
+        
 
         $this->set([
             'users' => $users,
@@ -45,6 +50,26 @@ class UsersController extends BaseController
         $this->set([
             'user' => $user,
             '_serialize' => ['user']
+        ]);
+    }
+
+
+    /**
+     * View method
+     *
+     * @param string|null $id User id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function projects($id = null)
+    {
+        $user = $this->Users->get($id);
+
+        $projects = ProjectResource::collection($user->projects);
+
+        $this->set([
+            'projects' => $projects,
+            '_serialize' => ['projects']
         ]);
     }
 }

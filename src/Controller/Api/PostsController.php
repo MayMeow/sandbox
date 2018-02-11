@@ -3,6 +3,7 @@ namespace App\Controller\Api;
 
 use App\Controller\PostsController as BaseController;
 use Parsedown;
+use App\Http\Resources\PostResource;
 
 /**
  * Posts Controller
@@ -22,7 +23,7 @@ class PostsController extends BaseController
      */
     public function index()
     {
-        $posts = $this->paginate($this->Posts);
+        $posts = PostResource::collection($this->Posts->find());
 
         $this->set([
             'posts' => $posts,
@@ -45,6 +46,8 @@ class PostsController extends BaseController
 
         $parsedown = new Parsedown();
         $post->markdown = $parsedown->text($post->body);
+
+        $post = (new PostResource($post))->get();
 
         $this->set([
             'post' => $post,

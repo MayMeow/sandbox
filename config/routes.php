@@ -151,6 +151,7 @@ Router::prefix('api', function ($routes) {
     // And have the prefix => admin route element added.
     $routes->setExtensions(['json']);
     $routes->connect('/users/', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/users/:id/projects', ['controller' => 'Users', 'action' => 'projects'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
     $routes->connect('/posts/', ['controller' => 'Posts', 'action' => 'index']);
     $routes->connect('/posts/:id', ['controller' => 'Posts', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);

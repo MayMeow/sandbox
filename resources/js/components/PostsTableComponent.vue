@@ -13,7 +13,7 @@
                 <tr v-for="post in posts.posts">
                     <td>{{ post.id }}</td>
                     <td>{{ post.title }}</td>
-                    <td>{{ post.created }}</td>
+                    <td>{{ post.created_at }}</td>
                     <td>
                         <a :href="'/posts/' + post.id">View</a>
                         <a :href="'/admin/posts/edit/' + post.id">Edit</a>

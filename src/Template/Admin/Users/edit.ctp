@@ -3,11 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
-$this->layout('dashboard');
-$this->start('admin_sidebar_content');
-echo $this->element('admin-sidebar');
-$this->end();
+$this->extend('/_common/dashboard-narrow');
 ?>
+
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>

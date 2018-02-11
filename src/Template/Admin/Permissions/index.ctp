@@ -4,10 +4,7 @@
  * @var \App\Model\Entity\Permissions[]|\Cake\Collection\CollectionInterface $permissions
  */
 
-$this->layout('dashboard');
-$this->start('admin_sidebar_content');
-echo $this->element('admin-sidebar');
-$this->end();
+$this->extend('/_common/dashboard-boxed');
 ?>
 
 
