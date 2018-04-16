@@ -40,9 +40,4 @@ class Project extends Entity
         'user' => true,
         'spaces' => true
     ];
-
-    protected function _getUser()
-    {
-        return (TableRegistry::get('users'))->find()->where(['id' => $this->_properties['user_id']])->first();
-    }
 }

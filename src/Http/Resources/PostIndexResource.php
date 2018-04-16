@@ -3,8 +3,9 @@ namespace App\Http\Resources;
 
 use Daybreak\Http\Resources\Json\Resource;
 use Parsedown;
+use App\Http\Resources\Users\UserProfileResource;
 
-class PostResource extends Resource
+class PostIndexResource extends Resource
 {
     public function toArray()
     {
@@ -13,7 +14,9 @@ class PostResource extends Resource
             'title' => $this->entity->title,
             'body' => $this->entity->body,
             'markdown' => (new Parsedown)->text($this->entity->body),
-            'user_id' => $this->entity->user_id,
+            'user_id' => function ($q) {
+                return (new UserProfileResource($q->user))->get();
+            },
             'created_at' => $this->entity->created,
         ];
     }

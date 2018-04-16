@@ -30,7 +30,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
         <!-- Bootstrap core CSS -->
         <!-- Custom styles for this template -->
-        <?= $this->Html->css('dashboard') ?>
+        <?= $this->Html->css($this->Webapp->mix('/css/dashboard.css')) ?>
 
         <?= $this->fetch('meta') ?>
         <?= $this->fetch('css') ?>
@@ -70,7 +70,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <?= $this->Html->script('app') ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/manifest.js')) ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/vendor.js')) ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/app.js')) ?>
     </body>
     
 </html>

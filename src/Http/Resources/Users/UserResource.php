@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Resources;
+namespace App\Http\Resources\Users;
 
 use Daybreak\Http\Resources\Json\Resource;
 
@@ -10,9 +10,7 @@ class UserResource extends Resource
         return [
             'id' => $this->entity->id,
             'email' => $this->entity->email,
-            'profile' => function ($q) {
-                return (new ProfileResource($q->profile))->get();
-            },
+            'profile_id' => $this->entity->profile_id,
             'created_at' => $this->entity->created
         ];
     }

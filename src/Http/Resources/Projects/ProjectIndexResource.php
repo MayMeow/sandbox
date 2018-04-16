@@ -1,9 +1,11 @@
 <?php
-namespace App\Http\Resources;
+namespace App\Http\Resources\Projects;
 
 use Daybreak\Http\Resources\Json\Resource;
+use App\Http\Resources\Users\UserResource;
+use App\Http\Resources\Users\UserProfileResource;
 
-class ProjectResource extends Resource
+class ProjectIndexResource extends Resource
 {
     public function toArray()
     {
@@ -12,7 +14,7 @@ class ProjectResource extends Resource
             'name' => $this->entity->name,
             'description' => $this->entity->description,
             'user' => function ($q) {
-                return (new UserResource($q->user))->get();
+                return (new UserProfileResource($q->user))->get();
             },
             'modified_at' => $this->entity->modified,
             'created_at' => $this->entity->created,

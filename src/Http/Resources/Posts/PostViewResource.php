@@ -1,10 +1,11 @@
 <?php
-namespace App\Http\Resources;
+namespace App\Http\Resources\Posts;
 
 use Daybreak\Http\Resources\Json\Resource;
 use Parsedown;
+use App\Http\Resources\Users\UserResource;
 
-class PostResource extends Resource
+class PostViewResource extends Resource
 {
     public function toArray()
     {
@@ -13,7 +14,9 @@ class PostResource extends Resource
             'title' => $this->entity->title,
             'body' => $this->entity->body,
             'markdown' => (new Parsedown)->text($this->entity->body),
-            'user_id' => $this->entity->user_id,
+            'user_id' => function ($q) {
+                return (new UserResource($q->user))->get();
+            },
             'created_at' => $this->entity->created,
         ];
     }

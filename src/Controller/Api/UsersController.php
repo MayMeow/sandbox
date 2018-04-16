@@ -2,9 +2,10 @@
 namespace App\Controller\Api;
 
 use App\Controller\UsersController as BaseController;
-use App\Http\Resources\UserResource;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\UserProjectsResource;
+use App\Http\Resources\Users\UserResource;
+use App\Http\Resources\Users\UserProfileResource;
 
 /**
  * Users Controller
@@ -23,9 +24,9 @@ class UsersController extends BaseController
      */
     public function index()
     {
-        $query = $this->Users->find();
+        $query = $this->Users->find()->contain(['Profiles']);
 
-        $users = UserResource::collection($query);
+        $users = UserProfileResource::collection($query);
 
         
 

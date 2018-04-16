@@ -13,9 +13,9 @@ abstract class Resource implements ResourceInterface {
     /**
      * 
      */
-    public function __construct(Entity $entity)
-    {
-        $this->entity = $entity;
+    public function __construct($entity)
+    {   
+        if ($entity instanceof Entity) $this->entity = $entity;
     }
 
     /**
@@ -27,7 +27,13 @@ abstract class Resource implements ResourceInterface {
 
         foreach ($items as &$item)
         {
-            if (is_callable($item)) $item = call_user_func($item, $this->entity);
+            if (is_callable($item)) {
+                try {
+                    $item = call_user_func($item, $this->entity);
+                } catch (\Exception $e) {
+                    // Return nothing
+                }
+            }
         }
 
         return $items;
@@ -36,7 +42,7 @@ abstract class Resource implements ResourceInterface {
     /**
      * 
      */
-    public static function collection(Query $entity)
+    public static function collection($entity)
     {
         $array = [];
         $AnonymousResource = get_called_class();

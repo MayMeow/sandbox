@@ -3,7 +3,9 @@ namespace App\Controller\Api;
 
 use App\Controller\PostsController as BaseController;
 use Parsedown;
+use App\Http\Resources\PostIndexResource;
 use App\Http\Resources\PostResource;
+use App\Http\Resources\Posts\PostViewResource;
 
 /**
  * Posts Controller
@@ -23,7 +25,9 @@ class PostsController extends BaseController
      */
     public function index()
     {
-        $posts = PostResource::collection($this->Posts->find());
+        $posts = PostIndexResource::collection($this->Posts->find()->contain([
+            'Users' => ['Profiles']
+        ]));
 
         $this->set([
             'posts' => $posts,
@@ -41,13 +45,13 @@ class PostsController extends BaseController
     public function view($id = null)
     {
         $post = $this->Posts->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
 
         $parsedown = new Parsedown();
         $post->markdown = $parsedown->text($post->body);
 
-        $post = (new PostResource($post))->get();
+        $post = (new PostViewResource($post))->get();
 
         $this->set([
             'post' => $post,
