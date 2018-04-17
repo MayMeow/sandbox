@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Traits\AllowActionsTrait;
 
 /**
  * Posts Controller
@@ -12,6 +13,9 @@ use App\Controller\AppController;
  */
 class PostsController extends AppController
 {
+    protected $allowed_actions = ['index', 'view'];
+
+    use AllowActionsTrait;
 
     /**
      * Index method

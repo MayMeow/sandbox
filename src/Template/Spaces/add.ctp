@@ -20,8 +20,8 @@
             echo $this->Form->control('name');
             echo $this->Form->control('description');
             echo $this->Form->control('project_id', ['options' => $projects, 'empty' => true]);
-            echo $this->Form->control('app_key');
-            echo $this->Form->control('app_secret');
+            echo $this->Form->control('app_key', ['value' => $appKey]);
+            echo $this->Form->control('app_secret', ['value' => $appSecret]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

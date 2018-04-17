@@ -3,6 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Post[]|\Cake\Collection\CollectionInterface $posts
  */
+$this->start('script');
+echo $this->Html->script($this->Webapp->mix('/js/mix/posts.bundle.js'));
+$this->end();
 ?>
 
 <h2 style="font-weight: 300">Posts</a></h2>

@@ -4,6 +4,9 @@
  * @var \App\Model\Entity\User $user
  */
 $this->extend('/_common/dashboard-narrow');
+$this->start('script');
+echo $this->Html->script($this->Webapp->mix('/js/mix/users.bundle.js'));
+$this->end();
 ?>
 
 <div class="users form large-9 medium-8 columns content">

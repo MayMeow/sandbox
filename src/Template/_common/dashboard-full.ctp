@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  */
-$this->layout('dashboard');
+$this->setLayout('dashboard');
 $this->start('admin_sidebar_content');
 echo $this->element('admin-sidebar');
 $this->end();

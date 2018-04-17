@@ -42,7 +42,7 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler');
+        $this->loadComponent('RequestHandler', ['enableBeforeRedirect' => false]);
         $this->loadComponent('Flash');
 
         /*
@@ -77,7 +77,7 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        if (isset($this->request->prefix) && $this->request->prefix == 'admin') {
+        if ($this->request->getParam('prefix') && $this->request->getParam('prefix') == 'admin') {
             if (!$this->Auth->user()) $this->Auth->deny();
         }
     }

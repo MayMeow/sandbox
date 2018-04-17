@@ -34,7 +34,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
   </head>
 
   <body>
@@ -79,8 +78,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <?= $this->Html->script($this->Webapp->mix('/js/manifest.js')) ?>
-    <?= $this->Html->script($this->Webapp->mix('/js/vendor.js')) ?>
-    <?= $this->Html->script($this->Webapp->mix('/js/app.js')) ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/mix/manifest.js')) ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/mix/vendor.js')) ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/mix/assets.budle.js')) ?>
+    <?= $this->fetch('script') ?>
   </body>
 </html>

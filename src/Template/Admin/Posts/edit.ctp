@@ -5,6 +5,9 @@
  */
 
 $this->extend('/_common/dashboard-narrow');
+$this->start('script');
+echo $this->Html->script($this->Webapp->mix('/js/mix/posts.bundle.js'));
+$this->end();
 ?>
 
 <div class="posts form large-9 medium-8 columns content">
