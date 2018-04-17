@@ -2,7 +2,7 @@
 
 namespace App\Factories;
 
-use Cake\Network\Session;
+use Cake\Http\Session;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Exception\UnauthorizedException;
 

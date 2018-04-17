@@ -17,6 +17,10 @@ use App\Http\Resources\Posts\PostViewResource;
 class PostsController extends BaseController
 {
     // removed RequestHandler - look at AppController
+
+    public $paginate = [
+        'limit' => 2
+    ];
     
     /**
      * Index method
@@ -25,13 +29,15 @@ class PostsController extends BaseController
      */
     public function index()
     {
-        $posts = PostIndexResource::collection($this->Posts->find()->contain([
+        $postsData = $this->paginate($this->Posts->find()->contain([
             'Users' => ['Profiles']
         ]));
+        $posts = PostIndexResource::collection($postsData);
 
         $this->set([
             'posts' => $posts,
-            '_serialize' => ['posts']
+            'paging' => $this->request->getParam('paging'),
+            '_serialize' => ['posts', 'paging']
         ]);
     }
 
