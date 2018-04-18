@@ -56,6 +56,7 @@ stages:
     - prepare
     - test
     - post-test
+    - pages
     - deploy
 
 # Install all dependencies
@@ -172,17 +173,16 @@ php phpunit postgres:
     <<: *phpunit-tests-coverage-text
     <<: *run-on-do-docker
     
-# POST TEST
+# Pages
 # -----------------------------------
 
 pages:
     <<: *pull-cache
     <<: *postgres-variables
-    stage: post-test
+    stage: pages
     services:
         - redis
         - postgres
     before_script: *install-dependencies
     <<: *phpunit-html-coverage
     <<: *run-on-do-docker
-    
