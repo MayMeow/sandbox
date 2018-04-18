@@ -62,7 +62,7 @@ stages:
 .install-dependencies: &install-dependencies
     - docker-php-ext-install intl
     - composer -V
-    - composer install
+    - composer install --no-ansi --no-interaction --no-progress
     - chmod a+x bin/cake
 
 # PHP Lint script using CakePHP coding standards
@@ -78,7 +78,7 @@ stages:
 
 .phpunit-tests-coverage-text: &phpunit-tests-coverage-text
     script:
-        - phpunit --coverage-text --colors=never
+        - ./vendor/bin/phpunit --coverage-text --colors=never
     artifacts:
         when: on_failure
         paths:
