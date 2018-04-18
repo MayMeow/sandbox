@@ -29,7 +29,7 @@ class UsersControllerTest extends IntegrationTestCase
     public function testIndex()
     {
         $this->get('/users');
-        
+
         $this->assertResponseContains('Users');
         $this->assertResponseContains('<users-table-component></users-table-component>');
         $this->assertResponseOk();
@@ -42,7 +42,7 @@ class UsersControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/users/view/1');
+        $this->get('/users/1');
         $this->assertResponseOk();
 
         $this->assertResponseContains('<user-view-component user-id="1"></user-view-component>');
@@ -60,46 +60,15 @@ class UsersControllerTest extends IntegrationTestCase
     }
 
     /**
-     * Test add method
+     * Test view method
      *
      * @return void
      */
-    public function testAddPostData()
+    public function testLogin()
     {
-        $data = [
-            'email' => 'test@test.sk',
-            'password' => 'secret'
-        ];
+        $this->get('/login');
+        $this->assertResponseOk();
 
-        $this->post('/users/add', $data);
-        $this->assertResponseSuccess();
-
-        $users = TableRegistry::get('Users');
-        $query = $users->find('all')->where(['email' => $data['email']]);
-        $this->assertEquals(1, $query->count());
-
-        $profiles = TableRegistry::get('Profiles');
-        $queryProfile = $profiles->find()->where(['name' => $data['email']]);
-        $this->assertEquals(1, $queryProfile->count());
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertResponseContains('Login');
     }
 }

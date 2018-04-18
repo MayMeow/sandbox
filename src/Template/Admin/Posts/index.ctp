@@ -4,12 +4,12 @@
  * @var \App\Model\Entity\Post[]|\Cake\Collection\CollectionInterface $posts
  */
 
-$this->extend('/_common/col-3-9');
+$this->extend('/_common/dashboard-boxed');
 
-$this->start('sidebar_content');
+$this->start('script');
+echo $this->Html->script($this->Webapp->mix('/js/mix/posts.bundle.js'));
+$this->end();
 ?>
-<?= $this->element("admin-sidebar") ?>
-<?php $this->end(); ?>
 
 <h2 style="font-weight: 300">Posts</a></h2>
 <div class="row" style="margin-bottom: 10px">

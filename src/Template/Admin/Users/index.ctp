@@ -3,12 +3,11 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
-$this->extend('/_common/col-3-9');
-
-$this->start('sidebar_content');
+$this->extend('/_common/dashboard-boxed');
+$this->start('script');
+echo $this->Html->script($this->Webapp->mix('/js/mix/users.bundle.js'));
+$this->end();
 ?>
-<?= $this->element("admin-sidebar") ?>
-<?php $this->end(); ?>
 
 <h2 style="font-weight: 300">Users</a></h2>
 <div class="row" style="margin-bottom: 10px">

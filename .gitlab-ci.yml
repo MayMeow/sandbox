@@ -1,4 +1,4 @@
-image: registry.gitcity.sk/gitcity-sk/gitcity-build-images:php-7.1-fpm-redis-phpunit-6.5.6
+image: registry.gitcity.eu/gitcity-sk/gitcity-build-images:php-7.2-fpm
 
 # Environment variables setting
 .default-variables: &default-variables
@@ -52,16 +52,18 @@ image: registry.gitcity.sk/gitcity-sk/gitcity-build-images:php-7.1-fpm-redis-php
         policy: pull
 
 stages:
-    - prepare
     - build
+    - prepare
     - test
     - post-test
+    - pages
     - deploy
 
 # Install all dependencies
 .install-dependencies: &install-dependencies
+    - docker-php-ext-install intl
     - composer -V
-    - composer install
+    - composer install --no-ansi --no-interaction --no-progress
     - chmod a+x bin/cake
 
 # PHP Lint script using CakePHP coding standards
@@ -74,6 +76,27 @@ stages:
     tags:
         - digitalocean
         - docker
+
+.phpunit-tests-coverage-text: &phpunit-tests-coverage-text
+    script:
+        - ./vendor/bin/phpunit --coverage-text --colors=never
+    artifacts:
+        when: on_failure
+        paths:
+        - logs
+        expire_in: 1 week
+
+.phpunit-html-coverage: &phpunit-html-coverage
+    stage: pages
+    environment:
+        name: code-coverage/$CI_COMMIT_REF_NAME
+        url: http://$CI_PROJECT_NAMESPACE.gitcity.io/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG/coverage/
+    script:
+        - ./vendor/bin/phpunit --coverage-html ./public/$CI_COMMIT_REF_SLUG/coverage
+    artifacts:
+        paths:
+        - public
+
 
 # Prepare Section
 # -----------------------------------
@@ -95,57 +118,74 @@ php lint:
     allow_failure: true
     <<: *run-on-do-docker
 
+# Build
+# -----------------------------------
+
+build master image:
+    image: docker:latest
+    services:
+        - docker:dind
+    stage: build
+    before_script:
+        - echo "$CI_JOB_TOKEN" | docker login -u "gitlab-ci-token" "$CI_REGISTRY" --password-stdin
+    script:
+        - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+        - docker push "$CI_REGISTRY_IMAGE"
+    <<: *run-on-do-docker
+    only:
+        - master
+    when: manual
+
+build image:
+    image: docker:latest
+    services:
+        - docker:dind
+    stage: build
+    before_script:
+        - echo "$CI_JOB_TOKEN" | docker login -u "gitlab-ci-token" "$CI_REGISTRY" --password-stdin
+    script:
+        - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
+        - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+    <<: *run-on-do-docker
+    except:
+        - master
+    when: manual
+
 # Test section
 # -----------------------------------
 
 # PHP Unit test
-php:mariadb-phpunit:
+php phpunit mariadb:
     <<: *pull-cache
     <<: *mariadb-variables
     stage: test
     services:
         - redis
         - mariadb
-    stage: test
     before_script: *install-dependencies
-    script:
-        - phpunit --coverage-text --colors=never
-    artifacts:
-        when: on_failure
-        paths:
-        - logs
-        expire_in: 1 week
+    <<: *phpunit-tests-coverage-text
     <<: *run-on-do-docker
 
-php:postgres-phpunit:
+php phpunit postgres:
     <<: *pull-cache
     <<: *postgres-variables
     stage: test
     services:
         - redis
         - postgres
-    stage: test
     before_script: *install-dependencies
-    script:
-        - phpunit --coverage-text --colors=never
-    allow_failure: true
-    artifacts:
-        when: on_failure
-        paths:
-        - logs
-        expire_in: 1 week
+    <<: *phpunit-tests-coverage-text
     <<: *run-on-do-docker
+    
+# Pages
+# -----------------------------------
 
-db:postgres-migrations:
+pages:
     <<: *pull-cache
     <<: *postgres-variables
-    stage: test
     services:
-        - postgres
         - redis
+        - postgres
     before_script: *install-dependencies
-    script:
-        - bin/cake migrations migrate
-        - bin/cake migrations rollback
+    <<: *phpunit-html-coverage
     <<: *run-on-do-docker
-

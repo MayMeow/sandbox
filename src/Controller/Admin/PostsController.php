@@ -2,6 +2,8 @@
 namespace App\Controller\Admin;
 
 use App\Controller\PostsController as BaseController;
+use App\Factories\PermissionsFactory;
+use Cake\Http\Exception\UnauthorizedException;
 
 /**
  * Posts Controller
@@ -20,9 +22,19 @@ class PostsController extends BaseController
      */
     public function add()
     {
+        try {
+            PermissionsFactory::can('posts-add');
+        } catch (UnauthorizedException $e) {
+            $this->Flash->error($e->getMessage());
+
+            return $this->redirect($this->referer());
+        }
+
         $post = $this->Posts->newEntity();
         if ($this->request->is('post')) {
             $post = $this->Posts->patchEntity($post, $this->request->getData());
+            $post->user_id = $this->Auth->user('id');
+
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));
 

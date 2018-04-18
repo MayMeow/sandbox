@@ -16,7 +16,9 @@ class PostsControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.posts'
+        'app.posts',
+        'app.users',
+        'app.profiles',
     ];
 
     /**
@@ -26,7 +28,7 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        
+
         $this->get('/api/posts.json');
 
         $this->assertResponseOk();
@@ -40,7 +42,7 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/api/posts/view/1.json');
+        $this->get('/api/posts/1.json');
 
         $this->assertResponseOk();
         $this->assertResponseContains('"id": 1');

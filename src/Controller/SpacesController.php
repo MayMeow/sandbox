@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Utility\Security;
 
 /**
  * Spaces Controller
@@ -48,6 +49,8 @@ class SpacesController extends AppController
     public function add()
     {
         $space = $this->Spaces->newEntity();
+        $appKey = Security::randomString(32);
+        $appSecret = Security::randomString(64);
         if ($this->request->is('post')) {
             $space = $this->Spaces->patchEntity($space, $this->request->getData());
             if ($this->Spaces->save($space)) {
@@ -58,7 +61,7 @@ class SpacesController extends AppController
             $this->Flash->error(__('The space could not be saved. Please, try again.'));
         }
         $projects = $this->Spaces->Projects->find('list', ['limit' => 200]);
-        $this->set(compact('space', 'projects'));
+        $this->set(compact('space', 'projects', 'appKey', 'appSecret'));
     }
 
     /**

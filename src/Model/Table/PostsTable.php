@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Posts Model
  *
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ *
  * @method \App\Model\Entity\Post get($primaryKey, $options = [])
  * @method \App\Model\Entity\Post newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Post[] newEntities(array $data, array $options = [])
@@ -35,6 +37,10 @@ class PostsTable extends Table
         $this->setTable('posts');
         $this->setDisplayField('title');
         $this->setPrimaryKey('id');
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id'
+        ]);
 
         $this->addBehavior('Timestamp');
     }

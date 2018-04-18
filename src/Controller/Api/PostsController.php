@@ -3,6 +3,9 @@ namespace App\Controller\Api;
 
 use App\Controller\PostsController as BaseController;
 use Parsedown;
+use App\Http\Resources\PostIndexResource;
+use App\Http\Resources\PostResource;
+use App\Http\Resources\Posts\PostViewResource;
 
 /**
  * Posts Controller
@@ -14,7 +17,11 @@ use Parsedown;
 class PostsController extends BaseController
 {
     // removed RequestHandler - look at AppController
-    
+
+    public $paginate = [
+        'limit' => 2
+    ];
+
     /**
      * Index method
      *
@@ -22,11 +29,15 @@ class PostsController extends BaseController
      */
     public function index()
     {
-        $posts = $this->paginate($this->Posts);
+        $postsData = $this->paginate($this->Posts->find()->contain([
+            'Users' => ['Profiles']
+        ]));
+        $posts = PostIndexResource::collection($postsData);
 
         $this->set([
             'posts' => $posts,
-            '_serialize' => ['posts']
+            'paging' => $this->request->getParam('paging'),
+            '_serialize' => ['posts', 'paging']
         ]);
     }
 
@@ -40,11 +51,13 @@ class PostsController extends BaseController
     public function view($id = null)
     {
         $post = $this->Posts->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
 
         $parsedown = new Parsedown();
         $post->markdown = $parsedown->text($post->body);
+
+        $post = (new PostViewResource($post))->get();
 
         $this->set([
             'post' => $post,

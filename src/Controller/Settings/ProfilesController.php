@@ -45,5 +45,4 @@ class ProfilesController extends BaseController
         }
         $this->set(compact('profile'));
     }
-
 }

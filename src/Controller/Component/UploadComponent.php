@@ -4,7 +4,7 @@ namespace App\Controller\Component;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\Filesystem\Folder;
-use Cake\Network\Exception\InternalErrorException;
+use Cake\Http\Exception\InternalErrorException;
 use Cake\Utility\Text;
 use Cake\Filesystem\File;
 
@@ -34,12 +34,13 @@ class UploadComponent extends Component
     /**
      * Method Upload
      */
-    public function upload($file = null) {
+    public function upload($file = null)
+    {
         $config = $this->config();
 
         $uploadDir = $this->_getUploadDir($config);
         $fileExtension = $this->_getFileExtensionFromName($file['name']);
-        
+
         if (in_array($file['type'], $config['allowed'])) {
             if (is_uploaded_file($file['tmp_name'])) {
                 $newFilename = Text::uuid() . '.' . $fileExtension;
@@ -60,7 +61,8 @@ class UploadComponent extends Component
      * _folderExists method Check if exists folder for upload and if false create one.
      * @param null $folderPath
      */
-    protected function _folderExists($folderPath = null) {
+    protected function _folderExists($folderPath = null)
+    {
         $folder = new Folder('/');
         if (!$folder->cd($folderPath)) {
             $folder->create($folderPath);

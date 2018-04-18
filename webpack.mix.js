@@ -11,7 +11,13 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('./');
+mix.setPublicPath('webroot');
 
-mix.js('./resources/js/app.js', 'webroot/js')
-   .sass('./resources/css/app.scss', 'webroot/css');
+mix.js('./resources/js/app.js', 'webroot/js/mix')
+    .js('./resources/js/assets.js', 'webroot/js/mix/assets.budle.js')
+    .js('./resources/js/components/Users/index.js', 'webroot/js/mix/users.bundle.js')
+    .js('./resources/js/components/Posts/index.js', 'webroot/js/mix/posts.bundle.js')
+    .extract(['vue', 'emojione', 'axios']).version().sourceMaps();
+
+mix.sass('./resources/css/app.scss', 'webroot/css')
+   .sass('./resources/css/dashboard.scss', 'webroot/css').version().sourceMaps();

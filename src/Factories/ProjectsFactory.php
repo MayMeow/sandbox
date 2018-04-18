@@ -2,7 +2,8 @@
 
 namespace App\Factories;
 
-class ProjectsFactory {
+class ProjectsFactory
+{
 
     public static function defaultPicture()
     {

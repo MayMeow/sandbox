@@ -26,6 +26,15 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
         $this->get('/admin/posts');
 
         $this->assertResponseOk();
@@ -38,7 +47,16 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/admin/posts/view/1');
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+        $this->get('/admin/posts/1');
 
         $this->assertResponseOk();
     }

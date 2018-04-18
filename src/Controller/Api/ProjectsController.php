@@ -2,6 +2,8 @@
 namespace App\Controller\Api;
 
 use App\Controller\ProjectsController as BaseController;
+use App\Http\Resources\ProjectResource;
+use App\Http\Resources\Projects\ProjectIndexResource;
 
 /**
  * Projects Controller
@@ -20,10 +22,11 @@ class ProjectsController extends BaseController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        $projects = $this->paginate($this->Projects);
+        $query = $this->Projects->find()->contain([
+            'Users' => ['Profiles']
+        ]);
+
+        $projects = ProjectIndexResource::collection($query);
 
         $this->set([
             'projects' => $projects,

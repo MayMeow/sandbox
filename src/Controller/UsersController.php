@@ -54,15 +54,16 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            $result = $this->Users->getConnection()->transactional(function() use ($user, $profile) {
+            $result = $this->Users->getConnection()->transactional(function () use ($user, $profile) {
                 if ($this->Users->save($user)) {
-    
                     $profile->user_id = $user->id;
                     $profile->name = $user->email;
                     $profile->image = ProfilesFactory::defaultPicture();
                     $this->Users->Profiles->save($profile);
+
                     return true;
                 }
+
                 return false;
             });
 
@@ -73,7 +74,6 @@ class UsersController extends AppController
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
-            
         }
         $this->set(compact('user'));
     }
@@ -87,6 +87,7 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error('Your username or password is incorrect.');
@@ -96,7 +97,12 @@ class UsersController extends AppController
     public function logout()
     {
         $this->Flash->success('You are now logged out.');
+
         return $this->redirect($this->Auth->logout());
     }
 
+    public function assignRole()
+    {
+        // Todo
+    }
 }

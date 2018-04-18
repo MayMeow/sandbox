@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use App\ee\Model\License;
 
 /**
  * Application Controller
@@ -41,7 +42,7 @@ class AppController extends Controller
     {
         parent::initialize();
 
-        $this->loadComponent('RequestHandler');
+        $this->loadComponent('RequestHandler', ['enableBeforeRedirect' => false]);
         $this->loadComponent('Flash');
 
         /*
@@ -71,6 +72,15 @@ class AppController extends Controller
 
         // Allow the display action so our PagesController
         // continues to work. Also enable the read only actions.
-        $this->Auth->allow(['display', 'view', 'index']);
+        $this->Auth->allow(['display', 'view', 'index', 'login']);
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        if ($this->request->getParam('prefix') && $this->request->getParam('prefix') == 'admin') {
+            if (!$this->Auth->user()) {
+                $this->Auth->deny();
+            }
+        }
     }
 }

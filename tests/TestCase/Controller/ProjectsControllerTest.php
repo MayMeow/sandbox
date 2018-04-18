@@ -85,36 +85,6 @@ class ProjectsControllerTest extends IntegrationTestCase
     }
 
     /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAddPostData()
-    {
-        $data = [
-            'id' => 2,
-            'user_id' => 1,
-            'name' => 'My Project',
-            'description' => 'Project description'
-        ];
-        $this->session([
-            'Auth' => [
-                'User' => [
-                    'id' => 1,
-                    'username' => 'testing',
-                    // other keys.
-                ]
-            ]
-        ]);
-        $this->post('/projects/add', $data);
-        $this->assertResponseSuccess();
-
-        $projects = TableRegistry::get('Projects');
-        $query = $projects->find()->where(['name' => $data['name']]);
-        $this->assertEquals(1, $query->count());
-    }
-
-    /**
      * Test edit method
      *
      * @return void
@@ -143,6 +113,8 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testDelete()
     {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
         $this->session([
             'Auth' => [
                 'User' => [

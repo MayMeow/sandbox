@@ -27,4 +27,4 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 window.emojione = require('emojione');
 
-var octicons = require("octicons")
+var octicons = require("octicons");

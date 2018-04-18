@@ -39,5 +39,7 @@ class AppView extends View
         $this->loadHelper('Form', [
             'templates' => 'bootstrap_four_form',
         ]);
+
+        $this->loadHelper('Webapp');
     }
 }

@@ -29,20 +29,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
 
     <!-- Bootstrap core CSS -->
-    <?= $this->Html->css('bootstrap.min') ?>
-
     <!-- Custom styles for this template -->
-    <?= $this->Html->css('app') ?>
+    <?= $this->Html->css($this->Webapp->mix('/css/app.css')) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
   </head>
 
   <body>
 
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
-      <a class="navbar-brand" href="/">TheMayMeow</a>
+      <a class="navbar-brand" href="/">Sandbox</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -81,6 +78,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <?= $this->Html->script('app') ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/mix/manifest.js')) ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/mix/vendor.js')) ?>
+    <?= $this->Html->script($this->Webapp->mix('/js/mix/assets.budle.js')) ?>
+    <?= $this->fetch('script') ?>
   </body>
 </html>
