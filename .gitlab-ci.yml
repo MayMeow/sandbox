@@ -60,6 +60,7 @@ stages:
 
 # Install all dependencies
 .install-dependencies: &install-dependencies
+    - docker-php-ext-install intl
     - composer -V
     - composer install
     - chmod a+x bin/cake
