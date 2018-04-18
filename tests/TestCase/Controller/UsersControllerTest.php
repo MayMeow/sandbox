@@ -60,33 +60,6 @@ class UsersControllerTest extends IntegrationTestCase
     }
 
     /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAddPostData()
-    {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-
-        $data = [
-            'email' => 'test@test.sk',
-            'password' => 'secret'
-        ];
-
-        $this->post('/users/add', $data);
-        $this->assertResponseSuccess();
-
-        $users = TableRegistry::get('Users');
-        $query = $users->find('all')->where(['email' => $data['email']]);
-        $this->assertEquals(1, $query->count());
-
-        $profiles = TableRegistry::get('Profiles');
-        $queryProfile = $profiles->find()->where(['name' => $data['email']]);
-        $this->assertEquals(1, $queryProfile->count());
-    }
-
-        /**
      * Test view method
      *
      * @return void
