@@ -93,6 +93,10 @@ stages:
         url: http://$CI_PROJECT_NAMESPACE.gitcity.io/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG/coverage/
     script:
         - ./vendor/bin/phpunit --coverage-html ./public/$CI_COMMIT_REF_SLUG/coverage
+    artifacts:
+        paths:
+        - public
+
 
 # Prepare Section
 # -----------------------------------
