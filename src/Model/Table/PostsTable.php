@@ -8,7 +8,7 @@ use Cake\Validation\Validator;
 
 /**
  * Posts Model
- * 
+ *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
  *
  * @method \App\Model\Entity\Post get($primaryKey, $options = [])

@@ -2,7 +2,8 @@
 
 namespace App\Factories;
 
-class ProfilesFactory {
+class ProfilesFactory
+{
 
     public static function defaultPicture()
     {

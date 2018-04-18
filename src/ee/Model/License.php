@@ -5,7 +5,7 @@ namespace App\ee\Model;
 use Cake\ORM\TableRegistry;
 use Cake\Chronos\Chronos;
 
-class License 
+class License
 {
     const ENCRYPTION_KEY = '.license_encryption_key.pub';
 
@@ -48,13 +48,19 @@ class License
     {
         $license = self::import();
 
-        if (false == $license) return false;
+        if (false == $license) {
+            return false;
+        }
 
-        if ($license->type == 'Trial') return true;
+        if ($license->type == 'Trial') {
+            return true;
+        }
 
         $featuresByLicense = self::LICENSE_FEATURES[$license->type];
 
-        if (!in_array($feature, $featuresByLicense)) return false;
+        if (!in_array($feature, $featuresByLicense)) {
+            return false;
+        }
 
         return true;
     }

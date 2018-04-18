@@ -6,7 +6,8 @@ use Cake\Http\Session;
 use Cake\ORM\TableRegistry;
 use Cake\Http\Exception\UnauthorizedException;
 
-class PermissionsFactory {
+class PermissionsFactory
+{
 
     public static function can($action = null)
     {
@@ -19,11 +20,13 @@ class PermissionsFactory {
         $permission = $permissionsTable->find()->contain(['Roles'])->where(['permissions.title' => $action])->first();
 
         // if cannot find permission return true
-        if ($permission == null) return true;
+        if ($permission == null) {
+            return true;
+        }
 
         //dd($permission->roles);
         // check if user has assigned same role as permissions
-        if(!$userTable->hasRole($authUser['id'], $permission->roles)) {
+        if (!$userTable->hasRole($authUser['id'], $permission->roles)) {
             throw new UnauthorizedException('You are not authorized to this action.');
         };
     }

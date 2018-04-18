@@ -28,8 +28,6 @@ class UsersController extends BaseController
 
         $users = UserProfileResource::collection($query);
 
-        
-
         $this->set([
             'users' => $users,
             '_serialize' => ['users']
@@ -54,7 +52,6 @@ class UsersController extends BaseController
             '_serialize' => ['user']
         ]);
     }
-
 
     /**
      * View method

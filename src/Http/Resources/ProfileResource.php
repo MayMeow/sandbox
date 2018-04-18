@@ -6,7 +6,7 @@ use Daybreak\Http\Resources\Json\Resource;
 class ProfileResource extends Resource
 {
     public function toArray()
-    {        
+    {
         return [
             'id' => $this->entity->id,
             'name' => $this->entity->name,

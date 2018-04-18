@@ -21,7 +21,7 @@ class PostsController extends BaseController
     public $paginate = [
         'limit' => 2
     ];
-    
+
     /**
      * Index method
      *

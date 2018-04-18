@@ -17,9 +17,10 @@ class WebappHelper extends Helper
      */
     protected $_defaultConfig = [];
 
-    public function mix($assetPath) {
+    public function mix($assetPath)
+    {
         $mixManifest = json_decode(file_get_contents(WWW_ROOT . 'mix-manifest.json'));
-        
+
         return $mixManifest->$assetPath;
     }
 }

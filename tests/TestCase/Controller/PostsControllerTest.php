@@ -27,7 +27,7 @@ class PostsControllerTest extends IntegrationTestCase
     public function testIndex()
     {
         $this->get('/posts');
-        
+
         $this->assertResponseContains('Posts');
         $this->assertResponseContains('<posts-table-component></posts-table-component>');
         $this->assertResponseOk();
@@ -45,5 +45,4 @@ class PostsControllerTest extends IntegrationTestCase
         $this->assertResponseContains('<post-view-component post-i-d="1"></post-view-component>');
         $this->assertResponseOk();
     }
-
 }

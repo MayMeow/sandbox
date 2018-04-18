@@ -2,7 +2,8 @@
 
 namespace App\Traits;
 
-trait AllowActionsTrait {
+trait AllowActionsTrait
+{
 
     public function initialize()
     {
@@ -10,5 +11,4 @@ trait AllowActionsTrait {
         $this->Auth->deny();
         $this->Auth->allow($this->allowed_actions);
     }
-
 }

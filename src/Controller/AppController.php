@@ -78,7 +78,9 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         if ($this->request->getParam('prefix') && $this->request->getParam('prefix') == 'admin') {
-            if (!$this->Auth->user()) $this->Auth->deny();
+            if (!$this->Auth->user()) {
+                $this->Auth->deny();
+            }
         }
     }
 }

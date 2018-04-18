@@ -73,15 +73,15 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
 
-     /**
-      * Profiles
-      */
+    /**
+     * Profiles
+     */
     $routes->connect('/profiles/', ['controller' => 'Profiles', 'action' => 'index']);
     $routes->connect('/profiles/:id', ['controller' => 'Profiles', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
-     /**
-      * Projects Controller
-      */
+    /**
+     * Projects Controller
+     */
     $routes->connect('/projects/', ['controller' => 'Projects', 'action' => 'index']);
     $routes->connect('/projects/add', ['controller' => 'Projects', 'action' => 'add']);
     $routes->connect('/projects/:id', ['controller' => 'Projects', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);

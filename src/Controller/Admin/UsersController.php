@@ -83,7 +83,7 @@ class UsersController extends BaseController
         $role = $this->Users->Roles->get($this->request->getData('roles'));
 
         try {
-            $this->Users->getConnection()->transactional(function() use ($role, $user) {
+            $this->Users->getConnection()->transactional(function () use ($role, $user) {
                 $this->Users->assignRole($user, [$role]);
             });
         } catch (NestedTransactionRollbackException $e) {
@@ -93,7 +93,6 @@ class UsersController extends BaseController
         return $this->redirect($this->referer());
     }
 
-
     public function revokeRole($id = null, $role = null)
     {
         $user = $this->Users->get($id, [
@@ -102,7 +101,7 @@ class UsersController extends BaseController
         $role = $this->Users->Roles->get($role);
 
         try {
-            $this->Users->getConnection()->transactional(function() use ($role, $user) {
+            $this->Users->getConnection()->transactional(function () use ($role, $user) {
                 $this->Users->revokeRole($user, [$role]);
             });
         } catch (NestedTransactionRollbackException $e) {

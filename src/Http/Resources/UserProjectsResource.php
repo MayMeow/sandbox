@@ -14,8 +14,8 @@ class UserProjectsResource extends Resource
             'profile' => function ($q) {
                 return (new ProfileResource($q->profile))->get();
             },
-            'projects' => function($q) {
-                return  ProjectResource::collection($q->projects);
+            'projects' => function ($q) {
+                return ProjectResource::collection($q->projects);
             }
         ];
     }

@@ -29,7 +29,7 @@ class UsersControllerTest extends IntegrationTestCase
     public function testIndex()
     {
         $this->get('/users');
-        
+
         $this->assertResponseContains('Users');
         $this->assertResponseContains('<users-table-component></users-table-component>');
         $this->assertResponseOk();
@@ -71,5 +71,4 @@ class UsersControllerTest extends IntegrationTestCase
 
         $this->assertResponseContains('Login');
     }
-
 }

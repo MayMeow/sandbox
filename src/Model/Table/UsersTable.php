@@ -10,7 +10,7 @@ use Cake\Collection\Collection;
 
 /**
  * Users Model
- * 
+ *
  * @property |\Cake\ORM\Association\HasOne $Profiles
  * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsToMany $Roles
  *
@@ -111,7 +111,7 @@ class UsersTable extends Table
     public function hasRole($id, $role)
     {
         if (is_string($role)) {
-            dd ('string');
+            dd('string');
         }
 
         // Find all roles assigned to user

@@ -74,7 +74,7 @@ class RolesController extends AppController
         $permission = $this->Roles->Permissions->get($this->request->getData('permissions'));
 
         try {
-            $this->Roles->getConnection()->transactional(function() use ($role, $permission) {
+            $this->Roles->getConnection()->transactional(function () use ($role, $permission) {
                 $this->Roles->givePermissionTo($role, [$permission]);
             });
         } catch (NestedTransactionRollbackException $e) {
@@ -92,7 +92,7 @@ class RolesController extends AppController
         $permission = $this->Roles->Permissions->get($permission);
 
         try {
-            $this->Roles->getConnection()->transactional(function() use ($role, $permission) {
+            $this->Roles->getConnection()->transactional(function () use ($role, $permission) {
                 $this->Roles->revokePermissionTo($role, [$permission]);
             });
         } catch (NestedTransactionRollbackException $e) {

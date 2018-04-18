@@ -28,7 +28,7 @@ class PostsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        
+
         $this->get('/api/posts.json');
 
         $this->assertResponseOk();
