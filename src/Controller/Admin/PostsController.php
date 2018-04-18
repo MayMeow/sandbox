@@ -3,7 +3,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\PostsController as BaseController;
 use App\Factories\PermissionsFactory;
-use Cake\Network\Exception\UnauthorizedException;
+use Cake\Http\Exception\UnauthorizedException;
 
 /**
  * Posts Controller

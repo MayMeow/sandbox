@@ -4,7 +4,7 @@ namespace App\Factories;
 
 use Cake\Http\Session;
 use Cake\ORM\TableRegistry;
-use Cake\Network\Exception\UnauthorizedException;
+use Cake\Http\Exception\UnauthorizedException;
 
 class PermissionsFactory {
 

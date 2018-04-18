@@ -75,7 +75,7 @@ class PostsTableTest extends TestCase
     {
         $query = $this->Posts->find()->where(['id' => 1])->select(['id', 'title', 'body']);
         $this->assertInstanceOf('Cake\ORM\Query', $query);
-        $result = $query->hydrate(false)->toArray();
+        $result = $query->enableHydration(false)->toArray();
         $expected = [
             [
                 'id' => 1,

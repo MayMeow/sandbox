@@ -4,7 +4,7 @@ namespace App\Controller\Ee;
 use App\Controller\AppController;
 use App\Form\LicenseForm;
 use App\ee\Model\License;
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 use App\Model\Entity\Setting;
 
