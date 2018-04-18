@@ -1,4 +1,4 @@
-image: registry.gitcity.sk/gitcity-sk/gitcity-build-images:php-7.1-fpm-redis-phpunit-6.5.6
+image: registry.gitcity.eu/gitcity-sk/gitcity-build-images:php-7.2-fpm
 
 # Environment variables setting
 .default-variables: &default-variables
@@ -75,6 +75,15 @@ stages:
         - digitalocean
         - docker
 
+.phpunit-tests-coverage-text: &phpunit-tests-coverage-text
+    script:
+        - phpunit --coverage-text --colors=never
+    artifacts:
+        when: on_failure
+        paths:
+        - logs
+        expire_in: 1 week
+
 # Prepare Section
 # -----------------------------------
 setup-cakeapp:
@@ -99,53 +108,25 @@ php lint:
 # -----------------------------------
 
 # PHP Unit test
-php:mariadb-phpunit:
+php phpunit mariadb:
     <<: *pull-cache
     <<: *mariadb-variables
     stage: test
     services:
         - redis
         - mariadb
-    stage: test
     before_script: *install-dependencies
-    script:
-        - phpunit --coverage-text --colors=never
-    artifacts:
-        when: on_failure
-        paths:
-        - logs
-        expire_in: 1 week
+    <<: *phpunit-tests-coverage-text
     <<: *run-on-do-docker
 
-php:postgres-phpunit:
+php phpunit postgres:
     <<: *pull-cache
     <<: *postgres-variables
     stage: test
     services:
         - redis
         - postgres
-    stage: test
     before_script: *install-dependencies
-    script:
-        - phpunit --coverage-text --colors=never
-    allow_failure: true
-    artifacts:
-        when: on_failure
-        paths:
-        - logs
-        expire_in: 1 week
+    <<: *phpunit-tests-coverage-text
     <<: *run-on-do-docker
-
-db:postgres-migrations:
-    <<: *pull-cache
-    <<: *postgres-variables
-    stage: test
-    services:
-        - postgres
-        - redis
-    before_script: *install-dependencies
-    script:
-        - bin/cake migrations migrate
-        - bin/cake migrations rollback
-    <<: *run-on-do-docker
-
+    
