@@ -87,7 +87,7 @@ stages:
         expire_in: 1 week
 
 .phpunit-html-coverage: &phpunit-html-coverage
-    stage: post-test
+    stage: pages
     environment:
         name: code-coverage/$CI_COMMIT_REF_NAME
         url: http://$CI_PROJECT_NAMESPACE.gitcity.io/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG/coverage/
@@ -179,7 +179,6 @@ php phpunit postgres:
 pages:
     <<: *pull-cache
     <<: *postgres-variables
-    stage: pages
     services:
         - redis
         - postgres
