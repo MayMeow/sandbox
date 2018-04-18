@@ -52,8 +52,8 @@ image: registry.gitcity.eu/gitcity-sk/gitcity-build-images:php-7.2-fpm
         policy: pull
 
 stages:
-    - prepare
     - build
+    - prepare
     - test
     - post-test
     - deploy
@@ -85,6 +85,14 @@ stages:
         - logs
         expire_in: 1 week
 
+.phpunit-html-coverage: &phpunit-html-coverage
+    stage: post-test
+    environment:
+        name: code-coverage/$CI_COMMIT_REF_NAME
+        url: http://$CI_PROJECT_NAMESPACE.gitcity.io/$CI_PROJECT_NAME/$CI_COMMIT_REF_SLUG/coverage/
+    script:
+        - ./vendor/bin/phpunit --coverage-html ./public/$CI_COMMIT_REF_SLUG/coverage
+
 # Prepare Section
 # -----------------------------------
 setup-cakeapp:
@@ -104,6 +112,39 @@ php lint:
     script: *php-lint
     allow_failure: true
     <<: *run-on-do-docker
+
+# Build
+# -----------------------------------
+
+build master image:
+    image: docker:latest
+    services:
+        - docker:dind
+    stage: build
+    before_script:
+        - echo "$CI_JOB_TOKEN" | docker login -u "gitlab-ci-token" "$CI_REGISTRY" --password-stdin
+    script:
+        - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+        - docker push "$CI_REGISTRY_IMAGE"
+    <<: *run-on-do-docker
+    only:
+        - master
+    when: manual
+
+build image:
+    image: docker:latest
+    services:
+        - docker:dind
+    stage: build
+    before_script:
+        - echo "$CI_JOB_TOKEN" | docker login -u "gitlab-ci-token" "$CI_REGISTRY" --password-stdin
+    script:
+        - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
+        - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+    <<: *run-on-do-docker
+    except:
+        - master
+    when: manual
 
 # Test section
 # -----------------------------------
@@ -129,5 +170,19 @@ php phpunit postgres:
         - postgres
     before_script: *install-dependencies
     <<: *phpunit-tests-coverage-text
+    <<: *run-on-do-docker
+    
+# POST TEST
+# -----------------------------------
+
+pages:
+    <<: *pull-cache
+    <<: *postgres-variables
+    stage: post-test
+    services:
+        - redis
+        - postgres
+    before_script: *install-dependencies
+    <<: *phpunit-html-coverage
     <<: *run-on-do-docker
     
