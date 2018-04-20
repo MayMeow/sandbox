@@ -1,20 +1,19 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\Collection\Collection;
 use Cake\ORM\Entity;
-use Cake\ORM\TableRegistry;
 
 /**
- * Post Entity
+ * Tag Entity
  *
  * @property int $id
  * @property string $title
- * @property string $body
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\Post[] $posts
  */
-class Post extends Entity
+class Tag extends Entity
 {
 
     /**
@@ -28,20 +27,8 @@ class Post extends Entity
      */
     protected $_accessible = [
         'title' => true,
-        'body' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'posts' => true
     ];
-
-    protected function _getTagString()
-    {
-        if (isset($this->_properties['tag_string'])) return $this->_properties['tag_string'];
-
-        if (empty($this->tags)) return '';
-
-        $tags = new Collection($this->tags);
-        $str = $tags->reduce(function ($string, $tag) {
-            return $string . $tag->title . ', ';
-        }, '');
-    }
 }
