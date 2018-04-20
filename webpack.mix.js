@@ -17,6 +17,7 @@ mix.js('./resources/js/app.js', 'webroot/js/mix')
     .js('./resources/js/assets.js', 'webroot/js/mix/assets.budle.js')
     .js('./resources/js/components/Users/index.js', 'webroot/js/mix/users.bundle.js')
     .js('./resources/js/components/Posts/index.js', 'webroot/js/mix/posts.bundle.js')
+    .js('./resources/js/components/Projects/index.js', 'webroot/js/mix/projects.bundle.js')
     .extract(['vue', 'emojione', 'axios']).version().sourceMaps();
 
 mix.sass('./resources/css/app.scss', 'webroot/css')

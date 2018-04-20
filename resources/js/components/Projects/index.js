@@ -4,16 +4,13 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./emojioneConvert');
-require('./directives/TooltipDirective');
-require('./filters/MomentFilter');
+require('../../emojioneConvert');
+require('../../directives/TooltipDirective');
+require('../../filters/MomentFilter');
 
 window.Vue = require('vue');
 
-Vue.component('profiles-table-component', require('./components/ProfilesTableComponent'));
-Vue.component('spaces-table-component', require('./components/SpacesTableComponent'));
-
-Vue.component('delete-button', require('./components/License/LicenseDeleteComponent'));
+Vue.component('posts-table-component', require('./ProjectsTableComponent'));
 
 const app = new Vue({
     el: '#vue-app',
