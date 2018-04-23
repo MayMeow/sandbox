@@ -72,6 +72,11 @@ stages:
     - chmod +x vendor/bin/phpcs
     - vendor/bin/phpcs --ignore=*/Migrations/* -p --extensions=php --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./config ./plugins
 
+.php-sast: &php-sast
+    - composer require pheromone/phpcs-security-audit
+    - sh vendor/pheromone/phpcs-security-audit/symlink.sh
+    - vendor/bin/phpcs --ignore=*/Migrations/* -p --extensions=php,inc,lib,module,info --standard=./vendor/pheromone/phpcs-security-audit/example_base_ruleset.xml ./src ./tests ./config ./plugins
+
 .run-on-do-docker: &run-on-do-docker
     tags:
         - digitalocean
@@ -115,6 +120,14 @@ php lint:
     stage: post-test
     before_script: *install-dependencies
     script: *php-lint
+    allow_failure: true
+    <<: *run-on-do-docker
+
+php sast:
+    <<: *pull-cache
+    stage: post-test
+    before_script: *install-dependencies
+    script: *php-sast
     allow_failure: true
     <<: *run-on-do-docker
 
