@@ -3,6 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Project $project
  */
+$this->start('script');
+echo $this->Html->script($this->Webapp->mix('/js/mix/projects.bundle.js'));
+$this->end();
 ?>
 
 <?php $this->start('project_sidebar')?>
