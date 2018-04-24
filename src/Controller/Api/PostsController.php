@@ -19,7 +19,7 @@ class PostsController extends BaseController
     // removed RequestHandler - look at AppController
 
     public $paginate = [
-        'limit' => 2
+        'limit' => 10
     ];
 
     /**
@@ -51,7 +51,7 @@ class PostsController extends BaseController
     public function view($id = null)
     {
         $post = $this->Posts->get($id, [
-            'contain' => ['Users']
+            'contain' => ['Users', 'Tags']
         ]);
 
         $parsedown = new Parsedown();

@@ -3,6 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Project $project
  */
+$this->start('script');
+echo $this->Html->script($this->Webapp->mix('/js/mix/projects.bundle.js'));
+$this->end();
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">

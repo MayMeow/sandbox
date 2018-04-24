@@ -24,6 +24,8 @@ $this->end();
 
     <div class="col-3">
     <?= $this->Form->button(__('Publish'), ['class' => 'btn btn-outline-primary btn-block']) ?>
+
+    <?= $this->Form->controll('tag_string', ['type' => 'text']);?>
     </div>
 </div>
 <?= $this->Form->end() ?>

@@ -17,6 +17,7 @@ class PostViewResource extends Resource
             'user_id' => function ($q) {
                 return (new UserResource($q->user))->get();
             },
+            'tags' => $this->entity->tags,
             'created_at' => $this->entity->created,
         ];
     }
