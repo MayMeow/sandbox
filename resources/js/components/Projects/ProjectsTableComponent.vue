@@ -1,4 +1,6 @@
 <template>
+<div>
+    <preloader :done="done"></preloader>
     <div v-if="done">
         <table class="table">
             <thead>
@@ -22,14 +24,20 @@
             </tbody>
         </table>
     </div>
+</div>
 </template>
 
 <script>
     import axios from 'axios'
     import emojione from 'emojione'
+    import preloader from '../Shared/preloader.vue'
+
     export default {
         mounted () {
             console.log('Component ProfilesTable mounted.')
+        },
+        components: {
+            preloader
         },
         data () {
             return {
@@ -42,7 +50,7 @@
         },
         created () {
             this.$parent.$emit('pageLoader', true)
-            axios.get('/api/projects.json')
+            axios.get('/api/projects')
             .then(response => {
                 this.projects = response.data
                 this.$parent.$emit('pageLoader', false)

@@ -10,7 +10,7 @@ require('../../filters/MomentFilter');
 
 window.Vue = require('vue');
 
-Vue.component('posts-table-component', require('./ProjectsTableComponent'));
+Vue.component('projects-table-component', require('./ProjectsTableComponent'));
 
 const app = new Vue({
     el: '#vue-app',

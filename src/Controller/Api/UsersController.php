@@ -6,6 +6,7 @@ use App\Http\Resources\ProjectResource;
 use App\Http\Resources\UserProjectsResource;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\Users\UserProfileResource;
+use App\Traits\ApiFormatsTrait;
 
 /**
  * Users Controller
@@ -16,6 +17,7 @@ use App\Http\Resources\Users\UserProfileResource;
  */
 class UsersController extends BaseController
 {
+    use ApiFormatsTrait;
 
     /**
      * Index method
@@ -25,6 +27,11 @@ class UsersController extends BaseController
     public function index()
     {
         $query = $this->Users->find()->contain(['Profiles']);
+
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->className($x);
+        });
 
         $users = UserProfileResource::collection($query);
 
@@ -47,6 +54,11 @@ class UsersController extends BaseController
             'contain' => []
         ]);
 
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->className($x);
+        });
+
         $this->set([
             'user' => $user,
             '_serialize' => ['user']
@@ -65,6 +77,11 @@ class UsersController extends BaseController
         $query = $this->Users->get($id);
 
         $user = (new UserProjectsResource($query))->get();
+
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->className($x);
+        });
 
         $this->set([
             'user' => $user,

@@ -4,6 +4,8 @@ namespace App\Controller\Api;
 use App\Controller\ProjectsController as BaseController;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\Projects\ProjectIndexResource;
+use Cake\Event\Event;
+use App\Traits\ApiFormatsTrait;
 
 /**
  * Projects Controller
@@ -14,6 +16,7 @@ use App\Http\Resources\Projects\ProjectIndexResource;
  */
 class ProjectsController extends BaseController
 {
+    use ApiFormatsTrait;
 
     /**
      * Index method
@@ -25,6 +28,11 @@ class ProjectsController extends BaseController
         $query = $this->Projects->find()->contain([
             'Users' => ['Profiles']
         ]);
+
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->className($x);
+        });
 
         $projects = ProjectIndexResource::collection($query);
 
@@ -46,6 +54,11 @@ class ProjectsController extends BaseController
         $project = $this->Projects->get($id, [
             'contain' => ['Users', 'Spaces']
         ]);
+
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->className($x);
+        });
 
         $this->set([
             'project' => $project,
