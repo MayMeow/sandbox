@@ -1,4 +1,6 @@
 <template>
+<div>
+    <preloader :done="done"></preloader>
     <div v-if="done">
         <table class="table">
             <thead>
@@ -22,13 +24,19 @@
             </tbody>
         </table>
     </div>
+</div>
 </template>
 
 <script>
     import axios from 'axios'
+    import preloader from '../Shared/preloader.vue'
+
     export default {
         mounted () {
             console.log('Component PostsTableComponent mounted.')
+        },
+        components: {
+            preloader
         },
         data () {
             return {

@@ -15,9 +15,5 @@ $this->end();
         <a class="btn btn-success" href="/users/add">Create user</a>
     </div>
 </div>
-<div class="row text-center loading" v-if="loading">
-    <div class="col">
-        <h3 style="font-weight: 300">Thinking ...</h3>
-    </div>
-</div>
+
 <users-table-component></users-table-component>

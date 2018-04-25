@@ -17,12 +17,6 @@ $this->end();
         <a class="btn btn-success" href="/admin/permissions/add">Create post</a>
     </div>
 </div>
-<div class="row text-center loading" v-if="loading">
-    <div class="col">
-        <h3 style="font-weight: 300">Thinking ...</h3>
-    </div>
-</div>
-
 <table class="table">
 <tr>
 <th>Title</th>
