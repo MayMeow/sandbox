@@ -5,8 +5,8 @@ use App\Controller\UsersController as BaseController;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\UserProjectsResource;
 use App\Http\Resources\Users\UserResource;
-use App\Http\Resources\Users\UserProfileResource;
 use App\Traits\ApiFormatsTrait;
+use App\Http\Resources\Users\UserIndexResource;
 
 /**
  * Users Controller
@@ -33,7 +33,7 @@ class UsersController extends BaseController
             $this->viewBuilder()->className($x);
         });
 
-        $users = UserProfileResource::collection($query);
+        $users = UserIndexResource::collection($query);
 
         $this->set([
             'users' => $users,

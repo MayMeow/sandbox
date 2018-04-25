@@ -1,25 +1,27 @@
 <?php
-namespace App\Http\Resources\Projects;
+namespace App\Http\Presenter\Posts;
 
 use Daybreak\Http\Resources\Json\Resource;
+use Parsedown;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\ProfileResource;
 
-class ProjectIndexResource extends Resource
+class PostViewPresenter extends Resource
 {
     public function toArray()
     {
         return [
             'id' => $this->entity->id,
-            'name' => $this->entity->name,
-            'description' => $this->entity->description,
+            'title' => $this->entity->title,
+            'body' => $this->entity->body,
+            'markdown' => (new Parsedown)->text($this->entity->body),
             'user' => function ($q) {
                 return (new UserResource($q->user))->get();
             },
-            'profile' => function ($q) {
+            'profile' => function($q) {
                 return (new ProfileResource($q->user->profile))->get();
             },
-            'modified_at' => $this->entity->modified,
+            'tags' => $this->entity->tags,
             'created_at' => $this->entity->created,
         ];
     }

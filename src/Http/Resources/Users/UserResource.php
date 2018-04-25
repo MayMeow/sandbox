@@ -10,7 +10,6 @@ class UserResource extends Resource
         return [
             'id' => $this->entity->id,
             'email' => $this->entity->email,
-            'profile_id' => $this->entity->profile_id,
             'created_at' => $this->entity->created
         ];
     }
