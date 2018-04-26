@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Profile[]|\Cake\Collection\CollectionInterface $profiles
  */
+$this->extend('/_common/default-no-submenu');
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">

@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Project[]|\Cake\Collection\CollectionInterface $projects
  */
+$this->extend('/_common/default-no-submenu');
 $this->start('script');
 echo $this->Html->script($this->Webapp->mix('/js/mix/projects.bundle.js'));
 $this->end();

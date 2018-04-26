@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Profile $profile
  */
+$this->extend('/_common/default-no-submenu');
 ?>
 
 <div class="row">
