@@ -2,23 +2,32 @@
 <div>
     <preloader :done="done"></preloader>
     <div v-if="done">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Created</th>
-                    <th scope="col">User</th>
-                    <th scope="col" class="actions">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="project in projects.projects">
-                    <td>{{ project.name }}</td>
-                    <td>{{ project.created_at }}</td>
-                    <td>{{ project.profile.name }}</td>
                     <td>
-                        <a :href="'/projects/' + project.id">View</a>
-                        <a :href="'/projects/edit/' + project.id" class="btn btn-outline-danger btn-sm">Edit</a>
+                        <div class="d-flex align-items-center">
+                            <div class="mr-2 d-flex">
+                                <div class="mr-2"><span class="mr-2"><i class="far fa-bookmark"></i></span></div>
+                                <div :class="'project-avatar box-shadow ' + project.settings.color"></div>
+                            </div>
+                            <div>
+                                <a class="text-dark" style="font-weight: 600;" :href="'/projects/' + project.id">{{ project.profile.name }} / {{ project.name }}</a>
+                                <div><small>{{ project.description | with_emoji }}</small></div>
+                            </div>
+                            <div class="ml-auto text-right">
+                                <span class="mr-2"><i class="fas fa-folder"></i>1</span>
+                                <span class="mr-2"><i class="fas fa-code-merge"></i>1</span>
+                                <span><i class="fas fa-bug"></i>1</span>
+                                <div><small>updated {{ project.created_at.date | moment }}</small></div>
+                            </div>
+                        </div>
+                        
                     </td>
                 </tr>
             </tbody>

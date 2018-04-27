@@ -1,14 +1,14 @@
 {
     "/js/mix/app.js": "/js/mix/app.js?id=48219fbf5e37a25d6b90",
-    "/css/app.css": "/css/app.css?id=2013b8e78c36529a8ed8",
+    "/css/app.css": "/css/app.css?id=2384900998f47d33c23a",
     "/css/dashboard.css": "/css/dashboard.css?id=b3c5998ee9c943ef7446",
     "/js/mix/app.js.map": "/js/mix/app.js.map?id=500fedd1d35f86630b1a",
-    "/css/app.css.map": "/css/app.css.map?id=0d6fbb07dec217ae72e8",
+    "/css/app.css.map": "/css/app.css.map?id=4f328fca75fc0276f89a",
     "/css/dashboard.css.map": "/css/dashboard.css.map?id=da71c037d0d9620e31dd",
     "/js/mix/users.bundle.js": "/js/mix/users.bundle.js?id=9efcce87161bf86388f1",
     "/js/mix/users.bundle.js.map": "/js/mix/users.bundle.js.map?id=2ff04e48f8c75f88f32e",
-    "/js/mix/projects.bundle.js": "/js/mix/projects.bundle.js?id=401e855eef39cb798127",
-    "/js/mix/projects.bundle.js.map": "/js/mix/projects.bundle.js.map?id=7b817ee16243c7b37e52",
+    "/js/mix/projects.bundle.js": "/js/mix/projects.bundle.js?id=3e912a9f90358929e8c0",
+    "/js/mix/projects.bundle.js.map": "/js/mix/projects.bundle.js.map?id=de8ecb4997117ca6c378",
     "/js/mix/posts.bundle.js": "/js/mix/posts.bundle.js?id=2098c590ec578f98e7d9",
     "/js/mix/posts.bundle.js.map": "/js/mix/posts.bundle.js.map?id=f3179747bec998df9289",
     "/js/mix/vendor.js": "/js/mix/vendor.js?id=be153881e293e6cf6e7b",
@@ -16,5 +16,5 @@
     "/js/mix/assets.budle.js": "/js/mix/assets.budle.js?id=503d573b6af8a8673e7a",
     "/js/mix/assets.budle.js.map": "/js/mix/assets.budle.js.map?id=974ab43a8b31071eefcb",
     "/js/mix/manifest.js": "/js/mix/manifest.js?id=5fdd852f719d07682b00",
-    "/js/mix/manifest.js.map": "/js/mix/manifest.js.map?id=23b793d7f2705680fbea"
+    "/js/mix/manifest.js.map": "/js/mix/manifest.js.map?id=3dba27d8eadf23845eda"
 }

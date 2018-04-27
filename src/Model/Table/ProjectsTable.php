@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\SpacesTable|\Cake\ORM\Association\HasMany $Spaces
+ * @property \App\Model\Table\ProjectSettingsTable|\Cake\ORM\Association\HasOne $ProjectSettings
  *
  * @method \App\Model\Entity\Project get($primaryKey, $options = [])
  * @method \App\Model\Entity\Project newEntity($data = null, array $options = [])
@@ -45,6 +46,9 @@ class ProjectsTable extends Table
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Spaces', [
+            'foreignKey' => 'project_id'
+        ]);
+        $this->hasOne('ProjectSettings', [
             'foreignKey' => 'project_id'
         ]);
     }

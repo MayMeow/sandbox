@@ -26,8 +26,9 @@ class ProjectsController extends BaseController
     public function index()
     {
         $query = $this->Projects->find()->contain([
-            'Users' => ['Profiles']
-        ]);
+            'Users' => ['Profiles'],
+            'ProjectSettings'
+        ])->order(['Projects.created DESC']);
 
         // set data format
         $this->setFormat($this->request->getQuery('format'), function($x) {

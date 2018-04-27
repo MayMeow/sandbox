@@ -4,6 +4,7 @@ namespace App\Http\Resources\Projects;
 use Daybreak\Http\Resources\Json\Resource;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\ProfileResource;
+use App\Http\Presenter\Projects\Settings\SettingPresenter;
 
 class ProjectIndexResource extends Resource
 {
@@ -18,6 +19,9 @@ class ProjectIndexResource extends Resource
             },
             'profile' => function ($q) {
                 return (new ProfileResource($q->user->profile))->get();
+            },
+            'settings' => function ($q) {
+                return (new SettingPresenter($q->project_setting))->get();
             },
             'modified_at' => $this->entity->modified,
             'created_at' => $this->entity->created,

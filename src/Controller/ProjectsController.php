@@ -4,6 +4,8 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Factories\ProjectsFactory;
 use App\Factories\PermissionsFactory;
+use App\Factories\Utility\ColorsFactory;
+use Cake\Utility\Security;
 
 /**
  * Projects Controller
@@ -43,7 +45,8 @@ class ProjectsController extends AppController
         $project = $this->Projects->get($id, [
             'contain' => [
                 'Users' => ['Profiles'],
-                'Spaces'
+                'Spaces',
+                'ProjectSettings'
             ]
         ]);
 
@@ -60,7 +63,10 @@ class ProjectsController extends AppController
     public function spaces($id = null)
     {
         $project = $this->Projects->get($id, [
-            'contain' => ['Users' => ['Profiles'], 'Spaces']
+            'contain' => [
+                'Users' => ['Profiles'],
+                'Spaces'
+            ]
         ]);
 
         $this->set('project', $project);
@@ -76,17 +82,37 @@ class ProjectsController extends AppController
         PermissionsFactory::can('projects-add');
 
         $project = $this->Projects->newEntity();
+        $project_settings = $this->Projects->ProjectSettings->newEntity();
+
         if ($this->request->is('post')) {
             $project = $this->Projects->patchEntity($project, $this->request->getData());
+
             $project->image = ProjectsFactory::defaultPicture();
             $project->user_id = $this->Auth->user('id');
-            if ($this->Projects->save($project)) {
+
+            $result = $this->Projects->getConnection()->transactional(function () use ($project, $project_settings) {
+                if ($this->Projects->save($project)) {
+                    $project_settings->project_id = $project->id;
+                    $project_settings->color = ColorsFactory::getRandomBgColor();
+                    $project_settings->app_key = Security::randomString(32);
+                    $project_settings->app_secret = Security::randomString(48);
+                    $this->Projects->ProjectSettings->save($project_settings);
+
+                    return true;
+                }
+
+                return false;
+            });
+            
+            if ($result) {
                 $this->Flash->success(__('The project has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+
             $this->Flash->error(__('The project could not be saved. Please, try again.'));
         }
+
         $this->set(compact('project', 'users'));
     }
 
@@ -112,7 +138,10 @@ class ProjectsController extends AppController
             $this->Flash->error(__('The project could not be saved. Please, try again.'));
         }
         $users = $this->Projects->Users->find('list', ['limit' => 200]);
-        $this->set(compact('project', 'users'));
+
+        $settings = $this->Projects->ProjectSettings->find()->where(['project_id' => $id])->first();
+
+        $this->set(compact('project', 'users', 'settings'));
     }
 
     /**
