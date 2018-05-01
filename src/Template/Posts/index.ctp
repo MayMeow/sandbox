@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Post[]|\Cake\Collection\CollectionInterface $posts
  */
+$this->extend('/_common/default-no-submenu');
 $this->start('script');
 echo $this->Html->script($this->Webapp->mix('/js/mix/posts.bundle.js'));
 $this->end();
@@ -18,11 +19,6 @@ $this->end();
 
 <div class="row">
     <div class="col-md-12">
-        <div class="row text-center loading" v-if="loading">
-            <div class="col">
-                <h3 style="font-weight: 300">Thinking ...</h3>
-            </div>
-        </div>
         <posts-table-component></posts-table-component>
     </div>
 </div>

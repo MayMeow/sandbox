@@ -13,7 +13,7 @@
                     <td>{{ space.name }}</td>
                     <td>{{ space.created }}</td>
                     <td>
-                        <a :href="'/spaces/view/' + space.id">View</a>
+                        <a :href="'/spaces/' + space.id">View</a>
                         <a :href="'/spaces/edit/' + space.id" class="btn btn-outline-danger btn-sm">Edit</a>
                     </td>
                 </tr>

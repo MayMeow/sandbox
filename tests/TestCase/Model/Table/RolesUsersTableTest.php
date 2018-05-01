@@ -4,6 +4,9 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\RolesUsersTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\RolesUsersTable Test Case
@@ -63,7 +66,13 @@ class RolesUsersTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->RolesUsers->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->RolesUsers->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->RolesUsers);
     }
 
     /**
@@ -73,7 +82,11 @@ class RolesUsersTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->RolesUsers->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
     }
 
     /**
@@ -83,6 +96,10 @@ class RolesUsersTableTest extends TestCase
      */
     public function testBuildRules()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf(
+			RulesChecker::class,
+			$this->RolesUsers->buildRules(new RulesChecker()),
+			'Cursory sanity check. buildRules() should return a ruleChecker.'
+		);
     }
 }

@@ -63,7 +63,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
           </div>
         </nav>
 
-        <main id="vue-app" role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" v-cloak>
+        <main id="vue-app" role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </main>

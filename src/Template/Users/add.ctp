@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+$this->extend('/_common/default-no-submenu');
 $this->start('script');
 echo $this->Html->script($this->Webapp->mix('/js/mix/users.bundle.js'));
 $this->end();

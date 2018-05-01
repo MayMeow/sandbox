@@ -1,4 +1,5 @@
 <?php
+$this->extend('/_common/default-no-submenu');
 $this->start('script');
 echo $this->Html->script($this->Webapp->mix('/js/mix/posts.bundle.js'));
 $this->end();

@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Profile $profile
  */
+$this->extend('/_common/default-no-submenu');
 ?>
 
 <h2 style="font-weight: 300">Edit profile</a></h2>

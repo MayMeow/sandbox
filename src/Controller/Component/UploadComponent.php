@@ -36,7 +36,7 @@ class UploadComponent extends Component
      */
     public function upload($file = null)
     {
-        $config = $this->config();
+        $config = $this->getConfig();
 
         $uploadDir = $this->_getUploadDir($config);
         $fileExtension = $this->_getFileExtensionFromName($file['name']);

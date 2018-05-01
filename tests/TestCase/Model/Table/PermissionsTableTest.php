@@ -4,6 +4,9 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\PermissionsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\PermissionsTable Test Case
@@ -60,7 +63,13 @@ class PermissionsTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->Permissions->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->Permissions->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->Permissions);
     }
 
     /**
@@ -70,6 +79,12 @@ class PermissionsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->Permissions->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+        $this->assertTrue($validator->hasField('title'));
+        $this->assertTrue($validator->hasField('label'));
     }
 }

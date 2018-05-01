@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Space[]|\Cake\Collection\CollectionInterface $spaces
  */
+$this->extend('/_common/default-no-submenu');
 ?>
 
 <h2 style="font-weight: 300">Spaces</a></h2>

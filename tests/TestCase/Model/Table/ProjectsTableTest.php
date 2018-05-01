@@ -4,6 +4,9 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\ProjectsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\ProjectsTable Test Case
@@ -27,7 +30,8 @@ class ProjectsTableTest extends TestCase
         'app.projects',
         'app.users',
         'app.profiles',
-        'app.spaces'
+        'app.spaces',
+        'app.project_settings'
     ];
 
     /**
@@ -61,7 +65,13 @@ class ProjectsTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->Projects->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->Projects->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->Projects);
     }
 
     /**
@@ -71,7 +81,14 @@ class ProjectsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->Projects->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+        $this->assertTrue($validator->hasField('name'));
+        $this->assertTrue($validator->hasField('image'));
+        $this->assertTrue($validator->hasField('description'));
     }
 
     /**
@@ -81,6 +98,10 @@ class ProjectsTableTest extends TestCase
      */
     public function testBuildRules()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf(
+			RulesChecker::class,
+			$this->Projects->buildRules(new RulesChecker()),
+			'Cursory sanity check. buildRules() should return a ruleChecker.'
+		);
     }
 }

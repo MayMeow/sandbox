@@ -71,12 +71,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       </div>
     </nav>
 
-    <main role="main" class="container" id="vue-app" v-cloak>
-      
       <?= $this->Flash->render() ?>
       <?= $this->fetch('content') ?>
-
-    </main>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

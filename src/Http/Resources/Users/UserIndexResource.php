@@ -4,7 +4,7 @@ namespace App\Http\Resources\Users;
 use Daybreak\Http\Resources\Json\Resource;
 use App\Http\Resources\ProfileResource;
 
-class UserProfileResource extends Resource
+class UserIndexResource extends Resource
 {
     public function toArray()
     {

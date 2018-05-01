@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Project[]|\Cake\Collection\CollectionInterface $projects
  */
+$this->extend('/_common/default-no-submenu');
 $this->start('script');
 echo $this->Html->script($this->Webapp->mix('/js/mix/projects.bundle.js'));
 $this->end();
@@ -18,11 +19,6 @@ $this->end();
 
 <div class="row">
     <div class="col-md-12">
-        <div class="row text-center loading" v-if="loading">
-            <div class="col">
-                <h3 style="font-weight: 300">Thinking ...</h3>
-            </div>
-        </div>
         <projects-table-component></projects-table-component>
     </div>
 </div>

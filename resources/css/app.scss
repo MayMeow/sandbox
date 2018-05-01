@@ -7,6 +7,13 @@
 // fontawesome
 @import "fa-svg-with-js";
 
+//variables
+@import "webapp/variables";
+
 //Project files
 @import "fixedNavbar";
 @import "vue-cloak";
+@import "colors";
+@import "offcanvas";
+@import "utility";
+@import "webapp/tables";

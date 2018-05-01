@@ -4,6 +4,9 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\TagsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\TagsTable Test Case
@@ -59,7 +62,13 @@ class TagsTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->Tags->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->Tags->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->Tags);
     }
 
     /**
@@ -69,7 +78,12 @@ class TagsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->Tags->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+		$this->assertTrue($validator->hasField('title'));
     }
 
     /**
@@ -79,6 +93,10 @@ class TagsTableTest extends TestCase
      */
     public function testBuildRules()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf(
+			RulesChecker::class,
+			$this->Tags->buildRules(new RulesChecker()),
+			'Cursory sanity check. buildRules() should return a ruleChecker.'
+		);
     }
 }

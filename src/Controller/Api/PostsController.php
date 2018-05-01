@@ -3,9 +3,9 @@ namespace App\Controller\Api;
 
 use App\Controller\PostsController as BaseController;
 use Parsedown;
-use App\Http\Resources\PostIndexResource;
-use App\Http\Resources\PostResource;
-use App\Http\Resources\Posts\PostViewResource;
+use App\Traits\ApiFormatsTrait;
+use App\Http\Presenter\Posts\PostIndexPresenter;
+use App\Http\Presenter\Posts\PostViewPresenter;
 
 /**
  * Posts Controller
@@ -17,6 +17,7 @@ use App\Http\Resources\Posts\PostViewResource;
 class PostsController extends BaseController
 {
     // removed RequestHandler - look at AppController
+    use ApiFormatsTrait;
 
     public $paginate = [
         'limit' => 10
@@ -32,7 +33,12 @@ class PostsController extends BaseController
         $postsData = $this->paginate($this->Posts->find()->contain([
             'Users' => ['Profiles']
         ]));
-        $posts = PostIndexResource::collection($postsData);
+        $posts = PostIndexPresenter::collection($postsData);
+
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->setClassName($x);
+        });
 
         $this->set([
             'posts' => $posts,
@@ -51,13 +57,18 @@ class PostsController extends BaseController
     public function view($id = null)
     {
         $post = $this->Posts->get($id, [
-            'contain' => ['Users', 'Tags']
+            'contain' => [
+                'Users' => ['Profiles'],
+                'Tags'
+            ]
         ]);
 
-        $parsedown = new Parsedown();
-        $post->markdown = $parsedown->text($post->body);
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->setClassName($x);
+        });
 
-        $post = (new PostViewResource($post))->get();
+        $post = (new PostViewPresenter($post))->get();
 
         $this->set([
             'post' => $post,

@@ -4,6 +4,9 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\RolesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\RolesTable Test Case
@@ -60,7 +63,13 @@ class RolesTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->Roles->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->Roles->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->Roles);
     }
 
     /**
@@ -70,6 +79,12 @@ class RolesTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->Roles->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+        $this->assertTrue($validator->hasField('title'));
+        $this->assertTrue($validator->hasField('label'));
     }
 }

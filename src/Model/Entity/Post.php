@@ -30,7 +30,8 @@ class Post extends Entity
         'title' => true,
         'body' => true,
         'created' => true,
-        'modified' => true
+        'modified' => true,
+        'tag_string' => true // allow assigning tag string
     ];
 
     protected function _getTagString()

@@ -2,6 +2,7 @@
 $this->start('script');
 echo $this->Html->script($this->Webapp->mix('/js/mix/users.bundle.js'));
 $this->end();
+$this->extend('/_common/default-no-submenu');
 ?>
 
 <div class="row">

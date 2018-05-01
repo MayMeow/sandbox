@@ -4,6 +4,9 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\Table;
+use Cake\ORM\RulesChecker;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\UsersTable Test Case
@@ -58,7 +61,13 @@ class UsersTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->Users->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->Users->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->Users);
     }
 
     /**
@@ -68,7 +77,13 @@ class UsersTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->Users->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+		$this->assertTrue($validator->hasField('email'));
+		$this->assertTrue($validator->hasField('password'));
     }
 
     /**
@@ -78,6 +93,10 @@ class UsersTableTest extends TestCase
      */
     public function testBuildRules()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf(
+			RulesChecker::class,
+			$this->Users->buildRules(new RulesChecker()),
+			'Cursory sanity check. buildRules() should return a ruleChecker.'
+		);
     }
 }
