@@ -4,6 +4,8 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\PermissionsRolesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
 
 /**
  * App\Model\Table\PermissionsRolesTable Test Case
@@ -60,7 +62,13 @@ class PermissionsRolesTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->PermissionsRoles->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->PermissionsRoles->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->PermissionsRoles);
     }
 
     /**
@@ -80,6 +88,10 @@ class PermissionsRolesTableTest extends TestCase
      */
     public function testBuildRules()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf(
+			RulesChecker::class,
+			$this->PermissionsRoles->buildRules(new RulesChecker()),
+			'Cursory sanity check. buildRules() should return a ruleChecker.'
+		);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\SettingsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
 
 /**
  * App\Model\Table\SettingsTable Test Case
@@ -58,7 +60,13 @@ class SettingsTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->Settings->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->Settings->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->Settings);
     }
 
     /**
@@ -68,6 +76,10 @@ class SettingsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf(
+			RulesChecker::class,
+			$this->Settings->buildRules(new RulesChecker()),
+			'Cursory sanity check. buildRules() should return a ruleChecker.'
+		);
     }
 }

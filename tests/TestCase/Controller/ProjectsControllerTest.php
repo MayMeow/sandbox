@@ -20,7 +20,8 @@ class ProjectsControllerTest extends IntegrationTestCase
         'app.projects',
         'app.users',
         'app.profiles',
-        'app.spaces'
+        'app.spaces',
+        'app.project_settings'
     ];
 
     /**
@@ -46,7 +47,7 @@ class ProjectsControllerTest extends IntegrationTestCase
         $this->get('/projects/1');
         $this->assertResponseOk();
         $this->assertResponseContains('Lorem ipsum dolor sit amet');
-        $this->assertResponseContains('<a class="nav-link" href="/projects/1/spaces">Spaces</a>');
+        $this->assertResponseContains('href="/projects/1/spaces"');
     }
 
     /**

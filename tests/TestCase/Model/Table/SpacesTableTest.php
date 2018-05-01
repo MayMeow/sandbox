@@ -4,6 +4,9 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\SpacesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\SpacesTable Test Case
@@ -59,7 +62,13 @@ class SpacesTableTest extends TestCase
      */
     public function testInitialize()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->Spaces->initialize([]);
+        $this->assertEquals(
+			'id',
+			$this->Spaces->getPrimaryKey(),
+			'The [App]Table default primary key is expected to be `id`.'
+		);
+        $this->assertInstanceOf(Table::class, $this->Spaces);
     }
 
     /**
@@ -69,7 +78,15 @@ class SpacesTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->Spaces->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+        $this->assertTrue($validator->hasField('name'));
+        $this->assertTrue($validator->hasField('description'));
+        $this->assertTrue($validator->hasField('app_key'));
+        $this->assertTrue($validator->hasField('app_secret'));
     }
 
     /**
@@ -79,6 +96,10 @@ class SpacesTableTest extends TestCase
      */
     public function testBuildRules()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->assertInstanceOf(
+			RulesChecker::class,
+			$this->Spaces->buildRules(new RulesChecker()),
+			'Cursory sanity check. buildRules() should return a ruleChecker.'
+		);
     }
 }
