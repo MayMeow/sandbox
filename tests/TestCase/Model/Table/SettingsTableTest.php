@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\SettingsTable Test Case
@@ -76,10 +77,12 @@ class SettingsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->assertInstanceOf(
-			RulesChecker::class,
-			$this->Settings->buildRules(new RulesChecker()),
-			'Cursory sanity check. buildRules() should return a ruleChecker.'
-		);
+        $validator = new Validator();
+
+        $validator = $this->Settings->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+        $this->assertTrue($validator->hasField('key'));
+        $this->assertTrue($validator->hasField('value'));
     }
 }

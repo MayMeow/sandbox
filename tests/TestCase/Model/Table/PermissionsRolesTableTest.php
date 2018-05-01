@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\PermissionsRolesTable Test Case
@@ -88,10 +89,10 @@ class PermissionsRolesTableTest extends TestCase
      */
     public function testBuildRules()
     {
-        $this->assertInstanceOf(
-			RulesChecker::class,
-			$this->PermissionsRoles->buildRules(new RulesChecker()),
-			'Cursory sanity check. buildRules() should return a ruleChecker.'
-		);
+        $validator = new Validator();
+
+        $validator = $this->PermissionsRoles->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
     }
 }

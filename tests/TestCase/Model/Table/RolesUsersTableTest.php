@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\RolesUsersTable Test Case
@@ -81,7 +82,11 @@ class RolesUsersTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->RolesUsers->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
     }
 
     /**

@@ -49,6 +49,7 @@ class WebappHelperTest extends TestCase
      */
     public function testInitialization()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $appCss = $this->Webapp->mix('/css/app.css');
+        $this->assertContains('app.css?', $appCss);
     }
 }

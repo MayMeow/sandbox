@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
 /**
  * App\Model\Table\ProjectSettingsTable Test Case
@@ -77,7 +78,15 @@ class ProjectSettingsTableTest extends TestCase
      */
     public function testValidationDefault()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $validator = new Validator();
+
+        $validator = $this->ProjectSettings->validationDefault($validator);
+
+        $this->assertTrue($validator->hasField('id'));
+        $this->assertTrue($validator->hasField('color'));
+        $this->assertTrue($validator->hasField('spaces'));
+        $this->assertTrue($validator->hasField('environments'));
+        $this->assertTrue($validator->hasField('issues'));
     }
 
     /**
