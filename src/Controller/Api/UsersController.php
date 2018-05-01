@@ -30,7 +30,7 @@ class UsersController extends BaseController
 
         // set data format
         $this->setFormat($this->request->getQuery('format'), function($x) {
-            $this->viewBuilder()->className($x);
+            $this->viewBuilder()->setClassName($x);
         });
 
         $users = UserIndexResource::collection($query);
@@ -56,7 +56,7 @@ class UsersController extends BaseController
 
         // set data format
         $this->setFormat($this->request->getQuery('format'), function($x) {
-            $this->viewBuilder()->className($x);
+            $this->viewBuilder()->setClassName($x);
         });
 
         $this->set([
@@ -80,7 +80,7 @@ class UsersController extends BaseController
 
         // set data format
         $this->setFormat($this->request->getQuery('format'), function($x) {
-            $this->viewBuilder()->className($x);
+            $this->viewBuilder()->setClassName($x);
         });
 
         $this->set([

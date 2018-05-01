@@ -37,7 +37,7 @@ class PostsController extends BaseController
 
         // set data format
         $this->setFormat($this->request->getQuery('format'), function($x) {
-            $this->viewBuilder()->className($x);
+            $this->viewBuilder()->setClassName($x);
         });
 
         $this->set([
@@ -65,7 +65,7 @@ class PostsController extends BaseController
 
         // set data format
         $this->setFormat($this->request->getQuery('format'), function($x) {
-            $this->viewBuilder()->className($x);
+            $this->viewBuilder()->setClassName($x);
         });
 
         $post = (new PostViewPresenter($post))->get();
