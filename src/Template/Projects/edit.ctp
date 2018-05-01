@@ -70,3 +70,18 @@ $this->assign('submenu-header', $project->name);
         </div>
     </div>
 </div>
+
+<div class="border-bottom px-0 py-0 mb-3">
+    <h3>Pages</h3>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-3">
+        Project related pages.
+    </div>
+    <div class="col-md-9">
+        <div class="projects form large-9 medium-8 columns content">
+            Pages are activated and can be found: <span class="text-monospace text-danger">https://server-name.com/project-slug/page-slug</span>
+        </div>
+    </div>
+</div>

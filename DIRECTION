@@ -1,0 +1,11 @@
+Project
+
+* Home page
+* Pages - Publishing pages related to projects
+* Spaces - Share files from projects
+* Issues
+* Environments 
+    * Clusters (services / computers) - can publish status to environments status page
+    * can create issue from status page
+    
+Available to publiss pages, status and more via commandline or via API

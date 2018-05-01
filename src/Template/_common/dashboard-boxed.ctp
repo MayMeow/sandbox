@@ -9,7 +9,7 @@ $this->end();
 ?>
 
 <div class="row justify-content-md-center">
-    <div class="col-md-12 col-lg-8">
+    <div class="col-md-12 col-lg-9">
         <?= $this->fetch('content') ?>
     </div>
 </div>

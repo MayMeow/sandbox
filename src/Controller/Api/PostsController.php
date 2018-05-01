@@ -68,9 +68,6 @@ class PostsController extends BaseController
             $this->viewBuilder()->className($x);
         });
 
-        $parsedown = new Parsedown();
-        $post->markdown = $parsedown->text($post->body);
-
         $post = (new PostViewPresenter($post))->get();
 
         $this->set([
