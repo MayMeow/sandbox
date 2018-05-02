@@ -4,6 +4,7 @@ namespace App\Model\Entity;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
+use Cake\Cache\Cache;
 
 /**
  * User Entity
@@ -50,5 +51,23 @@ class User extends Entity
 
             return $hasher->hash($value);
         }
+    }
+
+    /**
+     * Find user profile
+     */
+    public function profile()
+    {
+        $cacheKey = md5('user.profile.' . $this->_properties['id']);
+
+        if (($profile = Cache::read($cacheKey, 'short')) === false) {
+            $profilesTable = TableRegistry::get('Profiles');
+            $profilesTable->setEntityClass(Profile::class);
+            $profile = $profilesTable->get($this->_properties['id']);
+            
+            Cache::write($cacheKey, $profile, 'short');
+        }
+
+        return $profile;
     }
 }
