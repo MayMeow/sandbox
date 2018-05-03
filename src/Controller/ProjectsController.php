@@ -6,6 +6,7 @@ use App\Factories\ProjectsFactory;
 use App\Factories\PermissionsFactory;
 use App\Factories\Utility\ColorsFactory;
 use Cake\Utility\Security;
+use App\Form\DependencyUpdateForm;
 
 /**
  * Projects Controller
@@ -128,6 +129,8 @@ class ProjectsController extends AppController
         $project = $this->Projects->get($id, [
             'contain' => []
         ]);
+        $dependenciesUpdateForm = new DependencyUpdateForm();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $project = $this->Projects->patchEntity($project, $this->request->getData());
             if ($this->Projects->save($project)) {
@@ -141,7 +144,7 @@ class ProjectsController extends AppController
 
         $settings = $this->Projects->ProjectSettings->find()->where(['project_id' => $id])->first();
 
-        $this->set(compact('project', 'users', 'settings'));
+        $this->set(compact('project', 'users', 'settings', 'dependenciesUpdateForm'));
     }
 
     /**

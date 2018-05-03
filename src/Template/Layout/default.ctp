@@ -63,7 +63,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a class="nav-link" href="/posts">Posts</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/posts">Admin</a>
+            <a class="nav-link" href="/admin/posts"><i class="far fa-wrench"></i></a>
           </li>
         </ul>
         <?php if($this->request->getSession()->read('Auth.User')) : ?>

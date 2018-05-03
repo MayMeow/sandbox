@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 /**
  * Posts Model
@@ -79,6 +80,12 @@ class PostsTable extends Table
     {
         if ($entity->tag_string) {
             $entity->tags = $this->_buildTags($entity->tag_string);
+        }
+
+        if ($entity->isNew() && !$entity->slug) {
+            $sluggedTitle = Text::slug($entity->title);
+            // trim slug to maximum length defined in schema
+            $entity->slug = substr($sluggedTitle, 0, 191);
         }
     }
 

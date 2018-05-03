@@ -18,6 +18,11 @@ class CreateProjectsTable extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
+        $table->addColumn('slug', 'string', [
+            'default' => null,
+            'limit' => 191,
+            'null' => false,
+        ]);
         $table->addColumn('image', 'string', [
             'default' => null,
             'limit' => 255,

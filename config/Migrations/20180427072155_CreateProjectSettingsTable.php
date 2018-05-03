@@ -45,6 +45,10 @@ class CreateProjectSettingsTable extends AbstractMigration
             'default' => true,
             'null' => false,
         ]);
+        $table->addColumn('dependencies_text', 'text', [
+            'default' => null,
+            'null' => false,
+        ]);
         $table->create();
     }
 }

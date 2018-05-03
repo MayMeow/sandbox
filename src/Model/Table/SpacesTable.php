@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 /**
  * Spaces Model
@@ -91,5 +92,17 @@ class SpacesTable extends Table
         $rules->add($rules->existsIn(['project_id'], 'Projects'));
 
         return $rules;
+    }
+
+    /**
+     * 
+     */
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->isNew() && !$entity->slug) {
+            $sluggedTitle = Text::slug($entity->name);
+            // trim slug to maximum length defined in schema
+            $entity->slug = substr($sluggedTitle, 0, 191);
+        }
     }
 }

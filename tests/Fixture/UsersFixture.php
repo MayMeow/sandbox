@@ -41,5 +41,12 @@ class UsersFixture extends TestFixture
             'created' => '2018-01-14 15:42:12',
             'modified' => '2018-01-14 15:42:12'
         ],
+        [
+            'id' => 2,
+            'email' => 'Lorem ipsum dolor sit amet',
+            'password' => 'Lorem ipsum dolor sit amet',
+            'created' => '2018-01-14 15:42:12',
+            'modified' => '2018-01-14 15:42:12'
+        ],
     ];
 }
