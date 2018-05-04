@@ -88,8 +88,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/projects/edit/:id', ['controller' => 'Projects', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->connect('/projects/delete/:id', ['controller' => 'Projects', 'action' => 'delete'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->connect('/projects/:id/spaces', ['controller' => 'Projects', 'action' => 'spaces'])->setPatterns(['id' => '\d+'])->setPass(['id']);
-    $routes->connect('/projects/:project/dependencies', ['controller' => 'ProjectDependencies', 'action' => 'index'])->setPatterns(['project' => '\d+'])->setPass(['project']);
-
     /**
      * Project Settings Controller
      */

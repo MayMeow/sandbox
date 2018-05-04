@@ -26,7 +26,6 @@ $this->setLayout('default');
 
     <main role="main" class="container pt-4" id="vue-app">
       
-      <?= $this->Flash->render() ?>
       <?= $this->fetch('content') ?>
 
     </main>

@@ -1,25 +1,22 @@
 <?php
-namespace App\Controller;
+namespace Projects\Controller;
 
-use App\Controller\AppController;
+use Projects\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
 /**
- * ProjectDependencies Controller
+ * DependenciesController Controller
  *
- * @property \App\Model\Table\ProjectsTable $projects
  *
- * @method \App\Model\Entity\Project[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \Projects\Model\Entity\DependenciesController[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class ProjectDependenciesController extends AppController
+class DependenciesController extends AppController
 {
-
     public function initialize()
     {
         parent::initialize();
         $this->loadModel('App.Projects');
     }
-
 
     /**
      * Index method

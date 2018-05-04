@@ -51,7 +51,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="<?= $this->Url->build(['prefix' => false, 'controller' => 'pages', 'action' => 'display', 'about'])?>">About</a>
+            <a class="nav-link" href="<?= $this->Url->build(['plugin' => false, 'prefix' => false, 'controller' => 'pages', 'action' => 'display', 'about'])?>">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/users">Users</a>

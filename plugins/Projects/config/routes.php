@@ -7,6 +7,7 @@ Router::plugin(
     'Projects',
     ['path' => '/projects'],
     function (RouteBuilder $routes) {
-        $routes->fallbacks(DashedRoute::class);
+        //$routes->fallbacks(DashedRoute::class);
+        $routes->connect('/:project/dependencies', 'Dependencies::index')->setPatterns(['project' => '\d+'])->setPass(['project']);
     }
 );
