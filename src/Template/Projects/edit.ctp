@@ -98,7 +98,7 @@ $this->assign('submenu-header', $project->name);
         <div class="projects form large-9 medium-8 columns content">
         <?= $this->Form->create($dependenciesUpdateForm, ['url' => '/projects/settings/'. $project->id . '/update-dependencies', 'enctype' => 'multipart/form-data'])?>
         <?= $this->Form->control('dependencies_file', ['type' => 'file', 'label' => 'Composer.lock file']); ?>
-        <?= $this->Form->button(__('Upload dependecy file'), ['class' => 'btn btn-outline-primary btn-block']) ?>
+        <?= $this->Form->button(__('Upload dependecy file'), ['class' => 'btn btn-outline-primary']) ?>
         <?= $this->form->end() ?>
         </div>
     </div>

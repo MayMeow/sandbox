@@ -49,6 +49,11 @@ class ProjectsTable extends Table
         $this->hasMany('Spaces', [
             'foreignKey' => 'project_id'
         ]);
+
+        $this->hasMany('Posts', [
+            'foreignKey' => 'project_id'
+        ]);
+
         $this->hasOne('ProjectSettings', [
             'foreignKey' => 'project_id'
         ]);

@@ -16,6 +16,7 @@ $this->assign('submenu-header', $project->name);
 <?php $this->end() ?>
 
 <?php $this->start('project_body')?>
+<?php if(null !== $project->project_setting) :?>
 <h4>Dependencies</h4>
 <table class="table table-hover">
 <?php foreach($project->project_setting->dependencies_text->packages as $package) : ?>
@@ -35,9 +36,10 @@ $this->assign('submenu-header', $project->name);
 </tr>
 <?php endforeach; ?>
 </table>
+<?php endif; ?>
 <?php $this->end() ?>
 
-<div class="row mr-3">
+<div class="row mb-3">
     <div class="col-md-12">
         <?= $this->fetch('project_body') ?>
     </div>

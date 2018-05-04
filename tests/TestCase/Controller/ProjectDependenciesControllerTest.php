@@ -16,7 +16,7 @@ class ProjectDependenciesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.project_dependencies'
+        //'app.project_dependencies'
     ];
 
     /**

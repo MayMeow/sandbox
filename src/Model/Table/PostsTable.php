@@ -43,6 +43,10 @@ class PostsTable extends Table
             'foreignKey' => 'user_id'
         ]);
 
+        $this->belongsTo('Projects', [
+            'foreignKey' => 'project_id'
+        ]);
+
         $this->addBehavior('Timestamp');
 
         $this->belongsToMany('Tags', [

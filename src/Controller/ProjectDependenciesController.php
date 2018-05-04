@@ -17,7 +17,7 @@ class ProjectDependenciesController extends AppController
     public function initialize()
     {
         parent::initialize();
-        $this->modelClass = false;
+        $this->loadModel('App.Projects');
     }
 
 
@@ -28,15 +28,16 @@ class ProjectDependenciesController extends AppController
      */
     public function index($project)
     {
-        $projects = TableRegistry::get('Projects');
-        $projects->setEntityClass('Project');
-        $project = $projects->find()
+        $project = $this->Projects->find()
             ->select(['Projects.id', 'Projects.name', 'ProjectSettings.dependencies_text'])
             ->where(['Projects.id' => $project])
             ->contain('ProjectSettings')
             ->first();
 
-        $project->project_setting->dependencies_text = json_decode($project->project_setting->dependencies_text);
+        if ($project->project_setting) {
+            $project->project_setting->dependencies_text = json_decode($project->project_setting->dependencies_text);
+        }
+        
         $this->set('project', $project);
     }
 }
