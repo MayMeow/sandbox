@@ -189,12 +189,13 @@ Router::prefix('api', function ($routes) {
      * Projects
      */
     $routes->get('/projects/', ['controller' => 'Projects', 'action' => 'index']);
+    $routes->connect('/projects/:project/posts', ['plugin' => 'Projects', 'controller' => 'Posts', 'action' => 'index'])->setPatterns(['project' => '\d+'])->setPass(['project']);
 
     /**
      * Spaces
      */
     $routes->get('/spaces', ['controller' => 'Spaces', 'action' => 'index']);
-    $routes->get('/spaces/index/:id', ['controller' => 'Spaces', 'action' => 'index'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->get('/spaces/index/:id', ['controller' => 'Spaces', 'action' => 'index'])->setPatterns(['id' => '\d+'])->setPass(['id']);;
     //$routes->fallbacks(DashedRoute::class);
 });
 

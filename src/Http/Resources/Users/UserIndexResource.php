@@ -2,9 +2,9 @@
 namespace App\Http\Resources\Users;
 
 use App\Http\Resources\ProfileResource;
-use Daybreak\Http\Presenter\Json\Presenter;
+use MayMeow\API\Resource\Resource;
 
-class UserIndexResource extends Presenter
+class UserIndexResource extends Resource
 {
     public function toArray()
     {

@@ -4,9 +4,9 @@ namespace App\Http\Resources\Projects;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\ProfileResource;
 use App\Http\Presenter\Projects\Settings\SettingPresenter;
-use Daybreak\Http\Presenter\Json\Presenter;
+use MayMeow\API\Resource\Resource;
 
-class ProjectIndexResource extends Presenter
+class ProjectIndexResource extends Resource
 {
     public function toArray()
     {

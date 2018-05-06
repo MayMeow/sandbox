@@ -5,7 +5,7 @@ use Parsedown;
 use App\Http\Resources\Users\UserProfileResource;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\ProfileResource;
-use Daybreak\Http\Resources\Json\Resource;
+use MayMeow\API\Resource\Resource;
 
 class PostIndexResource extends Resource
 {

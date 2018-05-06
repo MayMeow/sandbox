@@ -1,11 +1,11 @@
 <?php
-namespace Projects\Test\TestCase\Controller;
+namespace Projects\Test\TestCase\Controller\Api;
 
 use Cake\TestSuite\IntegrationTestCase;
-use Projects\Controller\PostsController;
+use Projects\Controller\Api\PostsController;
 
 /**
- * Projects\Controller\PostsController Test Case
+ * Projects\Controller\Api\PostsController Test Case
  */
 class PostsControllerTest extends IntegrationTestCase
 {
@@ -16,10 +16,10 @@ class PostsControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.posts',
-        'app.users',
-        'app.projects',
-        'app.tags'
+        'plugin.projects.posts',
+        'plugin.projects.users',
+        'plugin.projects.projects',
+        'plugin.projects.tags'
     ];
 
     /**

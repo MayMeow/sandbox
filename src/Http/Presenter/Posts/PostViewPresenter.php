@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Presenter\Posts;
 
-use Daybreak\Http\Resources\Json\Resource;
+use MayMeow\API\Resource\Resource;
 use Parsedown;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\ProfileResource;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Presenter\Projects\Settings;
 
-use Daybreak\Http\Presenter\Json\Presenter;
+use MayMeow\API\Resource\Resource;
 
-class SettingPresenter extends Presenter
+class SettingPresenter extends Resource
 {
     public function toArray()
     {

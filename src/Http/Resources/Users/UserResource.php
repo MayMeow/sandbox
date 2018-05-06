@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Resources\Users;
 
-use Daybreak\Http\Presenter\Json\Presenter;
+use MayMeow\API\Resource\Resource;
 
-class UserResource extends Presenter
+class UserResource extends Resource
 {
     public function toArray()
     {

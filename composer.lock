@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3ab5e2e45153e6d14278a69abff8a09",
+    "content-hash": "77715f7852e33f307dc08b5503222eca",
     "packages": [
         {
             "name": "aura/intl",
@@ -445,6 +445,52 @@
                 "support"
             ],
             "time": "2016-10-06T19:31:28+00:00"
+        },
+        {
+            "name": "maymeow/cakephp-api-resource",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MayMeow/cakephp-api-resource.git",
+                "reference": "f59dac312bd63de85aab58a27ac6ca2bc74ec24e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MayMeow/cakephp-api-resource/zipball/f59dac312bd63de85aab58a27ac6ca2bc74ec24e",
+                "reference": "f59dac312bd63de85aab58a27ac6ca2bc74ec24e",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.1"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "MayMeow\\API\\Resource\\": "src",
+                    "MayMeow\\Tests\\": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "May Meow",
+                    "email": "themaymeow@gmail.com"
+                }
+            ],
+            "description": "Api Resource for CakePHP",
+            "keywords": [
+                "api",
+                "cakephp",
+                "plugin",
+                "resources"
+            ],
+            "time": "2018-05-06T11:04:48+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
