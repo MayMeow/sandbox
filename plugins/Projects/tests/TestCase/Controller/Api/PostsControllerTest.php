@@ -16,10 +16,10 @@ class PostsControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'plugin.projects.posts',
-        'plugin.projects.users',
-        'plugin.projects.projects',
-        'plugin.projects.tags'
+        'app.posts',
+        'app.users',
+        'app.projects',
+        'app.tags'
     ];
 
     /**

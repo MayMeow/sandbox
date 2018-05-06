@@ -13,7 +13,9 @@ $this->end();
 
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-12 text-right">
+    <?php if($this->User->can('projects:add')) :?>
         <a class="btn btn-success" href="/projects/add">Create project</a>
+    <?php endif; ?>
     </div>
 </div>
 

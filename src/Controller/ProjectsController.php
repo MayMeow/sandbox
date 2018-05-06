@@ -80,7 +80,10 @@ class ProjectsController extends AppController
      */
     public function add()
     {
-        PermissionsFactory::can('projects-add');
+        if (!$this->User->can('projects:add')) {
+            $this->Flash->error('You dont have permission to do this action');
+            return $this->redirect($this->referer());
+        }
 
         $project = $this->Projects->newEntity();
         $project_settings = $this->Projects->ProjectSettings->newEntity();

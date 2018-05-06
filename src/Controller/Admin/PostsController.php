@@ -22,10 +22,8 @@ class PostsController extends BaseController
      */
     public function add()
     {
-        try {
-            PermissionsFactory::can('posts-add');
-        } catch (UnauthorizedException $e) {
-            $this->Flash->error($e->getMessage());
+        if (!PermissionsFactory::can('posts-add')) {
+            $this->Flash->error('No');
 
             return $this->redirect($this->referer());
         }
