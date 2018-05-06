@@ -9,11 +9,11 @@ class SettingPresenter extends Presenter
     public function toArray()
     {
         return [
-            'id' => $this->entity->id,
-            'color' => $this->entity->color,
-            'spaces' => $this->entity->spaces,
-            'environments' => $this->entity->environments,
-            'issues' => $this->entity->issues
+            'id' => $this->id,
+            'color' => $this->color,
+            'spaces' => $this->spaces,
+            'environments' => $this->environments,
+            'issues' => $this->issues
         ];
     }
 }

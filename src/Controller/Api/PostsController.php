@@ -6,6 +6,7 @@ use Parsedown;
 use App\Traits\ApiFormatsTrait;
 use App\Http\Presenter\Posts\PostIndexPresenter;
 use App\Http\Presenter\Posts\PostViewPresenter;
+use App\Http\Resources\Posts\PostIndexResource;
 
 /**
  * Posts Controller
@@ -33,7 +34,7 @@ class PostsController extends BaseController
         $postsData = $this->paginate($this->Posts->find()->contain([
             'Users' => ['Profiles']
         ]));
-        $posts = PostIndexPresenter::collection($postsData);
+        $posts = PostIndexResource::collection($postsData);
 
         // set data format
         $this->setFormat($this->request->getQuery('format'), function($x) {

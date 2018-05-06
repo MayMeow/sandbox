@@ -7,9 +7,6 @@ use Cake\Database\Schema\Collection;
 use Cake\ORM\Query;
 use Daybreak\Http\Presenter\Json\Presenter;
 
-/**
- * @deprecated
- */
 abstract class Resource extends Presenter {
 
 }

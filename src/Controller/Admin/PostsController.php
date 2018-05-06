@@ -34,6 +34,7 @@ class PostsController extends BaseController
         if ($this->request->is('post')) {
             $post = $this->Posts->patchEntity($post, $this->request->getData());
             $post->user_id = $this->Auth->user('id');
+            $post->project_id = 3;
 
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));

@@ -1,19 +1,19 @@
 <?php
 namespace App\Http\Resources\Projects;
 
-use Daybreak\Http\Resources\Json\Resource;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Resources\ProfileResource;
 use App\Http\Presenter\Projects\Settings\SettingPresenter;
+use Daybreak\Http\Presenter\Json\Presenter;
 
-class ProjectIndexResource extends Resource
+class ProjectIndexResource extends Presenter
 {
     public function toArray()
     {
         return [
-            'id' => $this->entity->id,
-            'name' => $this->entity->name,
-            'description' => $this->entity->description,
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
             'user' => function ($q) {
                 return (new UserResource($q->user))->get();
             },
@@ -23,8 +23,8 @@ class ProjectIndexResource extends Resource
             'settings' => function ($q) {
                 return (new SettingPresenter($q->project_setting))->get();
             },
-            'modified_at' => $this->entity->modified,
-            'created_at' => $this->entity->created,
+            'modified_at' => $this->modified,
+            'created_at' => $this->created,
         ];
     }
 }

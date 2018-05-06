@@ -9,5 +9,6 @@ Router::plugin(
     function (RouteBuilder $routes) {
         //$routes->fallbacks(DashedRoute::class);
         $routes->connect('/:project/dependencies', 'Dependencies::index')->setPatterns(['project' => '\d+'])->setPass(['project']);
+        $routes->connect('/:project/posts', ['plugin' => 'Projects', 'controller' => 'Posts', 'action' => 'index'])->setPatterns(['project' => '\d+'])->setPass(['project']);
     }
 );

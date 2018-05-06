@@ -8,9 +8,9 @@ class UserProjectsResource extends Resource
     public function toArray()
     {
         return [
-            'id' => $this->entity->id,
-            'email' => $this->entity->email,
-            'created_at' => $this->entity->created,
+            'id' => $this->id,
+            'email' => $this->email,
+            'created_at' => $this->created,
             'profile' => function ($q) {
                 return (new ProfileResource($q->profile))->get();
             },

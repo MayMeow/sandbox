@@ -60,9 +60,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a class="nav-link" href="/projects">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/posts">Posts</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/admin/posts"><i class="far fa-wrench"></i></a>
           </li>
         </ul>

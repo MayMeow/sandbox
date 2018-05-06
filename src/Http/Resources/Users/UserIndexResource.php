@@ -1,20 +1,20 @@
 <?php
 namespace App\Http\Resources\Users;
 
-use Daybreak\Http\Resources\Json\Resource;
 use App\Http\Resources\ProfileResource;
+use Daybreak\Http\Presenter\Json\Presenter;
 
-class UserIndexResource extends Resource
+class UserIndexResource extends Presenter
 {
     public function toArray()
     {
         return [
-            'id' => $this->entity->id,
-            'email' => $this->entity->email,
+            'id' => $this->id,
+            'email' => $this->email,
             'profile' => function ($q) {
                 return (new ProfileResource($q->profile))->get();
             },
-            'created_at' => $this->entity->created
+            'created_at' => $this->created
         ];
     }
 }
