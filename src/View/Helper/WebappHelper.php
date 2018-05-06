@@ -23,4 +23,20 @@ class WebappHelper extends Helper
 
         return $mixManifest->$assetPath;
     }
+
+    /**
+     * Returns sandbox version
+     */
+    public function version()
+    {
+        return file_get_contents(ROOT . DS . 'VERSION');
+    }
+
+    /**
+     * Returns sandbox version
+     */
+    public function frameworkVersion()
+    {
+        return file_get_contents(ROOT . DS . 'FRAMEWORK_VERSION');
+    }
 }

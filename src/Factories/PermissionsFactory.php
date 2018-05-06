@@ -12,9 +12,8 @@ class PermissionsFactory
     /**
      * 
      */
-    public static function can($action = null)
+    public static function can($action = null, $session = null)
     {
-        $session  = new Session();
         $authUser = $session->read('Auth.User');
         $permissionsTable = TableRegistry::get('permissions');
         $userTable = TableRegistry::get('users');

@@ -23,7 +23,7 @@ class UserHelper extends Helper
      */
     public function can($permission)
     {
-        return PermissionsFactory::can($permission);
+        return PermissionsFactory::can($permission, $this->request->getSession());
     }
 
 }

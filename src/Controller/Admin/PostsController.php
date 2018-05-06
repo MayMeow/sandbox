@@ -22,7 +22,7 @@ class PostsController extends BaseController
      */
     public function add()
     {
-        if (!PermissionsFactory::can('posts-add')) {
+        if (!$this->User->can('posts-add')) {
             $this->Flash->error('No');
 
             return $this->redirect($this->referer());

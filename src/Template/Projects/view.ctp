@@ -38,7 +38,7 @@ $this->assign('submenu-header', $project->name);
     <div class="col-md-12">
         <div class="d-flex align-items-center p-3 my-3 text-white-50 <?= $project->project_setting->color; ?> rounded box-shadow">
             <div class="lh-100">
-                <h6 class="mb-0 text-white lh-100"><?= $project->name ?></h6>
+                <h6 class="mb-0 text-white lh-100"><i class="far fa-bookmark"></i> <?= $project->name ?></h6>
                 <small class="text-white"><a href="#" class="text-white"><?= $project->user->profile->name ?></a> / <?= $project->slug ?></small>
             </div>
         </div>

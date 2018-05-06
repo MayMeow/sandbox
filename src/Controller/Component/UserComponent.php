@@ -23,6 +23,6 @@ class UserComponent extends Component
      */
     public function can($permission)
     {
-        return PermissionsFactory::can($permission);
+        return PermissionsFactory::can($permission, $this->getController()->getRequest()->getSession());
     }
 }
