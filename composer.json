@@ -1,6 +1,6 @@
 {
-    "name": "cakephp/app",
-    "description": "CakePHP skeleton app",
+    "name": "maymeow/sandbox",
+    "description": "CakePHP sandbox app",
     "homepage": "https://cakephp.org",
     "type": "project",
     "license": "MIT",
@@ -12,6 +12,7 @@
         "erusev/parsedown": "^1.6",
         "josegonzalez/dotenv": "3.*",
         "maymeow/cakephp-api-resource": "^1.0",
+        "maymeow/php-encrypt": "^2018.5",
         "mobiledetect/mobiledetectlib": "2.*"
     },
     "require-dev": {

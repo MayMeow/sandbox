@@ -84,7 +84,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/projects/', ['controller' => 'Projects', 'action' => 'index']);
     $routes->connect('/projects/add', ['controller' => 'Projects', 'action' => 'add']);
-    $routes->connect('/projects/:id', ['controller' => 'Projects', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/projects/:slug', ['controller' => 'Projects', 'action' => 'view'])->setPass(['slug']);
     $routes->connect('/projects/edit/:id', ['controller' => 'Projects', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->connect('/projects/delete/:id', ['controller' => 'Projects', 'action' => 'delete'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->connect('/projects/:id/spaces', ['controller' => 'Projects', 'action' => 'spaces'])->setPatterns(['id' => '\d+'])->setPass(['id']);

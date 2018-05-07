@@ -14,6 +14,7 @@ class ProjectIndexResource extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
+            'slug' => $this->slug,
             'user' => function ($q) {
                 return (new UserResource($q->user))->get();
             },

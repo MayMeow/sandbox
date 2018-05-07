@@ -17,7 +17,7 @@
                                 <div :class="'project-avatar box-shadow ' + project.settings.color"></div>
                             </div>
                             <div>
-                                <a class="text-dark" style="font-weight: 600;" :href="'/projects/' + project.id">{{ project.profile.name }} / {{ project.name }}</a>
+                                <a class="text-dark" style="font-weight: 600;" :href="'/projects/' + project.slug">{{ project.profile.name }} / {{ project.name }}</a>
                                 <div><small>{{ project.description | with_emoji }}</small></div>
                             </div>
                             <div class="ml-auto text-right">
