@@ -18,6 +18,18 @@ $this->assign('submenu-header', $project->name);
 <?php $this->start('project_body')?>
 <div class="has-emoji mb-3"><?= $project->description ?></div>
 
+<div class="row mb-3">
+    <div class="col-md-12 project-buttons text-center">
+        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Create CA certificate</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Sign Intermediate CA certificate</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Sign User certificate</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Create Key pair</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Encrypt and decrypt text</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">GitHub</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Seal</button>
+    </div>
+</div>
+
 <div class="border-bottom px-0 py-0 mb-3">
     <h3 style="font-weight: 300">Project hosting</h3>
 </div>
@@ -42,18 +54,6 @@ $this->assign('submenu-header', $project->name);
                 <small class="text-white"><a href="#" class="text-white"><?= $project->user->profile->name ?></a> / <?= $project->slug ?></small>
             </div>
         </div>
-    </div>
-</div>
-
-<div class="row mb-3">
-    <div class="col-md-12 project-buttons text-center">
-        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Create CA certificate</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Sign Intermediate CA certificate</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Sign User certificate</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Create Key pair</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Encrypt and decrypt text</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">GitHub</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm my-1 mx-1">Seal</button>
     </div>
 </div>
 

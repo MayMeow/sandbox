@@ -189,6 +189,7 @@ php phpunit postgres:
     before_script: *install-dependencies
     <<: *phpunit-tests-coverage-text
     <<: *run-on-do-docker
+    allow_failure: true
     
 # Pages
 # -----------------------------------
