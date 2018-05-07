@@ -61,6 +61,9 @@ class UsersControllerTest extends IntegrationTestCase
 
     public function testAddPostData()
     {
+        $users = TableRegistry::get('Users');
+        $users->find()->where(['id' => 1])->delete();
+
         $this->enableCsrfToken();
         $this->enableSecurityToken();
 
@@ -72,7 +75,6 @@ class UsersControllerTest extends IntegrationTestCase
         $this->post('/users/add', $data);
         $this->assertResponseSuccess();
 
-        $users = TableRegistry::get('Users');
         $query = $users->find()->where(['email' => $data['email']]);
         $this->assertEquals(1, $query->count());
     }
@@ -92,6 +94,9 @@ class UsersControllerTest extends IntegrationTestCase
 
     public function testLoginPostData()
     {
+        $users = TableRegistry::get('Users');
+        $users->find()->where(['id' => 1])->delete();
+
         //create testing user
         $this->enableCsrfToken();
         $this->enableSecurityToken();

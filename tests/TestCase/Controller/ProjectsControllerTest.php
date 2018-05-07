@@ -88,6 +88,9 @@ class ProjectsControllerTest extends IntegrationTestCase
 
     public function testAddPostData()
     {
+        $projects = TableRegistry::get('Projects');
+        $projects->find()->where(['id' => 1])->delete();
+
         $this->session([
             'Auth' => [
                 'User' => [
@@ -109,7 +112,6 @@ class ProjectsControllerTest extends IntegrationTestCase
         $this->post('/projects/add', $data);
         $this->assertResponseSuccess();
 
-        $projects = TableRegistry::get('Projects');
         $query = $projects->find()->where(['name' => $data['name']]);
         $this->assertEquals(1, $query->count());
     }
