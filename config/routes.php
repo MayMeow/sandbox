@@ -180,6 +180,12 @@ Router::prefix('api', function ($routes) {
     $routes->get('/users/:id/projects', ['controller' => 'Users', 'action' => 'projects'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
     /**
+     * Profiles
+     */
+    $routes->get('/profiles/', ['controller' => 'Profiles', 'action' => 'index']);
+    $routes->get('/profiles/:profile', ['controller' => 'Users', 'action' => 'view'])->setPatterns(['profile' => '\d+'])->setPass(['profile']);
+
+    /**
      * Posts
      */
     $routes->get('/posts/', ['controller' => 'Posts', 'action' => 'index']);
@@ -189,6 +195,7 @@ Router::prefix('api', function ($routes) {
      * Projects
      */
     $routes->get('/projects/', ['controller' => 'Projects', 'action' => 'index']);
+    $routes->get('/projects/:project', ['controller' => 'Projects', 'action' => 'view'])->setPatterns(['project' => '\d+'])->setPass(['project']);
     $routes->connect('/projects/:project/posts', ['plugin' => 'Projects', 'controller' => 'Posts', 'action' => 'index'])->setPatterns(['project' => '\d+'])->setPass(['project']);
 
     /**

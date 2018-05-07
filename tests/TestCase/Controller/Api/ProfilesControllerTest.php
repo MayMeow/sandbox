@@ -16,7 +16,8 @@ class ProfilesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.profiles'
+        'app.profiles',
+        'app.users'
     ];
 
     /**
@@ -26,7 +27,8 @@ class ProfilesControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/api/profiles');
+        $this->assertResponseOk();
     }
 
     /**
@@ -36,36 +38,7 @@ class ProfilesControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/api/profiles/1');
+        $this->assertResponseOk();
     }
 }

@@ -19,7 +19,8 @@ class ProjectsControllerTest extends IntegrationTestCase
         'app.projects',
         'app.users',
         'app.profiles',
-        'app.spaces'
+        'app.spaces',
+        'app.projectSettings',
     ];
 
     /**
@@ -29,46 +30,22 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testIndex()
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $this->get('/api/projects');
+        $this->assertResponseOk();
+
+        $this->assertResponseContains('projects');
     }
 
     /**
      * Test view method
      *
-     * @return void
+    * @return void
      */
     public function testView()
     {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+        $this->get('/api/projects/1');
+        $this->assertResponseOk();
 
-    /**
-     * Test add method
-     *
-     * @return void
-     */
-    public function testAdd()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test edit method
-     *
-     * @return void
-     */
-    public function testEdit()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test delete method
-     *
-     * @return void
-     */
-    public function testDelete()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+        $this->assertResponseContains('Lorem ipsum dolor sit amet');
+    }  
 }

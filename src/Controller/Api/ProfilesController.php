@@ -2,6 +2,8 @@
 namespace App\Controller\Api;
 
 use App\Controller\ProfilesController as BaseController;
+use App\Traits\ApiFormatsTrait;
+use Cake\Event\Event;
 
 /**
  * Profiles Controller
@@ -12,6 +14,16 @@ use App\Controller\ProfilesController as BaseController;
  */
 class ProfilesController extends BaseController
 {
+
+    use ApiFormatsTrait;
+
+    public function beforeRender(Event $event)
+    {
+        // set data format
+        $this->setFormat($this->request->getQuery('format'), function($x) {
+            $this->viewBuilder()->setClassName($x);
+        });
+    }
 
     /**
      * Index method
