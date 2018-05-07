@@ -10,6 +10,11 @@ use Projects\Controller\DependenciesController;
 class DependenciesControllerTest extends IntegrationTestCase
 {
 
+    public $fixtures = [
+        'app.projects',
+        'app.projectSettings'
+    ];
+
     /**
      * Test initial setup
      *
@@ -18,5 +23,13 @@ class DependenciesControllerTest extends IntegrationTestCase
     public function testInitialization()
     {
         $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    public function testIndex()
+    {
+        $this->get('/projects/1/dependencies');
+        $this->assertResponseOk();
+
+        $this->assertResponseContains('Dependencies');
     }
 }

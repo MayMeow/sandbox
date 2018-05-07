@@ -86,6 +86,34 @@ class ProjectsControllerTest extends IntegrationTestCase
         $this->assertResponseContains('<legend>Add Project</legend>');
     }
 
+    public function testAddPostData()
+    {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $data = [
+            'name' => 'Test Project',
+            'description' => 'Test Project Description'
+        ];
+
+        $this->post('/projects/add', $data);
+        $this->assertResponseSuccess();
+
+        $projects = TableRegistry::get('Projects');
+        $query = $projects->find()->where(['name' => $data['name']]);
+        $this->assertEquals(1, $query->count());
+    }
+
     /**
      * Test edit method
      *
