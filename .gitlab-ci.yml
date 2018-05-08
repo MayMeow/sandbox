@@ -199,7 +199,7 @@ pages:
     <<: *mariadb-variables
     services:
         - redis
-        - postgres
+        - mariadb
     before_script: *install-dependencies
     <<: *phpunit-html-coverage
     <<: *run-on-do-docker
