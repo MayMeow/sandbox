@@ -18,6 +18,11 @@ class CreateSpacesTable extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
+        $table->addColumn('slug', 'string', [
+            'default' => null,
+            'limit' => 191,
+            'null' => false,
+        ]);
         $table->addColumn('description', 'text', [
             'default' => null,
             'null' => false,

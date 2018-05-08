@@ -13,7 +13,9 @@ $this->end();
 
 <div class="row" style="margin-bottom: 10px">
     <div class="col-md-12 text-right">
+    <?php if($this->User->can('posts-add')) :?>
         <a class="btn btn-success" href="/admin/posts/add">Create post</a>
+    <?php endif; ?>
     </div>
 </div>
 

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Resources;
 
-use Daybreak\Http\Resources\Json\Resource;
+use MayMeow\API\Resource\Resource;
 
 class ProfileResource extends Resource
 {

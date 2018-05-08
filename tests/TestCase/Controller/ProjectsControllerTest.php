@@ -19,6 +19,7 @@ class ProjectsControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.projects',
         'app.users',
+        'app.posts',
         'app.profiles',
         'app.spaces',
         'app.project_settings'
@@ -44,7 +45,7 @@ class ProjectsControllerTest extends IntegrationTestCase
      */
     public function testView()
     {
-        $this->get('/projects/1');
+        $this->get('/projects/Lorem-ipsum-dolor-sit-amet');
         $this->assertResponseOk();
         $this->assertResponseContains('Lorem ipsum dolor sit amet');
         $this->assertResponseContains('href="/projects/1/spaces"');
@@ -83,6 +84,36 @@ class ProjectsControllerTest extends IntegrationTestCase
         $this->get('/projects/add');
         $this->assertResponseOk();
         $this->assertResponseContains('<legend>Add Project</legend>');
+    }
+
+    public function testAddPostData()
+    {
+        $projects = TableRegistry::get('Projects');
+        $projects->find()->where(['id' => 1])->delete();
+
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $data = [
+            'name' => 'Test Project',
+            'description' => 'Test Project Description'
+        ];
+
+        $this->post('/projects/add', $data);
+        $this->assertResponseSuccess();
+
+        $query = $projects->find()->where(['name' => $data['name']]);
+        $this->assertEquals(1, $query->count());
     }
 
     /**

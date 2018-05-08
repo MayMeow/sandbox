@@ -59,6 +59,26 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
     }
 
+    public function testAddPostData()
+    {
+        $users = TableRegistry::get('Users');
+        $users->find()->where(['id' => 1])->delete();
+
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $data = [
+            'email' => 'uer@domaiin.local',
+            'password' => 'pa$$word'
+        ];
+
+        $this->post('/users/add', $data);
+        $this->assertResponseSuccess();
+
+        $query = $users->find()->where(['email' => $data['email']]);
+        $this->assertEquals(1, $query->count());
+    }
+
     /**
      * Test view method
      *
@@ -70,5 +90,42 @@ class UsersControllerTest extends IntegrationTestCase
         $this->assertResponseOk();
 
         $this->assertResponseContains('Login');
+    }
+
+    public function testLoginPostData()
+    {
+        $users = TableRegistry::get('Users');
+        $users->find()->where(['id' => 1])->delete();
+
+        //create testing user
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+
+        $data = [
+            'email' => 'uer@domaiin.local',
+            'password' => 'pa$$word'
+        ];
+        $this->post('/users/add', $data);
+
+        $this->post('/login', $data);
+
+        $this->assertSession($data['email'], 'Auth.User.email');
+    }
+
+    public function testLogout()
+    {
+        $this->session([
+            'Auth' => [
+                'User' => [
+                    'id' => 1,
+                    'username' => 'testing',
+                    // other keys.
+                ]
+            ]
+        ]);
+
+        $this->get('/logout');
+
+        $this->assertSession(null, 'Auth.User');
     }
 }

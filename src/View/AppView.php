@@ -41,5 +41,9 @@ class AppView extends View
         ]);
 
         $this->loadHelper('Webapp');
+
+        $this->loadHelper('Auth');
+        
+        $this->loadHelper('User');
     }
 }

@@ -1,16 +1,16 @@
 <?php
 namespace App\Http\Resources\Users;
 
-use Daybreak\Http\Resources\Json\Resource;
+use MayMeow\API\Resource\Resource;
 
 class UserResource extends Resource
 {
     public function toArray()
     {
         return [
-            'id' => $this->entity->id,
-            'email' => $this->entity->email,
-            'created_at' => $this->entity->created
+            'id' => $this->id,
+            'email' => $this->email,
+            'created_at' => $this->created
         ];
     }
 }

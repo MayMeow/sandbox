@@ -18,6 +18,11 @@ class CreatePostsTable extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
+        $table->addColumn('slug', 'string', [
+            'default' => null,
+            'limit' => 191,
+            'null' => false,
+        ]);
         $table->addColumn('body', 'text', [
             'default' => null,
             'null' => false,

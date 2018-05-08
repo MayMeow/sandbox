@@ -16,7 +16,8 @@ class ProfilesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.profiles'
+        'app.profiles',
+        'app.users',
     ];
 
     /**

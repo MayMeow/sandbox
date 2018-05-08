@@ -16,7 +16,7 @@ $this->assign('submenu-header', $project->name);
 <?php $this->end() ?>
 
 <div class="border-bottom px-0 py-0 mb-3">
-    <h3>Edit project</h3>
+    <h3 style="font-weight: 300">Edit project</h3>
 </div>
 
 <div class="row mb-3">
@@ -39,7 +39,7 @@ $this->assign('submenu-header', $project->name);
 </div>
 
 <div class="border-bottom px-0 py-0 mb-3">
-    <h3>Application login</h3>
+    <h3 style="font-weight: 300">Application login</h3>
 </div>
 
 <div class="row mb-3">
@@ -57,7 +57,7 @@ $this->assign('submenu-header', $project->name);
 </div>
 
 <div class="border-bottom px-0 py-0 mb-3">
-    <h3>Project info</h3>
+    <h3 style="font-weight: 300">Project info</h3>
 </div>
 
 <div class="row mb-3">
@@ -72,7 +72,7 @@ $this->assign('submenu-header', $project->name);
 </div>
 
 <div class="border-bottom px-0 py-0 mb-3">
-    <h3>Pages</h3>
+    <h3 style="font-weight: 300">Pages</h3>
 </div>
 
 <div class="row mb-3">
@@ -82,6 +82,24 @@ $this->assign('submenu-header', $project->name);
     <div class="col-md-9">
         <div class="projects form large-9 medium-8 columns content">
             Pages are activated and can be found: <span class="text-monospace text-danger">https://server-name.com/project-slug/page-slug</span>
+        </div>
+    </div>
+</div>
+
+<div class="border-bottom px-0 py-0 mb-3">
+    <h3 style="font-weight: 300">Dependencies</h3>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-3">
+        Project dependencies. To show upload <span class="text-monospace text-danger">composer.lock</span> file
+    </div>
+    <div class="col-md-9">
+        <div class="projects form large-9 medium-8 columns content">
+        <?= $this->Form->create($dependenciesUpdateForm, ['url' => '/projects/settings/'. $project->id . '/update-dependencies', 'enctype' => 'multipart/form-data'])?>
+        <?= $this->Form->control('dependencies_file', ['type' => 'file', 'label' => 'Composer.lock file']); ?>
+        <?= $this->Form->button(__('Upload dependecy file'), ['class' => 'btn btn-outline-primary']) ?>
+        <?= $this->form->end() ?>
         </div>
     </div>
 </div>

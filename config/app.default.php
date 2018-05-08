@@ -90,6 +90,16 @@ return [
         ],
 
         /**
+         * Short cache
+         */
+        'short' => [
+            'className' => 'File',
+            'duration' => '+1 minutes',
+            'path' => CACHE,
+            'prefix' => 'short_cache'
+        ],
+
+        /**
          * Configure the cache used for general framework caching.
          * Translation cache files are stored with this configuration.
          * Duration will be set to '+2 minutes' in bootstrap.php when debug = true

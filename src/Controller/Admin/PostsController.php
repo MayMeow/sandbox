@@ -22,10 +22,8 @@ class PostsController extends BaseController
      */
     public function add()
     {
-        try {
-            PermissionsFactory::can('posts-add');
-        } catch (UnauthorizedException $e) {
-            $this->Flash->error($e->getMessage());
+        if (!$this->User->can('posts-add')) {
+            $this->Flash->error('No');
 
             return $this->redirect($this->referer());
         }
@@ -34,6 +32,7 @@ class PostsController extends BaseController
         if ($this->request->is('post')) {
             $post = $this->Posts->patchEntity($post, $this->request->getData());
             $post->user_id = $this->Auth->user('id');
+            $post->project_id = 3;
 
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The post has been saved.'));

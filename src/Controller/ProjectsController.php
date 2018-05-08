@@ -6,6 +6,7 @@ use App\Factories\ProjectsFactory;
 use App\Factories\PermissionsFactory;
 use App\Factories\Utility\ColorsFactory;
 use Cake\Utility\Security;
+use App\Form\DependencyUpdateForm;
 
 /**
  * Projects Controller
@@ -40,15 +41,13 @@ class ProjectsController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($slug = null)
     {
-        $project = $this->Projects->get($id, [
-            'contain' => [
-                'Users' => ['Profiles'],
+        $project = $this->Projects->findBySlug($slug)->contain([
+            'Users' => ['Profiles'],
                 'Spaces',
                 'ProjectSettings'
-            ]
-        ]);
+        ])->firstOrFail();
 
         $this->set('project', $project);
     }
@@ -79,7 +78,10 @@ class ProjectsController extends AppController
      */
     public function add()
     {
-        PermissionsFactory::can('projects-add');
+        if (!$this->User->can('projects:add')) {
+            $this->Flash->error('You dont have permission to do this action');
+            return $this->redirect($this->referer());
+        }
 
         $project = $this->Projects->newEntity();
         $project_settings = $this->Projects->ProjectSettings->newEntity();
@@ -128,6 +130,8 @@ class ProjectsController extends AppController
         $project = $this->Projects->get($id, [
             'contain' => []
         ]);
+        $dependenciesUpdateForm = new DependencyUpdateForm();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $project = $this->Projects->patchEntity($project, $this->request->getData());
             if ($this->Projects->save($project)) {
@@ -141,7 +145,7 @@ class ProjectsController extends AppController
 
         $settings = $this->Projects->ProjectSettings->find()->where(['project_id' => $id])->first();
 
-        $this->set(compact('project', 'users', 'settings'));
+        $this->set(compact('project', 'users', 'settings', 'dependenciesUpdateForm'));
     }
 
     /**

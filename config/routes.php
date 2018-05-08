@@ -84,10 +84,14 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/projects/', ['controller' => 'Projects', 'action' => 'index']);
     $routes->connect('/projects/add', ['controller' => 'Projects', 'action' => 'add']);
-    $routes->connect('/projects/:id', ['controller' => 'Projects', 'action' => 'view'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->connect('/projects/:slug', ['controller' => 'Projects', 'action' => 'view'])->setPass(['slug']);
     $routes->connect('/projects/edit/:id', ['controller' => 'Projects', 'action' => 'edit'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->connect('/projects/delete/:id', ['controller' => 'Projects', 'action' => 'delete'])->setPatterns(['id' => '\d+'])->setPass(['id']);
     $routes->connect('/projects/:id/spaces', ['controller' => 'Projects', 'action' => 'spaces'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    /**
+     * Project Settings Controller
+     */
+    $routes->connect('/projects/settings/:id/update-dependencies', ['controller' => 'ProjectSettings', 'action' => 'updateDependencies'])->setPatterns(['id' => '\d+'])->setPass(['id']);;
 
     /**
      * Spaces
@@ -176,6 +180,12 @@ Router::prefix('api', function ($routes) {
     $routes->get('/users/:id/projects', ['controller' => 'Users', 'action' => 'projects'])->setPatterns(['id' => '\d+'])->setPass(['id']);
 
     /**
+     * Profiles
+     */
+    $routes->get('/profiles/', ['controller' => 'Profiles', 'action' => 'index']);
+    $routes->get('/profiles/:profile', ['controller' => 'Users', 'action' => 'view'])->setPatterns(['profile' => '\d+'])->setPass(['profile']);
+
+    /**
      * Posts
      */
     $routes->get('/posts/', ['controller' => 'Posts', 'action' => 'index']);
@@ -185,12 +195,14 @@ Router::prefix('api', function ($routes) {
      * Projects
      */
     $routes->get('/projects/', ['controller' => 'Projects', 'action' => 'index']);
+    $routes->get('/projects/:project', ['controller' => 'Projects', 'action' => 'view'])->setPatterns(['project' => '\d+'])->setPass(['project']);
+    $routes->connect('/projects/:project/posts', ['plugin' => 'Projects', 'controller' => 'Posts', 'action' => 'index'])->setPatterns(['project' => '\d+'])->setPass(['project']);
 
     /**
      * Spaces
      */
     $routes->get('/spaces', ['controller' => 'Spaces', 'action' => 'index']);
-    $routes->get('/spaces/index/:id', ['controller' => 'Spaces', 'action' => 'index'])->setPatterns(['id' => '\d+'])->setPass(['id']);
+    $routes->get('/spaces/index/:id', ['controller' => 'Spaces', 'action' => 'index'])->setPatterns(['id' => '\d+'])->setPass(['id']);;
     //$routes->fallbacks(DashedRoute::class);
 });
 

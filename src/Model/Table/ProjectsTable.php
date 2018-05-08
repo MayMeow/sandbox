@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 /**
  * Projects Model
@@ -48,6 +49,11 @@ class ProjectsTable extends Table
         $this->hasMany('Spaces', [
             'foreignKey' => 'project_id'
         ]);
+
+        $this->hasMany('Posts', [
+            'foreignKey' => 'project_id'
+        ]);
+
         $this->hasOne('ProjectSettings', [
             'foreignKey' => 'project_id'
         ]);
@@ -94,5 +100,17 @@ class ProjectsTable extends Table
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
+    }
+
+    /**
+     * 
+     */
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->isNew() && !$entity->slug) {
+            $sluggedTitle = Text::slug($entity->name);
+            // trim slug to maximum length defined in schema
+            $entity->slug = substr($sluggedTitle, 0, 191);
+        }
     }
 }

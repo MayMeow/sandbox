@@ -2,18 +2,18 @@
 
 namespace App\Http\Presenter\Projects\Settings;
 
-use Daybreak\Http\Presenter\Json\Presenter;
+use MayMeow\API\Resource\Resource;
 
-class SettingPresenter extends Presenter
+class SettingPresenter extends Resource
 {
     public function toArray()
     {
         return [
-            'id' => $this->entity->id,
-            'color' => $this->entity->color,
-            'spaces' => $this->entity->spaces,
-            'environments' => $this->entity->environments,
-            'issues' => $this->entity->issues
+            'id' => $this->id,
+            'color' => $this->color,
+            'spaces' => $this->spaces,
+            'environments' => $this->environments,
+            'issues' => $this->issues
         ];
     }
 }
