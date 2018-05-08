@@ -196,7 +196,7 @@ php phpunit postgres:
 
 pages:
     <<: *pull-cache
-    <<: *postgres-variables
+    <<: *mariadb-variables
     services:
         - redis
         - postgres
